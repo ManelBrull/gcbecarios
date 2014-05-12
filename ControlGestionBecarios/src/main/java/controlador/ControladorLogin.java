@@ -42,18 +42,13 @@ public class ControladorLogin {
 			Usuario usr = new Usuario();
 			usr.setNombreUsuario(login.getTextUsuari().getText().trim());
 			boolean result = usr.validarUsuario();
-			// validar usando hibernate
 			if(result == true){
 				login.setResult(true);
 				login.getShell().dispose();
 			}
 			else {
 				login.setResult(false);
-				MessageBox dialog = new MessageBox(login.getShell(), SWT.ICON_ERROR);
-				dialog.setText("Error");
-				dialog.setMessage("El usuario es incorrecto, revise si ha escrito correctamente"
-						+ " el nombre de usuario y la contraseña");
-				dialog.open();
+				login.mensajeErrorIniciarSesion();
 			}
 		} catch (NamingException | CampoRequeridoException e) {
 			login.setResult(false);

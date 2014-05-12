@@ -11,6 +11,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
@@ -183,6 +184,15 @@ public class Login extends ATDialogEscudo {
 
 	public void setcLogin(ControladorLogin cLogin) {
 		this.cLogin = cLogin;
+	}
+
+	public void mensajeErrorIniciarSesion() {
+		MessageBox dialog = new MessageBox(getShell(), SWT.ICON_ERROR);
+		dialog.setText("Error");
+		dialog.setMessage("El usuario es incorrecto, revise si ha escrito correctamente"
+				+ " el nombre de usuario y la contraseña");
+		dialog.open();
+		
 	}
 
 }
