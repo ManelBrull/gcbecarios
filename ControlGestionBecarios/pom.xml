@@ -2,14 +2,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>es.atorrent</groupId>
-	<artifactId>proyectoinicial</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Proyecto Inicial</name>
-	<description>Esquema de proyecto del que parten todos los proyectos de atorrent</description>
+	<name>ControlGestionBecarios</name>
 	<build>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version> 2.3.2</version>
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
@@ -52,6 +51,11 @@
 			<version>3.3.0-I20070606-0010</version>
 		</dependency>
 		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+		</dependency>
+		<dependency>
 			<groupId>
 				org.eclipse.swt.org.eclipse.swt.win32.win32.x86.4.3.swt
 			</groupId>
@@ -59,4 +63,6 @@
 			<version>4.3</version>
 		</dependency>
 	</dependencies>
+	<description>Gestión de becarios</description>
+	<artifactId>gcbecarios</artifactId>
 </project>

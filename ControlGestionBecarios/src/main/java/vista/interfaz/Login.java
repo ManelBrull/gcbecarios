@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 
-import at.vista.interfaz.ATorrentDialogEscudo;
+import at.vista.interfaz.ATDialogEscudo;
 import at.vista.interfaz.Recursos;
 import controlador.ControladorLogin;
 
@@ -33,7 +33,7 @@ import controlador.ControladorLogin;
  * @author brullp
  *
  */
-public class Login extends ATorrentDialogEscudo {
+public class Login extends ATDialogEscudo {
 	/** Controlador que maneja la logica de la interfaz **/
 	private ControladorLogin cLogin;
 
