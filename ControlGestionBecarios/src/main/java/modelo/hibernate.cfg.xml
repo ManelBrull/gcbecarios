@@ -13,7 +13,7 @@
         <property name="hibernate.connection.password">test</property>
         -->
         
-        <property name="hibernate.connection.url">jdbc:mysql://localhost/test</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost/gcbecarios</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">Conan</property>
         
@@ -30,12 +30,17 @@
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
         <!-- Drop and re-create the database schema on startup -->
-        <!-- Hay que elegir si hibernate tiene que crear la base de datos cada ves  -->
+        <!-- Hay que elegir si hibernate tiene que crear la base de datos cada vez  -->
+        
         <property name="hbm2ddl.auto">create-drop</property> 
         
         <!--  Mappings -->
         <mapping class="modelo.entidades.usuario.Usuario"/>
-                
+        <mapping class="modelo.entidades.TipoDeExpediente"/>
+        <mapping class="modelo.entidades.Expediente"/>
+        <mapping class="modelo.entidades.TutorAcademico"/>
+        <mapping class="modelo.entidades.Departamento"/>
+        <mapping class="modelo.entidades.practica.Practica"/>
         
     </session-factory>
         

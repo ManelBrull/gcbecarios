@@ -24,7 +24,7 @@ public class Expediente {
 	@JoinColumn(name = "idTipoDeExpediente", nullable = false)
 	private TipoDeExpediente tipoDeExpediente;
 	
-	public void Expediente(){};
+	public Expediente(){};
 	
 
 	public int getId() {
