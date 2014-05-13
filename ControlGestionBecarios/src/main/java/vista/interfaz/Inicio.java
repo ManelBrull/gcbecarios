@@ -54,7 +54,7 @@ public class Inicio {
 		public void open() {
 			Display display = Display.getDefault();
 			createContents();
-			Login myLogin = new Login(shell, "Proyecto Inicial");
+			Login myLogin = new Login(shell, Utils.nombreProyecto);
 			myLogin.setcLogin(new ControladorLogin(myLogin));
 			Boolean goApp  = myLogin.open();
 			if(goApp){
