@@ -2,6 +2,7 @@ package modelo.entidades.practica;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -26,10 +27,12 @@ public class Practica {
 	@JoinColumn(name = "idTutorAcademico")
 	private TutorAcademico tutorAcademico;
 	@OneToOne 
-	@JoinColumn(name = "idDepartamentoDestino")
+	@JoinColumn(name = "idDepartamentoDestino", nullable = false)
 	private Departamento departamentoDestino;
+	
 	@Enumerated(EnumType.STRING)
 	private TipoPractica profesionalesFormacion;
+	
 	private Date fechaInicio;
 	private Date fechaFinalTeorica;
 	private Date fechaFinalReal;
@@ -44,6 +47,7 @@ public class Practica {
 	private String tutorAyuntamiento;
 	private String decretoAutorizacion;
 	private String refClica;
+	@Column(length = 1024)
 	private String observaciones;
 	
 	

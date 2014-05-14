@@ -27,12 +27,14 @@ public class Becario {
 			inverseJoinColumns = @JoinColumn (name="idPractica")
 	)
 	private Set <Practica> practicas;
+
+	@Column(nullable = false, unique = true)
+	private String documentacion;
+	
 	
 	@Column(nullable = false)
 	private String nombre;
 	private String apellidos;
-	@Column(nullable = false, unique = true)
-	private String documentacion;
 	private String direccion;
 	private String localidad;
 	private String provincia;
