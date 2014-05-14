@@ -194,7 +194,6 @@ public class Mantenimiento extends ATDialog implements IMantenimiento {
 	protected void myDispose() {
 	}
 	
-	@Override
 	public void openError(String cabecera, String mensaje) {
 		MessageDialog.openError(
 				getShell(),
@@ -202,7 +201,6 @@ public class Mantenimiento extends ATDialog implements IMantenimiento {
 				mensaje);
 	}
 
-	@Override
 	public void openInformation(String cabecera, String mensaje) {
 		MessageDialog.openInformation(
 				getShell(),
@@ -210,7 +208,6 @@ public class Mantenimiento extends ATDialog implements IMantenimiento {
 				mensaje);
 	}
 
-	@Override
 	public int openQuestion(String cabecera, String mensaje, String[] opciones) {
 		MessageDialog dialog = new MessageDialog(
 				getShell(), 

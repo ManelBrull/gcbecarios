@@ -1,4 +1,4 @@
-package modelo.entidades.practicas;
+package modelo.entidades.practica;
 
 import java.util.Date;
 
