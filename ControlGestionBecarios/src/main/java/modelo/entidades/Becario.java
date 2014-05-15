@@ -1,6 +1,7 @@
 package modelo.entidades;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,10 +14,38 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
+import modelo.dao.BecarioDAO;
 import modelo.entidades.practica.Practica;
 
+import org.hibernate.HibernateException;
+
+import at.modelo.entidades.ICrud;
+
 @Entity(name = "becario")
-public class Becario {
+public class Becario implements ICrud <Becario> {
+	@Override
+	public void delete() throws HibernateException {
+		new BecarioDAO().delete(this);
+	}
+	@Override
+	public Becario get(int id) throws HibernateException {
+		return new BecarioDAO().get(id);
+	}
+	@Override
+	public Iterator<Becario> getAll() throws HibernateException {
+		return (new BecarioDAO().getAll().iterator());
+	}
+	@Override
+	public void save() throws HibernateException {
+		new BecarioDAO().save(this);
+	}
+	@Override
+	public void update(Becario nuevo) throws HibernateException {
+		nuevo.setId(this.getId());
+		new BecarioDAO().update(this);
+	};
+	
+	
 	@Id @GeneratedValue
 	private int id;
 	
@@ -159,6 +188,6 @@ public class Becario {
 
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
-	};
+	}
 
 }
