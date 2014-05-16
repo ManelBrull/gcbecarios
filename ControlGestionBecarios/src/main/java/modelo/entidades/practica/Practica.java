@@ -1,6 +1,7 @@
 package modelo.entidades.practica;
 
 import java.util.Date;
+import java.util.Iterator;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,12 +12,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import modelo.dao.BecarioDAO;
+import modelo.dao.PracticaDAO;
 import modelo.entidades.Departamento;
 import modelo.entidades.Expediente;
 import modelo.entidades.TutorAcademico;
 
+import org.hibernate.HibernateException;
+
+import at.modelo.entidades.ICrud;
+
 @Entity(name = "practica")
-public class Practica {
+public class Practica implements ICrud <Practica>{
 	
 	@Id @GeneratedValue
 	private int id;
@@ -196,6 +203,42 @@ public class Practica {
 
 	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
+	}
+
+
+	@Override
+	public void delete() throws HibernateException {
+		// TODO Auto-generated method stub
+		new PracticaDAO().delete(this);
+		
+	}
+
+
+	@Override
+	public Practica get(int id) throws HibernateException {
+		// TODO Auto-generated method stub
+		return new PracticaDAO().get(id);
+	}
+
+
+	@Override
+	public Iterator<Practica> getAll() throws HibernateException {
+		// TODO Auto-generated method stub
+		return (new PracticaDAO().getAll().iterator());
+	}
+
+
+	@Override
+	public void save() throws HibernateException {
+		// TODO Auto-generated method stub
+		new PracticaDAO().save(this);
+	}
+
+
+	@Override
+	public void update(Practica nuevo) throws HibernateException {
+		nuevo.setId(this.getId());
+		new PracticaDAO().update(this);
 	};
 	
 	

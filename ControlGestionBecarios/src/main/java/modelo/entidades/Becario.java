@@ -23,29 +23,6 @@ import at.modelo.entidades.ICrud;
 
 @Entity(name = "becario")
 public class Becario implements ICrud <Becario> {
-	@Override
-	public void delete() throws HibernateException {
-		new BecarioDAO().delete(this);
-	}
-	@Override
-	public Becario get(int id) throws HibernateException {
-		return new BecarioDAO().get(id);
-	}
-	@Override
-	public Iterator<Becario> getAll() throws HibernateException {
-		return (new BecarioDAO().getAll().iterator());
-	}
-	@Override
-	public void save() throws HibernateException {
-		new BecarioDAO().save(this);
-	}
-	@Override
-	public void update(Becario nuevo) throws HibernateException {
-		nuevo.setId(this.getId());
-		new BecarioDAO().update(this);
-	};
-	
-	
 	@Id @GeneratedValue
 	private int id;
 	
@@ -75,6 +52,28 @@ public class Becario implements ICrud <Becario> {
 	private Date fechaCreacion;
 	
 	public Becario(){}
+	
+	@Override
+	public void delete() throws HibernateException {
+		new BecarioDAO().delete(this);
+	}
+	@Override
+	public Becario get(int id) throws HibernateException {
+		return new BecarioDAO().get(id);
+	}
+	@Override
+	public Iterator<Becario> getAll() throws HibernateException {
+		return (new BecarioDAO().getAll().iterator());
+	}
+	@Override
+	public void save() throws HibernateException {
+		new BecarioDAO().save(this);
+	}
+	@Override
+	public void update(Becario nuevo) throws HibernateException {
+		nuevo.setId(this.getId());
+		new BecarioDAO().update(this);
+	};
 	
 	
 

@@ -1,14 +1,21 @@
 package modelo.entidades;
 
-import java.util.Date;
+import java.util.Iterator;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import modelo.dao.BecarioDAO;
+import modelo.dao.TutorAcademicoDAO;
+
+import org.hibernate.HibernateException;
+
+import at.modelo.entidades.ICrud;
+
 @Entity(name="tutoracademico")
-public class TutorAcademico {
+public class TutorAcademico implements ICrud <TutorAcademico>{
 	@Id @GeneratedValue
 	private int id;
 	
@@ -59,6 +66,38 @@ public class TutorAcademico {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Override
+	public void delete() throws HibernateException {
+		// TODO Auto-generated method stub
+		new TutorAcademicoDAO().delete(this);
+		
+	}
+
+	@Override
+	public TutorAcademico get(int id) throws HibernateException {
+		// TODO Auto-generated method stub
+		return new TutorAcademicoDAO().get(id);
+	}
+
+	@Override
+	public Iterator<TutorAcademico> getAll() throws HibernateException {
+		// TODO Auto-generated method stub
+		return (new TutorAcademicoDAO().getAll().iterator());
+	}
+
+	@Override
+	public void save() throws HibernateException {
+		// TODO Auto-generated method stub
+		new TutorAcademicoDAO().save(this);
+	}
+
+	@Override
+	public void update(TutorAcademico nuevo) throws HibernateException {
+		// TODO Auto-generated method stub
+		nuevo.setId(this.getId());
+		new TutorAcademicoDAO().update(this);
 	};
 	
 
