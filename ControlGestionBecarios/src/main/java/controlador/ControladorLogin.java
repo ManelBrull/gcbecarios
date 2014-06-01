@@ -8,12 +8,7 @@ import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
 
 import modelo.entidades.usuario.Usuario;
-
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.MessageBox;
-
 import vista.interfaz.Login;
-import at.controlador.GestionError;
 import at.modelo.entidades.excepciones.CampoRequeridoException;
 
 public class ControladorLogin {
@@ -48,16 +43,19 @@ public class ControladorLogin {
 			}
 			else {
 				login.setResult(false);
+				login.setResult(true);
 				login.mensajeErrorIniciarSesion();
 			}
 		} catch (NamingException | CampoRequeridoException e) {
 			login.setResult(false);
-			new GestionError(login.getShell(), e);
+			login.setResult(true);
+			login.mensajeErrorIniciarSesion();
 		}
 	}
 
 	public void salir() {
 		login.setResult(false);
+		login.setResult(true);
 		login.getShell().dispose();
 	}
 	

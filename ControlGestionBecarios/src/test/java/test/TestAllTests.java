@@ -1,11 +1,13 @@
 package test;
 
+import modelo.AccesoADB;
+
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({})
-public class AllTests {
+@SuiteClasses({AccesoADB.class})
+public class TestAllTests {
 
 }

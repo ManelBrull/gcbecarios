@@ -80,9 +80,9 @@ public class Inicio {
 		private Font titulo1;
 		
 		
-		CLabel lblMantenimientoEjemplo;
+		CLabel lblMantenimientoTutorAcademico;
 		CLabel lblMantenimientoUsuarios;
-		private Button btnEjemplo1Mantenimiento;
+		private Button btnMantenimientoTutor;
 		private Button btnMantenimientopDeUsuarios;
 		
 		/**
@@ -119,15 +119,31 @@ public class Inicio {
 			Menu menu_1 = new Menu(mntmMantenimiento);
 			mntmMantenimiento.setMenu(menu_1);
 			
-			MenuItem mntmBecarios = new MenuItem(menu_1, SWT.NONE);
-			mntmBecarios.addSelectionListener(new SelectionAdapter() {
+			MenuItem mntmTutores = new MenuItem(menu_1, SWT.NONE);
+			mntmTutores.addSelectionListener(new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
-					cInicio.cargarMantenimiento();
+					cInicio.cargarMantenimientoTutor();
 				}
 			});
-			mntmBecarios.setText("EjemploDeMantenimiento\tCtrl+B");
-			mntmBecarios.setAccelerator(SWT.MOD1 + 'B');
+			mntmTutores.setText("Mantenimiento de tutores académicos\tCtrl+T");
+			mntmTutores.setAccelerator(SWT.MOD1 + 'T');
+			
+			MenuItem mntmMantenimientoDeUsuarios = new MenuItem(menu_1, SWT.NONE);
+			mntmMantenimientoDeUsuarios.setText("Mantenimiento de usuarios\tCtrl+U");
+			mntmMantenimientoDeUsuarios.setAccelerator(SWT.MOD1 + 'U');
+			mntmMantenimientoDeUsuarios.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					cInicio.cargarMantenimientoUsuarios();
+				}
+			});
+			
+			new MenuItem(menu_1, SWT.SEPARATOR);
+			
+			MenuItem mntmSalir = new MenuItem(menu_1, SWT.NONE);
+			mntmSalir.setText("Salir");
+			
 			
 			
 			MenuItem mntmInformes = new MenuItem(menuBar, SWT.CASCADE);
@@ -146,29 +162,30 @@ public class Inicio {
 			mntmInformeUno.setText("Informe1\tCtrl+F1");
 			mntmInformeUno.setAccelerator(SWT.MOD1 + SWT.F1);
 			
-			btnEjemplo1Mantenimiento = new Button(shell, SWT.CENTER);
-			btnEjemplo1Mantenimiento.setBounds(10, 10, 32, 32);
-			btnEjemplo1Mantenimiento.addSelectionListener(new SelectionAdapter() {
+			
+			
+			btnMantenimientoTutor = new Button(shell, SWT.CENTER);
+			btnMantenimientoTutor.setBounds(10, 10, 32, 32);
+			btnMantenimientoTutor.addSelectionListener(new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
 					cInicio.cargarMantenimiento();
 				}
 			});
-			btnEjemplo1Mantenimiento.setImage(buttonImage);
+			btnMantenimientoTutor.setImage(buttonImage);
 			
-			
-			lblMantenimientoEjemplo = new CLabel(shell, SWT.NONE);
-			lblMantenimientoEjemplo.setBounds(48, 10, 309, 32);
-			lblMantenimientoEjemplo.setText("EjemploDeMantenimiento");
-			lblMantenimientoEjemplo.setForeground(azul);
-			lblMantenimientoEjemplo.setFont(titulo1);
+			lblMantenimientoTutorAcademico = new CLabel(shell, SWT.NONE);
+			lblMantenimientoTutorAcademico.setBounds(48, 10, 383, 32);
+			lblMantenimientoTutorAcademico.setText("Mantenimiento Tutor acad\u00E9mico");
+			lblMantenimientoTutorAcademico.setForeground(azul);
+			lblMantenimientoTutorAcademico.setFont(titulo1);
 			
 			btnMantenimientopDeUsuarios = new Button(shell, SWT.CENTER);
 			btnMantenimientopDeUsuarios.setBounds(10, 48, 32, 32);
 			btnMantenimientopDeUsuarios.addSelectionListener(new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
-					cInicio.cargarMantenimientoUsuarios();
+					cInicio.cargarMantenimientoTutor();
 				}
 			});
 			btnMantenimientopDeUsuarios.setImage(buttonImage);
@@ -210,8 +227,8 @@ public class Inicio {
 		 * En la pantalla de inicio se usan accelerators definidos en los menuItem
 		 */
 		public void inicializar(){
-			lblMantenimientoEjemplo.setToolTipText(Recursos.generarATorrentTooltipTextShortcutLabel("Ctrl + B"));
-			btnEjemplo1Mantenimiento.setToolTipText(Recursos.generarATorrentTooltipTextShortcutButton("Ctrl + B"));
+			lblMantenimientoTutorAcademico.setToolTipText(Recursos.generarATorrentTooltipTextShortcutLabel("Ctrl + B"));
+			btnMantenimientoTutor.setToolTipText(Recursos.generarATorrentTooltipTextShortcutButton("Ctrl + B"));
 		}
 
 		public ControladorInicio getcInicio() {

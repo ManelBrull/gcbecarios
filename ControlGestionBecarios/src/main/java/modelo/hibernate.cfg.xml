@@ -41,7 +41,7 @@
         <mapping class="modelo.entidades.TutorAcademico"/>
         <mapping class="modelo.entidades.Departamento"/>
         <mapping class="modelo.entidades.practica.Practica"/>
-        
+        <mapping class="modelo.entidades.Becario"/>
     </session-factory>
         
 </hibernate-configuration>
