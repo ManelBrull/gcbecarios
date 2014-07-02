@@ -316,19 +316,19 @@ public class MantenimientoDeDepartamentos extends ATDialog implements IMantenimi
 		shell.close();
 	}
 	
-	protected String getStringNombreFiltro() {
+	public String getStringNombreFiltro() {
 		return textNombreFiltro.getText();
 	}
 
-	protected void setStringNombreFiltro(String nombreFiltro) {
+	public void setStringNombreFiltro(String nombreFiltro) {
 		this.textNombreFiltro.setText(nombreFiltro);
 	}
 
-	protected String getStringNombreDepartamento() {
+	public String getStringNombreDepartamento() {
 		return textNombreDepartamento.getText();
 	}
 
-	protected void setStringNombreDepartamento(String textNombreDepartamento) {
+	public void setStringNombreDepartamento(String textNombreDepartamento) {
 		this.textNombreDepartamento.setText(textNombreDepartamento);
 	}
 

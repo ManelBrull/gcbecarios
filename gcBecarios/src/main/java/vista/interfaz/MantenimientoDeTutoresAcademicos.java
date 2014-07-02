@@ -364,43 +364,43 @@ public class MantenimientoDeTutoresAcademicos extends ATDialog implements IMante
 		shell.close();
 	}
 
-	protected String getStringNombreFiltro() {
+	public String getStringNombreFiltro() {
 		return textNombreFiltro.getText();
 	}
 
-	protected void setStringNombreFiltro(String textNombreFiltro) {
+	public void setStringNombreFiltro(String textNombreFiltro) {
 		this.textNombreFiltro.setText(textNombreFiltro);
 	}
 
-	protected String getStringNombre() {
+	public String getStringNombre() {
 		return textNombre.getText();
 	}
 
-	protected void setStringNombre(String textNombre) {
+	public void setStringNombre(String textNombre) {
 		this.textNombre.setText(textNombre);
 	}
 
-	protected String getStringTelefono() {
+	public String getStringTelefono() {
 		return textTelefono.getText();
 	}
 
-	protected void setStringTelefono(String textTelefono) {
+	public void setStringTelefono(String textTelefono) {
 		this.textTelefono.setText(textTelefono);
 	}
 
-	protected String getStringApellidos() {
+	public String getStringApellidos() {
 		return textApellidos.getText();
 	}
 
-	protected void setStringApellidos(String textApellidos) {
+	public void setStringApellidos(String textApellidos) {
 		this.textApellidos.setText(textApellidos);
 	}
 
-	protected String getStringEmail() {
+	public String getStringEmail() {
 		return textEmail.getText();
 	}
 
-	protected void setStringEmail(String textEmail) {
+	public void setStringEmail(String textEmail) {
 		this.textEmail.setText(textEmail);
 	}
 

@@ -1,5 +1,7 @@
 package vista.interfaz;
 
+import java.util.Iterator;
+
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
@@ -8,20 +10,22 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.ShellAdapter;
 import org.eclipse.swt.events.ShellEvent;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
-import vista.interfaz.Utils;
 import at.controlador.ControladorMantenimiento;
+import at.modelo.entidades.IEsCombo;
 import at.vista.IMantenimiento;
 import at.vista.interfaz.ATDialog;
-import org.eclipse.swt.widgets.TableColumn;
 
 /**
  * 
@@ -33,7 +37,7 @@ import org.eclipse.swt.widgets.TableColumn;
  * @author brullp
  *
  */
-public class MantenimientoDeTiposDeExpediente extends ATDialog implements IMantenimiento {
+public class MantenimientoDeExpedientes extends ATDialog implements IMantenimiento {
 
 	protected Object result;
 	protected Shell shell;
@@ -51,15 +55,25 @@ public class MantenimientoDeTiposDeExpediente extends ATDialog implements IMante
 	private Button btnSalir;
 	
 	private Text textNombreFiltro;
-	private TableColumn tblclmnNombreDelDepartamento;
-	private Text textNombreTipoDeExpediente;
+	private CLabel lblTipoExpediente;
+	private Combo comboTipoDeExpediente;
+
+	private Button btnAadir;
+	private Text textCentro;
+	private Text textReferenciaClica;
+	private Text textDecreto;
+	private TableColumn tblclmnTipo;
+	private TableColumn tblclmnCentro;
+	private TableColumn tblclmnRefClica;
+	private TableColumn tblclmnRefDecreto;
+	private TableColumn tblclmnFecha;
 
 	/**
 	 * Crea el dialog
 	 * @param parent
 	 */
-	public MantenimientoDeTiposDeExpediente(Shell parent) {
-		super(parent,Utils.nombreProyecto + " - Mantenimiento de tipos de expediente");
+	public MantenimientoDeExpedientes(Shell parent) {
+		super(parent,Utils.nombreProyecto + " - Mantenimiento de Expedientes");
 //		controlador = new ControladorConcreto();
 	}
 
@@ -91,21 +105,21 @@ public class MantenimientoDeTiposDeExpediente extends ATDialog implements IMante
 				controlador.salir();
 			}
 		});
-		shell.setSize(433, 349);
+		shell.setSize(560, 456);
 		super.createContents(shell);
 		
 		Composite compositeMain = new Composite(shell, SWT.NONE);
-		compositeMain.setBounds(0, 0, 424, 320);
+		compositeMain.setBounds(0, 0, 555, 426);
 		
 		
 		Group grpClase = new Group(compositeMain, SWT.NONE);
-		grpClase.setText("Datos tipo de expediente");
+		grpClase.setText("Datos expediente");
 		grpClase.setFont(getGroupFont());
 		grpClase.setForeground(getAzul());
-		grpClase.setBounds(5, 221, 414, 93);
+		grpClase.setBounds(5, 221, 545, 200);
 		
 		btnNuevo = new Button(grpClase, SWT.NONE);
-		btnNuevo.setBounds(116, 57, 68, 23);
+		btnNuevo.setBounds(247, 168, 68, 23);
 		btnNuevo.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -115,7 +129,7 @@ public class MantenimientoDeTiposDeExpediente extends ATDialog implements IMante
 		btnNuevo.setText("Nuevo");
 		
 		btnGrabar = new Button(grpClase, SWT.NONE);
-		btnGrabar.setBounds(190, 57, 68, 23);
+		btnGrabar.setBounds(321, 168, 68, 23);
 		btnGrabar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -126,7 +140,7 @@ public class MantenimientoDeTiposDeExpediente extends ATDialog implements IMante
 		btnGrabar.setText("Grabar");
 		
 		btnEliminar = new Button(grpClase, SWT.NONE);
-		btnEliminar.setBounds(264, 57, 68, 23);
+		btnEliminar.setBounds(395, 168, 68, 23);
 		btnEliminar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -137,7 +151,7 @@ public class MantenimientoDeTiposDeExpediente extends ATDialog implements IMante
 		btnEliminar.setText("Eliminar");
 		
 		btnSalir = new Button(grpClase, SWT.NONE);
-		btnSalir.setBounds(336, 57, 68, 23);
+		btnSalir.setBounds(467, 168, 68, 23);
 		btnSalir.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -146,31 +160,76 @@ public class MantenimientoDeTiposDeExpediente extends ATDialog implements IMante
 		});
 		btnSalir.setText("Salir");
 		
-		CLabel lblNombre = new CLabel(grpClase, SWT.NONE);
-		lblNombre.setBounds(10, 20, 61, 21);
-		lblNombre.setForeground(getAzul());
-		lblNombre.setFont(getLabelFont());
-		lblNombre.setText("Nombre: ");
+		lblTipoExpediente = new CLabel(grpClase, SWT.NONE);
+		lblTipoExpediente.setBounds(10, 20, 176, 21);
+		lblTipoExpediente.setText("Tipo de expediente: ");
+		lblTipoExpediente.setForeground(getAzul());
+		lblTipoExpediente.setFont(getLabelFont());
 		
-		textNombreTipoDeExpediente = new Text(grpClase, SWT.BORDER);
-		textNombreTipoDeExpediente.setBounds(77, 20, 327, 21);
+		
+		comboTipoDeExpediente = new Combo(grpClase, SWT.READ_ONLY);
+		comboTipoDeExpediente.setBounds(206, 20, 248, 23);
+		
+		btnAadir = new Button(grpClase, SWT.NONE);
+		btnAadir.setBounds(460, 20, 75, 25);
+		btnAadir.setText("Añadir");
+		
+		CLabel lblCentroEducativoinstitucin = new CLabel(grpClase, SWT.NONE);
+		lblCentroEducativoinstitucin.setBounds(10, 47, 176, 21);
+		lblCentroEducativoinstitucin.setText("Centro educativo/institución: ");
+		lblCentroEducativoinstitucin.setForeground(getAzul());
+		lblCentroEducativoinstitucin.setFont(getLabelFont());
+		
+		
+		CLabel lblReferenciaClica = new CLabel(grpClase, SWT.NONE);
+		lblReferenciaClica.setBounds(10, 74, 176, 21);
+		lblReferenciaClica.setText("Referencia clica: ");
+		lblReferenciaClica.setForeground(getAzul());
+		lblReferenciaClica.setFont(getLabelFont());
+		
+		
+		CLabel lblReferenciaDecreto = new CLabel(grpClase, SWT.NONE);
+		lblReferenciaDecreto.setBounds(10, 101, 176, 21);
+		lblReferenciaDecreto.setText("Referencia decreto: ");
+		lblReferenciaDecreto.setForeground(getAzul());
+		lblReferenciaDecreto.setFont(getLabelFont());
+		
+		
+		CLabel lblFecha = new CLabel(grpClase, SWT.NONE);
+		lblFecha.setBounds(10, 128, 61, 21);
+		lblFecha.setText("Fecha:");
+		lblFecha.setForeground(getAzul());
+		lblFecha.setFont(getLabelFont());
+		
+		textCentro = new Text(grpClase, SWT.BORDER);
+		textCentro.setBounds(206, 49, 329, 21);
+		
+		textReferenciaClica = new Text(grpClase, SWT.BORDER);
+		textReferenciaClica.setBounds(206, 74, 95, 21);
+		
+		textDecreto = new Text(grpClase, SWT.BORDER);
+		textDecreto.setBounds(206, 101, 95, 21);
+		
+		DateTime dateTime = new DateTime(grpClase, SWT.BORDER | SWT.DROP_DOWN);
+		dateTime.setBounds(206, 128, 95, 24);
+		
 		
 		Group grpFiltro = new Group(compositeMain, SWT.NONE);
 		grpFiltro.setLocation(5, 5);
-		grpFiltro.setSize(414, 210);
+		grpFiltro.setSize(545, 210);
 		grpFiltro.setText("Filtro");
 		grpFiltro.setFont(getGroupFont());
 		grpFiltro.setForeground(getAzul());
 		
 		
 		CLabel lblNombreFiltro = new CLabel(grpFiltro, SWT.NONE);
-		lblNombreFiltro.setBounds(10, 20, 115, 21);
+		lblNombreFiltro.setBounds(10, 20, 105, 21);
 		lblNombreFiltro.setFont(getLabelFont());
 		lblNombreFiltro.setForeground(getAzul());
-		lblNombreFiltro.setText("Filtro por nombre: ");
+		lblNombreFiltro.setText("Filtro por centro: ");
 		
 		btnBuscar = new Button(grpFiltro, SWT.NONE);
-		btnBuscar.setBounds(264, 18, 68, 23);
+		btnBuscar.setBounds(391, 18, 68, 23);
 		btnBuscar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -180,7 +239,7 @@ public class MantenimientoDeTiposDeExpediente extends ATDialog implements IMante
 		btnBuscar.setText("Buscar");
 		
 		Button btnBorrar = new Button(grpFiltro, SWT.NONE);
-		btnBorrar.setBounds(338, 18, 68, 23);
+		btnBorrar.setBounds(465, 18, 68, 23);
 		btnBorrar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -190,7 +249,7 @@ public class MantenimientoDeTiposDeExpediente extends ATDialog implements IMante
 		btnBorrar.setText("Borrar");
 		
 		table = new Table(grpFiltro, SWT.BORDER | SWT.FULL_SELECTION);
-		table.setBounds(10, 47, 396, 155);
+		table.setBounds(10, 47, 523, 155);
 		table.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -200,12 +259,28 @@ public class MantenimientoDeTiposDeExpediente extends ATDialog implements IMante
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
 		
-		tblclmnNombreDelDepartamento = new TableColumn(table, SWT.NONE);
-		tblclmnNombreDelDepartamento.setWidth(392);
-		tblclmnNombreDelDepartamento.setText("Nombre del Tipo");
+		tblclmnTipo = new TableColumn(table, SWT.NONE);
+		tblclmnTipo.setWidth(100);
+		tblclmnTipo.setText("Tipo");
+		
+		tblclmnCentro = new TableColumn(table, SWT.NONE);
+		tblclmnCentro.setWidth(158);
+		tblclmnCentro.setText("Centro");
+		
+		tblclmnRefClica = new TableColumn(table, SWT.NONE);
+		tblclmnRefClica.setWidth(100);
+		tblclmnRefClica.setText("Ref. Clica");
+		
+		tblclmnRefDecreto = new TableColumn(table, SWT.NONE);
+		tblclmnRefDecreto.setWidth(100);
+		tblclmnRefDecreto.setText("Ref. Decreto");
+		
+		tblclmnFecha = new TableColumn(table, SWT.NONE);
+		tblclmnFecha.setWidth(100);
+		tblclmnFecha.setText("Fecha");
 		
 		textNombreFiltro = new Text(grpFiltro, SWT.BORDER);
-		textNombreFiltro.setBounds(131, 20, 127, 21);
+		textNombreFiltro.setBounds(121, 20, 264, 21);
 		controlador.inicializar();
 	}
 	
@@ -241,8 +316,6 @@ public class MantenimientoDeTiposDeExpediente extends ATDialog implements IMante
 				0 );
 		return dialog.open();
 	}
-	
-	
 
 	@Override
 	public void anadirElemento(String[] fila) {
@@ -316,20 +389,43 @@ public class MantenimientoDeTiposDeExpediente extends ATDialog implements IMante
 		shell.close();
 	}
 	
+	public String getSelectedTipoDeExpediente() {
+		return comboTipoDeExpediente.getText();
+	}
+
+	public void addItemTipoDeExpediente(String elemento) {
+		comboTipoDeExpediente.add(elemento);
+	}
+
 	public String getStringNombreFiltro() {
 		return textNombreFiltro.getText();
 	}
 
-	public void setStringNombreFiltro(String nombreFiltro) {
-		this.textNombreFiltro.setText(nombreFiltro);
+	public void setStringNombreFiltro(String textNombreFiltro) {
+		this.textNombreFiltro.setText(textNombreFiltro);
 	}
 
-	public String getStringTipoDeExpediente() {
-		return textNombreTipoDeExpediente.getText();
+	public String getStringCentro() {
+		return textCentro.getText();
 	}
 
-	public void setStringTipoDeExpediente(String textNombreTipoDeExpediente) {
-		this.textNombreTipoDeExpediente.setText(textNombreTipoDeExpediente);
+	public void setStringCentro(String textCentro) {
+		this.textCentro.setText(textCentro);
 	}
 
+	public String getStringReferenciaClica() {
+		return textReferenciaClica.getText();
+	}
+
+	public void setStringReferenciaClica(String textReferenciaClica) {
+		this.textReferenciaClica.setText(textReferenciaClica);
+	}
+
+	public String getStringDecreto() {
+		return textDecreto.getText();
+	}
+
+	public void setStringDecreto(String textDecreto) {
+		this.textDecreto.setText(textDecreto);
+	}
 }

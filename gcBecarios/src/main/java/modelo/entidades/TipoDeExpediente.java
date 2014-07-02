@@ -13,9 +13,10 @@ import modelo.dao.TipoDeExpedienteDAO;
 import org.hibernate.HibernateException;
 
 import at.modelo.entidades.ICrud;
+import at.modelo.entidades.IEsCombo;
 
 @Entity(name="tipoDeExpediente")
-public class TipoDeExpediente implements ICrud <TipoDeExpediente>{
+public class TipoDeExpediente implements ICrud <TipoDeExpediente>, IEsCombo{
 	
 	@Id @GeneratedValue
 	private int id;
@@ -64,6 +65,11 @@ public class TipoDeExpediente implements ICrud <TipoDeExpediente>{
 	public void update(TipoDeExpediente nuevo) throws HibernateException {
 		nuevo.setId(this.getId());
 		new TipoDeExpedienteDAO().update(this);
+	}
+
+	@Override
+	public String toCombo() {
+		return getTipoDeExpediente();
 	}
 
 }
