@@ -85,10 +85,11 @@ public class Inicio implements IMensajes {
 		CLabel lblMantenimientoEjemplo;
 		CLabel lblMantenimientoUsuarios;
 		CLabel lblMantenimientoDepartamentos;
+		CLabel lblMantenimientoTutoresAcademicos;
 		private Button btnEjemplo1Mantenimiento;
 		private Button btnMantenimientopDeUsuarios;
 		private Button btnMantenimientoDepartamentos;
-		
+		private Button btnMantenimientoTutoresAcademicos;
 		/**
 		 * Crea el contenido de la aplicacion
 		 */
@@ -185,6 +186,22 @@ public class Inicio implements IMensajes {
 			lblMantenimientoDepartamentos.setText("Mantenimiento de departamentos");
 			lblMantenimientoDepartamentos.setForeground(azul);
 			lblMantenimientoDepartamentos.setFont(titulo1);
+			
+			btnMantenimientoTutoresAcademicos = new Button(shell, SWT.CENTER);
+			btnMantenimientoTutoresAcademicos.setBounds(10, 86, 32, 32);
+			btnMantenimientoTutoresAcademicos.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					cInicio.cargarMantenimientoTutores();
+				}
+			});
+			btnMantenimientoTutoresAcademicos.setImage(buttonImage);
+			
+			lblMantenimientoTutoresAcademicos = new CLabel(shell, SWT.NONE);
+			lblMantenimientoTutoresAcademicos.setBounds(48, 86, 380, 32);
+			lblMantenimientoTutoresAcademicos.setText("Mantenimiento de tutores académicos");
+			lblMantenimientoTutoresAcademicos.setForeground(azul);
+			lblMantenimientoTutoresAcademicos.setFont(titulo1);
 			
 			
 			

@@ -21,8 +21,11 @@ import vista.interfaz.Utils;
 import at.controlador.ControladorMantenimiento;
 import at.vista.IMantenimiento;
 import at.vista.interfaz.ATDialog;
+
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.TableColumn;
+
+import controlador.ControladorTutorAcademico;
 
 /**
  * 
@@ -40,7 +43,7 @@ public class MantenimientoDeTutoresAcademicos extends ATDialog implements IMante
 	protected Shell shell;
 	
 	/** Controlador de las acciones de la interfaz **/
-	private ControladorMantenimiento controlador;
+	private ControladorTutorAcademico controlador;
 	
 	/** Table que muestra los resultados del filtro **/
 	private Table table;
@@ -71,7 +74,7 @@ public class MantenimientoDeTutoresAcademicos extends ATDialog implements IMante
 	 */
 	public MantenimientoDeTutoresAcademicos(Shell parent) {
 		super(parent,Utils.nombreProyecto + " - Mantenimiento de tutores académicos");
-//		controlador = new ControladorConcreto();
+		controlador = new ControladorTutorAcademico(this);
 	}
 
 	/**

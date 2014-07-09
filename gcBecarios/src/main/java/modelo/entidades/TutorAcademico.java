@@ -13,9 +13,10 @@ import modelo.dao.TutorAcademicoDAO;
 import org.hibernate.HibernateException;
 
 import at.modelo.entidades.ICrud;
+import at.modelo.entidades.IEsFiltro;
 
 @Entity(name="tutoracademico")
-public class TutorAcademico implements ICrud <TutorAcademico>{
+public class TutorAcademico implements ICrud <TutorAcademico>, IEsFiltro{
 	@Id @GeneratedValue
 	private int id;
 	
@@ -98,6 +99,11 @@ public class TutorAcademico implements ICrud <TutorAcademico>{
 		// TODO Auto-generated method stub
 		nuevo.setId(this.getId());
 		new TutorAcademicoDAO().update(this);
+	}
+
+	@Override
+	public String[] toTable() {
+		return new String[]{getNombre(), getApellidos(), getEmail(), getTelefono()};
 	};
 	
 

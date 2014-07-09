@@ -1,6 +1,7 @@
 package controlador;
 import vista.interfaz.Inicio;
 import vista.interfaz.MantenimientoDeDepartamentos;
+import vista.interfaz.MantenimientoDeTutoresAcademicos;
 import vista.interfaz.MantenimientoDeUsuarios;
 import at.vista.informes.JasperReportManager;
 
@@ -56,6 +57,10 @@ public class ControladorInicio {
 	public void cargarMantenimientoDepartamentos() {
 		// TODO Auto-generated method stub
 		new MantenimientoDeDepartamentos(inicio.getShell()).open();
+	}
+
+	public void cargarMantenimientoTutores() {
+		new MantenimientoDeTutoresAcademicos(inicio.getShell()).open();
 	}
 	
 }
