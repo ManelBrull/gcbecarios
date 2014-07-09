@@ -1,5 +1,6 @@
 package controlador;
 import vista.interfaz.Inicio;
+import vista.interfaz.MantenimientoDeDepartamentos;
 import vista.interfaz.MantenimientoDeUsuarios;
 import at.vista.informes.JasperReportManager;
 
@@ -24,7 +25,7 @@ public class ControladorInicio {
 		int opcion = 
 				inicio.openQuestion(
 				"Lanzamiento informe", 
-				"Va a abrir el informe, ¿Desea continuar?",
+				"Va a abrir el informe, ï¿½Desea continuar?",
 				new String[]{"Si", "No"});
 		if(opcion == 0)
 		{
@@ -50,6 +51,11 @@ public class ControladorInicio {
 		MantenimientoDeUsuarios mdu = new MantenimientoDeUsuarios(inicio.getShell());
 		mdu.open();
 		
+	}
+
+	public void cargarMantenimientoDepartamentos() {
+		// TODO Auto-generated method stub
+		new MantenimientoDeDepartamentos(inicio.getShell()).open();
 	}
 	
 }

@@ -21,7 +21,10 @@ import vista.interfaz.Utils;
 import at.controlador.ControladorMantenimiento;
 import at.vista.IMantenimiento;
 import at.vista.interfaz.ATDialog;
+
 import org.eclipse.swt.widgets.TableColumn;
+
+import controlador.ControladorDepartamentos;
 
 /**
  * 
@@ -60,7 +63,7 @@ public class MantenimientoDeDepartamentos extends ATDialog implements IMantenimi
 	 */
 	public MantenimientoDeDepartamentos(Shell parent) {
 		super(parent,Utils.nombreProyecto + " - Mantenimiento de departamentos");
-//		controlador = new ControladorConcreto();
+		controlador = new ControladorDepartamentos(this) ;
 	}
 
 	/**

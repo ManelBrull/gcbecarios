@@ -10,7 +10,7 @@
                
         <property name="hibernate.connection.url">jdbc:mysql://localhost/gcbecarios</property>
         <property name="hibernate.connection.username">gcbecarios</property>
-        <property name="hibernate.connection.password"></property>
+        <property name="hibernate.connection.password">gcbecarios</property>
         
         
         
@@ -32,6 +32,13 @@
         
         <!--  Mappings -->
         <mapping class="modelo.entidades.usuario.Usuario"/>
+        <mapping class="modelo.entidades.Becario"/>
+        <mapping class="modelo.entidades.Departamento"/>
+        <mapping class="modelo.entidades.Expediente"/>
+        <mapping class="modelo.entidades.TipoDeExpediente"/>
+        <mapping class="modelo.entidades.TutorAcademico"/>
+        <mapping class="modelo.entidades.practica.Practica"/>
+        
                 
         
     </session-factory>

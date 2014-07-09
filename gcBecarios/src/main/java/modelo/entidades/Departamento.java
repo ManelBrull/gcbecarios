@@ -13,9 +13,10 @@ import modelo.dao.DepartamentoDAO;
 import org.hibernate.HibernateException;
 
 import at.modelo.entidades.ICrud;
+import at.modelo.entidades.IEsFiltro;
 
 @Entity(name = "departamento")
-public class Departamento implements ICrud <Departamento>{
+public class Departamento implements ICrud <Departamento>, IEsFiltro{
 	
 	@Id @GeneratedValue
 	private int id;
@@ -64,6 +65,11 @@ public class Departamento implements ICrud <Departamento>{
 	public void update(Departamento nuevo) throws HibernateException {
 		nuevo.setId(this.getId());
 		new DepartamentoDAO().update(this);
+	}
+
+	@Override
+	public String[] toTable() {
+		return new String[]{getNombreDepartamento()};
 	};
 	
 }
