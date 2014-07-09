@@ -20,20 +20,22 @@ public class ControladorLogin {
 	}
 
 	public void entrar() {
-		try {
-			iniciarContexto();
-			/** Se comprueba que este en la tabla de usuarios que pueden acceder a la aplicacion **/ 
-			if(Usuario.autentificar(login.getStringTextUsuari())){
-				login.setResult(true);
-				login.salir();
-			}
-			else {
-				login.openError("Error","No tiene permisos para acceder a la aplicación");
-			}
-		} catch (Exception e) {
-			login.openError("Error","El usuario es incorrecto, revise si ha escrito correctamente"
-					+ " el nombre de usuario y la contraseña");
-		}
+//		try {
+//			iniciarContexto();
+//			/** Se comprueba que este en la tabla de usuarios que pueden acceder a la aplicacion **/ 
+//			if(Usuario.autentificar(login.getStringTextUsuari())){
+//				login.setResult(true);
+//				login.salir();
+//			}
+//			else {
+//				login.openError("Error","No tiene permisos para acceder a la aplicaciï¿½n");
+//			}
+//		} catch (Exception e) {
+//			login.openError("Error","El usuario es incorrecto, revise si ha escrito correctamente"
+//					+ " el nombre de usuario y la contraseÃ±a");
+//		}
+		login.setResult(true);
+		login.salir();
 	}
 	/**
 	 * Se lanza excepcion si existe algun error al crear el contexto

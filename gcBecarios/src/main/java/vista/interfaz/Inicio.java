@@ -181,8 +181,8 @@ public class Inicio implements IMensajes {
 			btnMantenimientoDepartamentos.setImage(buttonImage);
 			
 			lblMantenimientoDepartamentos = new CLabel(shell, SWT.NONE);
-			lblMantenimientoDepartamentos.setBounds(48, 48, 309, 32);
-			lblMantenimientoDepartamentos.setText("mantneimiento de departamentos");
+			lblMantenimientoDepartamentos.setBounds(48, 48, 380, 32);
+			lblMantenimientoDepartamentos.setText("Mantenimiento de departamentos");
 			lblMantenimientoDepartamentos.setForeground(azul);
 			lblMantenimientoDepartamentos.setFont(titulo1);
 			
