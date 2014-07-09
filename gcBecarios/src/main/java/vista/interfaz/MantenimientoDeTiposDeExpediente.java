@@ -85,12 +85,6 @@ public class MantenimientoDeTiposDeExpediente extends ATDialog implements IMante
 	 */
 	private void createContents() {
 		shell = new Shell(getParent(), getStyle());
-		shell.addShellListener(new ShellAdapter() {
-			@Override
-			public void shellClosed(ShellEvent e) {
-				controlador.salir();
-			}
-		});
 		shell.setSize(433, 349);
 		super.createContents(shell);
 		

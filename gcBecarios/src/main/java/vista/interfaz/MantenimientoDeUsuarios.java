@@ -83,12 +83,6 @@ public class MantenimientoDeUsuarios extends ATDialog implements IMantenimiento 
 	 */
 	private void createContents() {
 		shell = new Shell(getParent(), getStyle());
-		shell.addShellListener(new ShellAdapter() {
-			@Override
-			public void shellClosed(ShellEvent e) {
-				cUsuarios.salir();
-			}
-		});
 		shell.setSize(560, 335);
 		super.createContents(shell);
 		

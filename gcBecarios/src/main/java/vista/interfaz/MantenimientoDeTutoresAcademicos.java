@@ -96,12 +96,6 @@ public class MantenimientoDeTutoresAcademicos extends ATDialog implements IMante
 	 */
 	private void createContents() {
 		shell = new Shell(getParent(), getStyle());
-		shell.addShellListener(new ShellAdapter() {
-			@Override
-			public void shellClosed(ShellEvent e) {
-				controlador.salir();
-			}
-		});
 		shell.setSize(491, 373);
 		super.createContents(shell);
 		

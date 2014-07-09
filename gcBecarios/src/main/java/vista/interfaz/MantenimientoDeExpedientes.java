@@ -99,12 +99,6 @@ public class MantenimientoDeExpedientes extends ATDialog implements IMantenimien
 	 */
 	private void createContents() {
 		shell = new Shell(getParent(), getStyle());
-		shell.addShellListener(new ShellAdapter() {
-			@Override
-			public void shellClosed(ShellEvent e) {
-				controlador.salir();
-			}
-		});
 		shell.setSize(560, 456);
 		super.createContents(shell);
 		
