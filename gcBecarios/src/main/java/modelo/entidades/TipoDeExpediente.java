@@ -14,9 +14,10 @@ import org.hibernate.HibernateException;
 
 import at.modelo.entidades.ICrud;
 import at.modelo.entidades.IEsCombo;
+import at.modelo.entidades.IEsFiltro;
 
 @Entity(name="tipoDeExpediente")
-public class TipoDeExpediente implements ICrud <TipoDeExpediente>, IEsCombo{
+public class TipoDeExpediente implements ICrud <TipoDeExpediente>, IEsFiltro, IEsCombo {
 	
 	@Id @GeneratedValue
 	private int id;
@@ -70,6 +71,11 @@ public class TipoDeExpediente implements ICrud <TipoDeExpediente>, IEsCombo{
 	@Override
 	public String toCombo() {
 		return getTipoDeExpediente();
+	}
+
+	@Override
+	public String[] toTable() {
+		return new String[]{getTipoDeExpediente()};
 	}
 
 }

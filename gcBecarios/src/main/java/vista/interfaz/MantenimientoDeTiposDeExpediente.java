@@ -21,7 +21,10 @@ import vista.interfaz.Utils;
 import at.controlador.ControladorMantenimiento;
 import at.vista.IMantenimiento;
 import at.vista.interfaz.ATDialog;
+
 import org.eclipse.swt.widgets.TableColumn;
+
+import controlador.ControladorTipoExpediente;
 
 /**
  * 
@@ -60,7 +63,7 @@ public class MantenimientoDeTiposDeExpediente extends ATDialog implements IMante
 	 */
 	public MantenimientoDeTiposDeExpediente(Shell parent) {
 		super(parent,Utils.nombreProyecto + " - Mantenimiento de tipos de expediente");
-//		controlador = new ControladorConcreto();
+		controlador = new ControladorTipoExpediente(this);
 	}
 
 	/**

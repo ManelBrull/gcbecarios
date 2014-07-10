@@ -86,10 +86,12 @@ public class Inicio implements IMensajes {
 		CLabel lblMantenimientoUsuarios;
 		CLabel lblMantenimientoDepartamentos;
 		CLabel lblMantenimientoTutoresAcademicos;
+		CLabel lblMantenimientoTiposExpediente;
 		private Button btnEjemplo1Mantenimiento;
 		private Button btnMantenimientopDeUsuarios;
 		private Button btnMantenimientoDepartamentos;
 		private Button btnMantenimientoTutoresAcademicos;
+		private Button btnMantenimientoTiposExpediente;
 		/**
 		 * Crea el contenido de la aplicacion
 		 */
@@ -203,8 +205,21 @@ public class Inicio implements IMensajes {
 			lblMantenimientoTutoresAcademicos.setForeground(azul);
 			lblMantenimientoTutoresAcademicos.setFont(titulo1);
 			
+			btnMantenimientoTiposExpediente = new Button(shell, SWT.CENTER);
+			btnMantenimientoTiposExpediente.setBounds(10, 124, 32, 32);
+			btnMantenimientoTiposExpediente.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					cInicio.cargarMantenimientoTiposExpediente();
+				}
+			});
+			btnMantenimientoTiposExpediente.setImage(buttonImage);
 			
-			
+			lblMantenimientoTiposExpediente = new CLabel(shell, SWT.NONE);
+			lblMantenimientoTiposExpediente.setBounds(48, 124, 380, 32);
+			lblMantenimientoTiposExpediente.setText("Mantenimiento de tipos de expediente");
+			lblMantenimientoTiposExpediente.setForeground(azul);
+			lblMantenimientoTiposExpediente.setFont(titulo1);
 			
 			lblMantenimientoEjemplo = new CLabel(shell, SWT.NONE);
 			lblMantenimientoEjemplo.setBounds(48, 10, 309, 32);
