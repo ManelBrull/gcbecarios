@@ -15,10 +15,12 @@ import modelo.dao.ExpedienteDAO;
 
 import org.hibernate.HibernateException;
 
+import vista.interfaz.Utils;
 import at.modelo.entidades.ICrud;
+import at.modelo.entidades.IEsFiltro;
 
 @Entity(name="expediente")
-public class Expediente implements ICrud <Expediente>{
+public class Expediente implements ICrud <Expediente>, IEsFiltro{
 	@Id @GeneratedValue
 	private int id;
 	
@@ -113,5 +115,17 @@ public class Expediente implements ICrud <Expediente>{
 	public void update(Expediente nuevo) throws HibernateException {
 		nuevo.setId(this.getId());
 		new ExpedienteDAO().update(this);
+	}
+
+
+	@Override
+	public String[] toTable() {
+		return new String[]{
+				getTipoDeExpediente().getTipoDeExpediente(), 
+				getCentroEducativoInstitucion(), 
+				getRefClica(), 
+				getAcuerdoDecreto(), 
+				Utils.dateFormatShort(getFechaExpediente())
+				};
 	}
 }

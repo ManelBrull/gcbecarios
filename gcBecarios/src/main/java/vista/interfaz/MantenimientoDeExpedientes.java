@@ -1,14 +1,13 @@
 package vista.interfaz;
 
-import java.util.Iterator;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.ShellAdapter;
-import org.eclipse.swt.events.ShellEvent;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
@@ -23,7 +22,6 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
 import at.controlador.ControladorMantenimiento;
-import at.modelo.entidades.IEsCombo;
 import at.vista.IMantenimiento;
 import at.vista.interfaz.ATDialog;
 
@@ -68,6 +66,8 @@ public class MantenimientoDeExpedientes extends ATDialog implements IMantenimien
 	private TableColumn tblclmnRefDecreto;
 	private TableColumn tblclmnFecha;
 
+	private DateTime dateFechaExpediente;
+	
 	/**
 	 * Crea el dialog
 	 * @param parent
@@ -204,8 +204,8 @@ public class MantenimientoDeExpedientes extends ATDialog implements IMantenimien
 		textDecreto = new Text(grpClase, SWT.BORDER);
 		textDecreto.setBounds(206, 101, 95, 21);
 		
-		DateTime dateTime = new DateTime(grpClase, SWT.BORDER | SWT.DROP_DOWN);
-		dateTime.setBounds(206, 128, 95, 24);
+		dateFechaExpediente = new DateTime(grpClase, SWT.BORDER | SWT.DROP_DOWN);
+		dateFechaExpediente.setBounds(206, 128, 95, 24);
 		
 		
 		Group grpFiltro = new Group(compositeMain, SWT.NONE);
@@ -383,12 +383,22 @@ public class MantenimientoDeExpedientes extends ATDialog implements IMantenimien
 		shell.close();
 	}
 	
-	public String getSelectedTipoDeExpediente() {
-		return comboTipoDeExpediente.getText();
+	public int getSelectedTipoDeExpediente() {
+		return comboTipoDeExpediente.getSelectionIndex();
 	}
 
 	public void addItemTipoDeExpediente(String elemento) {
 		comboTipoDeExpediente.add(elemento);
+	}
+	
+	public void selectItemComboTipoDeExpediente(int i) {
+		if(i >= 0 && comboTipoDeExpediente.getItemCount() > i) {
+			comboTipoDeExpediente.select(i);
+		}
+	}
+	
+	public void vaciarComboTipoDeExpediente(){
+		comboTipoDeExpediente.removeAll();
 	}
 
 	public String getStringNombreFiltro() {
@@ -421,5 +431,13 @@ public class MantenimientoDeExpedientes extends ATDialog implements IMantenimien
 
 	public void setStringDecreto(String textDecreto) {
 		this.textDecreto.setText(textDecreto);
+	}
+	
+	public Date getFechaExpediente(){
+		Calendar instance = Calendar.getInstance();
+		instance.set(Calendar.DAY_OF_MONTH, dateFechaExpediente.getDay());
+		instance.set(Calendar.MONTH, dateFechaExpediente.getMonth());
+		instance.set(Calendar.YEAR, dateFechaExpediente.getYear());
+		return instance.getTime();
 	}
 }
