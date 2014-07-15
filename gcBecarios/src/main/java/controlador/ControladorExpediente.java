@@ -7,6 +7,7 @@ import java.util.List;
 import modelo.entidades.Expediente;
 import modelo.entidades.TipoDeExpediente;
 import vista.interfaz.MantenimientoDeExpedientes;
+import vista.interfaz.MantenimientoDeTiposDeExpediente;
 import at.controlador.ControladorMantenimiento;
 import at.modelo.entidades.excepciones.CampoRequeridoException;
 
@@ -50,13 +51,17 @@ public class ControladorExpediente extends ControladorMantenimiento<Expediente>{
 
 	@Override
 	public Expediente creaObjeto() throws CampoRequeridoException {
-		Expediente exp = new Expediente();
-		exp.setAcuerdoDecreto(mExpedientes.getStringDecreto());
-		exp.setCentroEducativoInstitucion(mExpedientes.getStringCentro());
-		exp.setFechaExpediente(mExpedientes.getFechaExpediente());
-		exp.setRefClica(mExpedientes.getStringReferenciaClica());
-		exp.setTipoDeExpediente(tiposDeExpediente.get(mExpedientes.getSelectedTipoDeExpediente()));
-		return exp;
+		try {
+			Expediente exp = new Expediente();
+			exp.setAcuerdoDecreto(mExpedientes.getStringDecreto());
+			exp.setCentroEducativoInstitucion(mExpedientes.getStringCentro());
+			exp.setFechaExpediente(mExpedientes.getFechaExpediente());
+			exp.setRefClica(mExpedientes.getStringReferenciaClica());
+			exp.setTipoDeExpediente(tiposDeExpediente.get(mExpedientes.getSelectedTipoDeExpediente()));
+			return exp;
+		} catch (Exception ex) {
+			return null;
+		}
 	}
 
 	@Override
@@ -66,7 +71,25 @@ public class ControladorExpediente extends ControladorMantenimiento<Expediente>{
 
 	@Override
 	public void rellenarInterfaz() {
-		// TODO Auto-generated method stub
+		mExpedientes.setStringCentro(entidadSeleccionado.getCentroEducativoInstitucion());
+		mExpedientes.setStringDecreto(entidadSeleccionado.getAcuerdoDecreto());
+		mExpedientes.setStringReferenciaClica(entidadSeleccionado.getRefClica());
+		mExpedientes.setFechaExpediente(entidadSeleccionado.getFechaExpediente());
+		
+		int comboSelect = 0;
+		for(TipoDeExpediente te: tiposDeExpediente){
+			if(te.getTipoDeExpediente().equals(entidadSeleccionado.getTipoDeExpediente())){
+				mExpedientes.selectItemComboTipoDeExpediente(comboSelect);
+				break;
+			}
+			comboSelect++;
+		}
+		
+	}
+
+	public void anadirTipoExpediente() {
+		mExpedientes.vaciarComboTipoDeExpediente();
+		inicializarCombo();
 		
 	}
 

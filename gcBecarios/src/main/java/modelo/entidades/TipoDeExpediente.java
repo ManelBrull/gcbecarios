@@ -78,4 +78,32 @@ public class TipoDeExpediente implements ICrud <TipoDeExpediente>, IEsFiltro, IE
 		return new String[]{getTipoDeExpediente()};
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result
+				+ ((tipoDeExpediente == null) ? 0 : tipoDeExpediente.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof TipoDeExpediente))
+			return false;
+		TipoDeExpediente other = (TipoDeExpediente) obj;
+		if (tipoDeExpediente == null) {
+			if (other.tipoDeExpediente != null)
+				return false;
+		} else if (!tipoDeExpediente.equals(other.tipoDeExpediente))
+			return false;
+		return true;
+	}
+
+	
 }

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import modelo.DateUtil;
 import modelo.dao.BecarioDAO;
 import modelo.dao.ExpedienteDAO;
 
@@ -128,4 +129,65 @@ public class Expediente implements ICrud <Expediente>, IEsFiltro{
 				Utils.dateFormatShort(getFechaExpediente())
 				};
 	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((acuerdoDecreto == null) ? 0 : acuerdoDecreto.hashCode());
+		result = prime
+				* result
+				+ ((centroEducativoInstitucion == null) ? 0
+						: centroEducativoInstitucion.hashCode());
+		result = prime * result
+				+ ((fechaExpediente == null) ? 0 : fechaExpediente.hashCode());
+		result = prime * result
+				+ ((refClica == null) ? 0 : refClica.hashCode());
+		result = prime
+				* result
+				+ ((tipoDeExpediente == null) ? 0 : tipoDeExpediente.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Expediente))
+			return false;
+		Expediente other = (Expediente) obj;
+		if (acuerdoDecreto == null) {
+			if (other.acuerdoDecreto != null)
+				return false;
+		} else if (!acuerdoDecreto.equals(other.acuerdoDecreto))
+			return false;
+		if (centroEducativoInstitucion == null) {
+			if (other.centroEducativoInstitucion != null)
+				return false;
+		} else if (!centroEducativoInstitucion
+				.equals(other.centroEducativoInstitucion))
+			return false;
+		if (fechaExpediente == null) {
+			if (other.fechaExpediente != null)
+				return false;
+		} else if (!DateUtil.equalDateddMMyyyy(fechaExpediente, other.fechaExpediente))
+			return false;
+		if (refClica == null) {
+			if (other.refClica != null)
+				return false;
+		} else if (!refClica.equals(other.refClica))
+			return false;
+		if (tipoDeExpediente == null) {
+			if (other.tipoDeExpediente != null)
+				return false;
+		} else if (!tipoDeExpediente.equals(other.tipoDeExpediente))
+			return false;
+		return true;
+	}
+	
 }

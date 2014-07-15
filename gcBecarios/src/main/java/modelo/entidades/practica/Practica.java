@@ -239,6 +239,144 @@ public class Practica implements ICrud <Practica>{
 	public void update(Practica nuevo) throws HibernateException {
 		nuevo.setId(this.getId());
 		new PracticaDAO().update(this);
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + bolsaDeEstudios;
+		result = prime
+				* result
+				+ ((decretoAutorizacion == null) ? 0 : decretoAutorizacion
+						.hashCode());
+		result = prime
+				* result
+				+ ((departamentoDestino == null) ? 0 : departamentoDestino
+						.hashCode());
+		result = prime
+				* result
+				+ ((estudiosCursados == null) ? 0 : estudiosCursados.hashCode());
+		result = prime * result
+				+ ((expediente == null) ? 0 : expediente.hashCode());
+		result = prime * result
+				+ ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
+		result = prime * result
+				+ ((fechaFinalReal == null) ? 0 : fechaFinalReal.hashCode());
+		result = prime
+				* result
+				+ ((fechaFinalTeorica == null) ? 0 : fechaFinalTeorica
+						.hashCode());
+		result = prime * result
+				+ ((fechaInicio == null) ? 0 : fechaInicio.hashCode());
+		result = prime * result + numHoras;
+		result = prime * result
+				+ ((observaciones == null) ? 0 : observaciones.hashCode());
+		result = prime
+				* result
+				+ ((profesionalesFormacion == null) ? 0
+						: profesionalesFormacion.hashCode());
+		result = prime * result
+				+ ((refClica == null) ? 0 : refClica.hashCode());
+		result = prime
+				* result
+				+ ((tipoBolsaEstudios == null) ? 0 : tipoBolsaEstudios
+						.hashCode());
+		result = prime
+				* result
+				+ ((tipoNumeroDeHoras == null) ? 0 : tipoNumeroDeHoras
+						.hashCode());
+		result = prime * result
+				+ ((tutorAcademico == null) ? 0 : tutorAcademico.hashCode());
+		result = prime
+				* result
+				+ ((tutorAyuntamiento == null) ? 0 : tutorAyuntamiento
+						.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Practica))
+			return false;
+		Practica other = (Practica) obj;
+		if (bolsaDeEstudios != other.bolsaDeEstudios)
+			return false;
+		if (decretoAutorizacion == null) {
+			if (other.decretoAutorizacion != null)
+				return false;
+		} else if (!decretoAutorizacion.equals(other.decretoAutorizacion))
+			return false;
+		if (departamentoDestino == null) {
+			if (other.departamentoDestino != null)
+				return false;
+		} else if (!departamentoDestino.equals(other.departamentoDestino))
+			return false;
+		if (estudiosCursados == null) {
+			if (other.estudiosCursados != null)
+				return false;
+		} else if (!estudiosCursados.equals(other.estudiosCursados))
+			return false;
+		if (expediente == null) {
+			if (other.expediente != null)
+				return false;
+		} else if (!expediente.equals(other.expediente))
+			return false;
+		if (fechaCreacion == null) {
+			if (other.fechaCreacion != null)
+				return false;
+		} else if (!fechaCreacion.equals(other.fechaCreacion))
+			return false;
+		if (fechaFinalReal == null) {
+			if (other.fechaFinalReal != null)
+				return false;
+		} else if (!fechaFinalReal.equals(other.fechaFinalReal))
+			return false;
+		if (fechaFinalTeorica == null) {
+			if (other.fechaFinalTeorica != null)
+				return false;
+		} else if (!fechaFinalTeorica.equals(other.fechaFinalTeorica))
+			return false;
+		if (fechaInicio == null) {
+			if (other.fechaInicio != null)
+				return false;
+		} else if (!fechaInicio.equals(other.fechaInicio))
+			return false;
+		if (numHoras != other.numHoras)
+			return false;
+		if (observaciones == null) {
+			if (other.observaciones != null)
+				return false;
+		} else if (!observaciones.equals(other.observaciones))
+			return false;
+		if (profesionalesFormacion != other.profesionalesFormacion)
+			return false;
+		if (refClica == null) {
+			if (other.refClica != null)
+				return false;
+		} else if (!refClica.equals(other.refClica))
+			return false;
+		if (tipoBolsaEstudios != other.tipoBolsaEstudios)
+			return false;
+		if (tipoNumeroDeHoras != other.tipoNumeroDeHoras)
+			return false;
+		if (tutorAcademico == null) {
+			if (other.tutorAcademico != null)
+				return false;
+		} else if (!tutorAcademico.equals(other.tutorAcademico))
+			return false;
+		if (tutorAyuntamiento == null) {
+			if (other.tutorAyuntamiento != null)
+				return false;
+		} else if (!tutorAyuntamiento.equals(other.tutorAyuntamiento))
+			return false;
+		return true;
 	};
 	
 	

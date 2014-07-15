@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
+import controlador.ControladorExpediente;
 import at.controlador.ControladorMantenimiento;
 import at.vista.IMantenimiento;
 import at.vista.interfaz.ATDialog;
@@ -41,7 +42,7 @@ public class MantenimientoDeExpedientes extends ATDialog implements IMantenimien
 	protected Shell shell;
 	
 	/** Controlador de las acciones de la interfaz **/
-	private ControladorMantenimiento controlador;
+	private ControladorExpediente controlador;
 	
 	/** Table que muestra los resultados del filtro **/
 	private Table table;
@@ -74,7 +75,7 @@ public class MantenimientoDeExpedientes extends ATDialog implements IMantenimien
 	 */
 	public MantenimientoDeExpedientes(Shell parent) {
 		super(parent,Utils.nombreProyecto + " - Mantenimiento de Expedientes");
-//		controlador = new ControladorConcreto();
+		controlador = new ControladorExpediente(this);
 	}
 
 	/**
@@ -165,6 +166,13 @@ public class MantenimientoDeExpedientes extends ATDialog implements IMantenimien
 		comboTipoDeExpediente.setBounds(206, 20, 248, 23);
 		
 		btnAadir = new Button(grpClase, SWT.NONE);
+		btnAadir.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				new MantenimientoDeTiposDeExpediente(new Shell()).open();
+				controlador.anadirTipoExpediente();
+			}
+		});
 		btnAadir.setBounds(460, 20, 75, 25);
 		btnAadir.setText("Añadir");
 		
@@ -439,5 +447,13 @@ public class MantenimientoDeExpedientes extends ATDialog implements IMantenimien
 		instance.set(Calendar.MONTH, dateFechaExpediente.getMonth());
 		instance.set(Calendar.YEAR, dateFechaExpediente.getYear());
 		return instance.getTime();
+	}
+	
+	public void setFechaExpediente(Date date) {
+		Calendar instance = Calendar.getInstance();
+		instance.setTime(date);
+		dateFechaExpediente.setYear(instance.get(Calendar.YEAR));
+		dateFechaExpediente.setMonth(instance.get(Calendar.MONTH));
+		dateFechaExpediente.setDay(instance.get(Calendar.DAY_OF_MONTH));
 	}
 }

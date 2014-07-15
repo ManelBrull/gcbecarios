@@ -21,7 +21,7 @@ import at.modelo.entidades.excepciones.CampoRequeridoException;
 /**
  * 
  * Esta clase implementa los diferentes tipos de usuarios
- * que pueden existir en la aplicación
+ * que pueden existir en la aplicaciï¿½n
  * 
  * @author brullp
  *
@@ -94,35 +94,7 @@ public class Usuario implements ICrud <Usuario>, Comparable <Usuario>, IEsFiltro
 	}
 
 	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((nombreUsuario == null) ? 0 : nombreUsuario.hashCode());
-		result = prime * result
-				+ ((permisos == null) ? 0 : permisos.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof Usuario))
-			return false;
-		Usuario other = (Usuario) obj;
-		if (nombreUsuario == null) {
-			if (other.nombreUsuario != null)
-				return false;
-		} else if (!nombreUsuario.equals(other.nombreUsuario))
-			return false;
-		if (permisos != other.permisos)
-			return false;
-		return true;
-	}
+	
 
 	public int getIdUsuarioPermitido() {
 		return idUsuarioPermitido;
@@ -152,7 +124,35 @@ public class Usuario implements ICrud <Usuario>, Comparable <Usuario>, IEsFiltro
 		this.permisos = permisos;
 	}
 
-	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((nombreUsuario == null) ? 0 : nombreUsuario.hashCode());
+		result = prime * result
+				+ ((permisos == null) ? 0 : permisos.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Usuario))
+			return false;
+		Usuario other = (Usuario) obj;
+		if (nombreUsuario == null) {
+			if (other.nombreUsuario != null)
+				return false;
+		} else if (!nombreUsuario.equals(other.nombreUsuario))
+			return false;
+		if (permisos != other.permisos)
+			return false;
+		return true;
+	}
 
 	
 

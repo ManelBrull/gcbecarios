@@ -1,6 +1,7 @@
 package controlador;
 import vista.interfaz.Inicio;
 import vista.interfaz.MantenimientoDeDepartamentos;
+import vista.interfaz.MantenimientoDeExpedientes;
 import vista.interfaz.MantenimientoDeTiposDeExpediente;
 import vista.interfaz.MantenimientoDeTutoresAcademicos;
 import vista.interfaz.MantenimientoDeUsuarios;
@@ -66,6 +67,10 @@ public class ControladorInicio {
 
 	public void cargarMantenimientoTiposExpediente() {
 		new MantenimientoDeTiposDeExpediente(inicio.getShell()).open();
+	}
+
+	public void cargarMantenimientoExpediente() {
+		new MantenimientoDeExpedientes(inicio.getShell()).open();
 	}
 	
 }

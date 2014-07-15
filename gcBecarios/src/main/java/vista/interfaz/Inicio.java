@@ -87,11 +87,14 @@ public class Inicio implements IMensajes {
 		CLabel lblMantenimientoDepartamentos;
 		CLabel lblMantenimientoTutoresAcademicos;
 		CLabel lblMantenimientoTiposExpediente;
+		CLabel lblMantenimientoExpediente;
+		
 		private Button btnEjemplo1Mantenimiento;
 		private Button btnMantenimientopDeUsuarios;
 		private Button btnMantenimientoDepartamentos;
 		private Button btnMantenimientoTutoresAcademicos;
 		private Button btnMantenimientoTiposExpediente;
+		private Button btnMantenimientoExpediente;
 		/**
 		 * Crea el contenido de la aplicacion
 		 */
@@ -103,7 +106,7 @@ public class Inicio implements IMensajes {
 					cInicio.close();
 				}
 			});
-			shell.setSize(444, 326);
+			shell.setSize(444, 334);
 			shellImg = SWTResourceManager.getImage(Inicio.class, Recursos.shellPath);
 			shell.setImage(shellImg);
 			azul = SWTResourceManager.getColor(Recursos.AT_COLOR_AZUL);
@@ -227,8 +230,24 @@ public class Inicio implements IMensajes {
 			lblMantenimientoEjemplo.setForeground(azul);
 			lblMantenimientoEjemplo.setFont(titulo1);
 			
+			lblMantenimientoExpediente = new CLabel(shell, SWT.NONE);
+			lblMantenimientoExpediente.setBounds(48, 162, 380, 32);
+			lblMantenimientoExpediente.setText("Mantenimiento de expedientes");
+			lblMantenimientoExpediente.setForeground(azul);
+			lblMantenimientoExpediente.setFont(titulo1);
+			
+			btnMantenimientoExpediente = new Button(shell, SWT.CENTER);
+			btnMantenimientoExpediente.setBounds(10, 162, 32, 32);
+			btnMantenimientoExpediente.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					cInicio.cargarMantenimientoExpediente();
+				}
+			});
+			btnMantenimientoExpediente.setImage(buttonImage);
+			
 			btnMantenimientopDeUsuarios = new Button(shell, SWT.CENTER);
-			btnMantenimientopDeUsuarios.setBounds(10, 194, 32, 32);
+			btnMantenimientopDeUsuarios.setBounds(10, 200, 32, 32);
 			btnMantenimientopDeUsuarios.addSelectionListener(new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
@@ -238,13 +257,13 @@ public class Inicio implements IMensajes {
 			btnMantenimientopDeUsuarios.setImage(buttonImage);
 			
 			lblMantenimientoUsuarios = new CLabel(shell, SWT.NONE);
-			lblMantenimientoUsuarios.setBounds(48, 194, 309, 32);
+			lblMantenimientoUsuarios.setBounds(48, 200, 309, 32);
 			lblMantenimientoUsuarios.setText("Mantenimiento de usuarios");
 			lblMantenimientoUsuarios.setForeground(azul);
 			lblMantenimientoUsuarios.setFont(titulo1);
 
 			final Button btnSalir = new Button(shell, SWT.NONE);
-			btnSalir.setBounds(360, 236, 68, 32);
+			btnSalir.setBounds(360, 238, 68, 32);
 			btnSalir.addSelectionListener(new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
