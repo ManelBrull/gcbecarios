@@ -27,11 +27,6 @@ public class Becario implements ICrud <Becario> {
 	private int id;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinTable(
-			name="practicaBecario",
-			joinColumns = @JoinColumn(name="idBecario"),
-			inverseJoinColumns = @JoinColumn (name="idPractica")
-	)
 	private Set <Practica> practicas;
 
 	@Column(nullable = false, unique = true)
