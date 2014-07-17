@@ -25,6 +25,7 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.DateTime;
 
 /**
  * 
@@ -63,6 +64,16 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 	private Text textTelefono;
 	private Text textEmail;
 	private Text textNumafiliacionSS;
+	private Text textExpediente;
+	private Text textDepartamentoDestino;
+	private Text textEstudiosCursados;
+	private Text textTutorAcademico;
+	private Text textNumeroHoras;
+	private Text textBolsaEstudios;
+	private Text textTutorAyuntamiento;
+	private Text textDecretoAutorizacion;
+	private Text textReferenciaClica;
+	private Text textObservaciones;
 
 	/**
 	 * Crea el dialog
@@ -95,11 +106,11 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 	 */
 	private void createContents() {
 		shell = new Shell(getParent(), getStyle());
-		shell.setSize(708, 722);
+		shell.setSize(657, 699);
 		super.createContents(shell);
 		
 		TabFolder tabFolder = new TabFolder(shell, SWT.NONE);
-		tabFolder.setBounds(0, 0, 563, 495);
+		tabFolder.setBounds(0, 0, 651, 674);
 		
 		createContentsBecario(tabFolder);
 		createContentsPractica(tabFolder);
@@ -110,7 +121,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 	private void createContentsBecario(TabFolder tabFolder) {
 		TabItem tbtmBecario = new TabItem(tabFolder, SWT.NONE);
 		tbtmBecario.setText("Becario");
-		
+				
 		Composite compositeMain = new Composite(tabFolder, SWT.NONE);
 		tbtmBecario.setControl(compositeMain);
 		
@@ -118,10 +129,10 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		grpClase.setText("Datos Clase");
 		grpClase.setFont(getGroupFont());
 		grpClase.setForeground(getAzul());
-		grpClase.setBounds(5, 221, 545, 240);
+		grpClase.setBounds(5, 221, 638, 425);
 		
 		btnNuevo = new Button(grpClase, SWT.NONE);
-		btnNuevo.setBounds(247, 204, 68, 23);
+		btnNuevo.setBounds(341, 392, 68, 23);
 		btnNuevo.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -131,7 +142,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		btnNuevo.setText("Nuevo");
 		
 		btnGrabar = new Button(grpClase, SWT.NONE);
-		btnGrabar.setBounds(321, 204, 68, 23);
+		btnGrabar.setBounds(415, 392, 68, 23);
 		btnGrabar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -142,7 +153,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		btnGrabar.setText("Grabar");
 		
 		btnEliminar = new Button(grpClase, SWT.NONE);
-		btnEliminar.setBounds(395, 204, 68, 23);
+		btnEliminar.setBounds(489, 392, 68, 23);
 		btnEliminar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -153,7 +164,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		btnEliminar.setText("Eliminar");
 		
 		btnSalir = new Button(grpClase, SWT.NONE);
-		btnSalir.setBounds(467, 204, 68, 23);
+		btnSalir.setBounds(561, 392, 68, 23);
 		btnSalir.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -263,7 +274,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		
 		Group grpFiltro = new Group(compositeMain, SWT.NONE);
 		grpFiltro.setLocation(5, 5);
-		grpFiltro.setSize(545, 210);
+		grpFiltro.setSize(628, 210);
 		grpFiltro.setText("Filtro");
 		grpFiltro.setFont(getGroupFont());
 		grpFiltro.setForeground(getAzul());
@@ -276,7 +287,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		lblApellidoFiltro.setText("Apellidos: ");
 		
 		btnBuscar = new Button(grpFiltro, SWT.NONE);
-		btnBuscar.setBounds(391, 18, 68, 23);
+		btnBuscar.setBounds(476, 18, 68, 23);
 		btnBuscar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -286,7 +297,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		btnBuscar.setText("Buscar");
 		
 		Button btnBorrar = new Button(grpFiltro, SWT.NONE);
-		btnBorrar.setBounds(465, 18, 68, 23);
+		btnBorrar.setBounds(550, 18, 68, 23);
 		btnBorrar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -296,7 +307,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		btnBorrar.setText("Borrar");
 		
 		table = new Table(grpFiltro, SWT.BORDER | SWT.FULL_SELECTION);
-		table.setBounds(10, 47, 523, 155);
+		table.setBounds(10, 47, 608, 155);
 		table.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -327,7 +338,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		tblclmnPracticaActiva.setText("Practica activa");
 		
 		textNombreFiltro = new Text(grpFiltro, SWT.BORDER);
-		textNombreFiltro.setBounds(90, 20, 295, 21);
+		textNombreFiltro.setBounds(90, 20, 380, 21);
 		
 	}
 	
@@ -342,59 +353,59 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		grpClase.setText("Datos Clase");
 		grpClase.setFont(getGroupFont());
 		grpClase.setForeground(getAzul());
-		grpClase.setBounds(5, 221, 545, 237);
+		grpClase.setBounds(5, 221, 638, 425);
 		
 		CLabel lblExpediente = new CLabel(grpClase, SWT.NONE);
-		lblExpediente.setBounds(10, 20, 61, 21);
+		lblExpediente.setBounds(10, 20, 152, 21);
 		lblExpediente.setText("Expediente: ");
 		lblExpediente.setFont(getLabelFont());
 		lblExpediente.setForeground(getAzul());
 		
 		CLabel lblTutorAcadmico = new CLabel(grpClase, SWT.NONE);
-		lblTutorAcadmico.setBounds(10, 47, 61, 21);
+		lblTutorAcadmico.setBounds(10, 184, 152, 21);
 		lblTutorAcadmico.setText("Tutor académico: ");
 		lblTutorAcadmico.setFont(getLabelFont());
 		lblTutorAcadmico.setForeground(getAzul());
 		
 		CLabel lblDepartamentoDestino = new CLabel(grpClase, SWT.NONE);
-		lblDepartamentoDestino.setBounds(10, 74, 61, 21);
+		lblDepartamentoDestino.setBounds(10, 47, 152, 21);
 		lblDepartamentoDestino.setText("Departamento destino: ");
 		lblDepartamentoDestino.setFont(getLabelFont());
 		lblDepartamentoDestino.setForeground(getAzul());
 		
 		CLabel lblTipoDePrctica = new CLabel(grpClase, SWT.NONE);
-		lblTipoDePrctica.setBounds(10, 101, 61, 21);
+		lblTipoDePrctica.setBounds(10, 101, 152, 21);
 		lblTipoDePrctica.setText("Tipo de práctica: ");
 		lblTipoDePrctica.setFont(getLabelFont());
 		lblTipoDePrctica.setForeground(getAzul());
 		
 		CLabel lblFechaDeInicio = new CLabel(grpClase, SWT.NONE);
-		lblFechaDeInicio.setBounds(10, 128, 61, 21);
+		lblFechaDeInicio.setBounds(354, 101, 108, 21);
 		lblFechaDeInicio.setText("Fecha de inicio: ");
 		lblFechaDeInicio.setFont(getLabelFont());
 		lblFechaDeInicio.setForeground(getAzul());
 		
 		CLabel lblFechaFinal = new CLabel(grpClase, SWT.NONE);
-		lblFechaFinal.setBounds(10, 155, 61, 21);
+		lblFechaFinal.setBounds(354, 128, 108, 21);
 		lblFechaFinal.setText("Fecha final: ");
 		lblFechaFinal.setFont(getLabelFont());
 		lblFechaFinal.setForeground(getAzul());
 		
 		CLabel lblFechaFinalReal = new CLabel(grpClase, SWT.NONE);
-		lblFechaFinalReal.setBounds(10, 182, 61, 21);
+		lblFechaFinalReal.setBounds(354, 155, 108, 21);
 		lblFechaFinalReal.setText("Fecha final real: ");
 		lblFechaFinalReal.setFont(getLabelFont());
 		lblFechaFinalReal.setForeground(getAzul());
 		
 		Group grpFiltro = new Group(compositeMain, SWT.NONE);
 		grpFiltro.setLocation(5, 5);
-		grpFiltro.setSize(545, 210);
+		grpFiltro.setSize(638, 210);
 		grpFiltro.setText("Filtro");
 		grpFiltro.setFont(getGroupFont());
 		grpFiltro.setForeground(getAzul());
 		
 		table = new Table(grpFiltro, SWT.BORDER | SWT.FULL_SELECTION);
-		table.setBounds(10, 47, 523, 155);
+		table.setBounds(10, 47, 618, 155);
 		table.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -424,17 +435,17 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		tblclmnPracticaActiva.setWidth(100);
 		tblclmnPracticaActiva.setText("Practica activa");
 		
-		Combo combo = new Combo(grpFiltro, SWT.NONE);
-		combo.setBounds(88, 18, 445, 23);
+		Combo comboFiltroPracticas = new Combo(grpFiltro, SWT.NONE);
+		comboFiltroPracticas.setBounds(113, 18, 515, 23);
 		
 		CLabel lblSeleccionar = new CLabel(grpFiltro, SWT.NONE);
-		lblSeleccionar.setBounds(10, 20, 72, 21);
+		lblSeleccionar.setBounds(10, 20, 97, 21);
 		lblSeleccionar.setText("Seleccionar: ");
 		lblSeleccionar.setFont(getLabelFont());
 		lblSeleccionar.setForeground(getAzul());
 		
 		btnNuevo = new Button(grpClase, SWT.NONE);
-		btnNuevo.setBounds(247, 204, 68, 23);
+		btnNuevo.setBounds(341, 392, 68, 23);
 		btnNuevo.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -444,7 +455,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		btnNuevo.setText("Nuevo");
 		
 		btnGrabar = new Button(grpClase, SWT.NONE);
-		btnGrabar.setBounds(321, 204, 68, 23);
+		btnGrabar.setBounds(415, 392, 68, 23);
 		btnGrabar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -455,7 +466,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		btnGrabar.setText("Grabar");
 		
 		btnEliminar = new Button(grpClase, SWT.NONE);
-		btnEliminar.setBounds(395, 204, 68, 23);
+		btnEliminar.setBounds(489, 392, 68, 23);
 		btnEliminar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -466,7 +477,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		btnEliminar.setText("Eliminar");
 		
 		btnSalir = new Button(grpClase, SWT.NONE);
-		btnSalir.setBounds(467, 204, 68, 23);
+		btnSalir.setBounds(561, 392, 68, 23);
 		btnSalir.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -476,46 +487,107 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		btnSalir.setText("Salir");
 		
 		CLabel lblEstudiosCursados = new CLabel(grpClase, SWT.NONE);
-		lblEstudiosCursados.setBounds(177, 20, 61, 21);
+		lblEstudiosCursados.setBounds(10, 74, 152, 21);
 		lblEstudiosCursados.setText("Estudios cursados: ");
 		lblEstudiosCursados.setFont(getLabelFont());
 		lblEstudiosCursados.setForeground(getAzul());
 		
 		CLabel lblNHoras = new CLabel(grpClase, SWT.NONE);
-		lblNHoras.setBounds(177, 47, 61, 21);
+		lblNHoras.setBounds(10, 128, 152, 21);
 		lblNHoras.setText("Nº horas: ");
 		lblNHoras.setFont(getLabelFont());
 		lblNHoras.setForeground(getAzul());
 		
 		CLabel lblBolsaDeEstudios = new CLabel(grpClase, SWT.NONE);
-		lblBolsaDeEstudios.setBounds(177, 74, 61, 21);
+		lblBolsaDeEstudios.setBounds(10, 155, 123, 21);
 		lblBolsaDeEstudios.setText("Bolsa de estudios: ");
 		lblBolsaDeEstudios.setFont(getLabelFont());
 		lblBolsaDeEstudios.setForeground(getAzul());
 		
 		CLabel lblTutorAyuntamiento = new CLabel(grpClase, SWT.NONE);
-		lblTutorAyuntamiento.setBounds(177, 101, 61, 21);
+		lblTutorAyuntamiento.setBounds(10, 211, 152, 21);
 		lblTutorAyuntamiento.setText("Tutor ayuntamiento: ");
 		lblTutorAyuntamiento.setFont(getLabelFont());
 		lblTutorAyuntamiento.setForeground(getAzul());
 		
 		CLabel lblDecretoAutorizacin = new CLabel(grpClase, SWT.NONE);
-		lblDecretoAutorizacin.setBounds(177, 128, 61, 21);
+		lblDecretoAutorizacin.setBounds(10, 238, 138, 21);
 		lblDecretoAutorizacin.setText("Decreto autorización: ");
 		lblDecretoAutorizacin.setFont(getLabelFont());
 		lblDecretoAutorizacin.setForeground(getAzul());
 		
 		CLabel lblReferenciaClica = new CLabel(grpClase, SWT.NONE);
-		lblReferenciaClica.setBounds(297, 20, 61, 21);
+		lblReferenciaClica.setBounds(354, 238, 108, 21);
 		lblReferenciaClica.setText("Referencia clica: ");
 		lblReferenciaClica.setFont(getLabelFont());
 		lblReferenciaClica.setForeground(getAzul());
 		
 		CLabel lblObservaciones = new CLabel(grpClase, SWT.NONE);
-		lblObservaciones.setBounds(297, 47, 61, 21);
+		lblObservaciones.setBounds(10, 265, 108, 21);
 		lblObservaciones.setText("Observaciones: ");
 		lblObservaciones.setFont(getLabelFont());
 		lblObservaciones.setForeground(getAzul());
+		
+		textExpediente = new Text(grpClase, SWT.BORDER);
+		textExpediente.setBounds(168, 20, 380, 21);
+		
+		Button btnSeleccionarExpediente = new Button(grpClase, SWT.NONE);
+		btnSeleccionarExpediente.setBounds(554, 20, 75, 21);
+		btnSeleccionarExpediente.setText("Seleccionar");
+		
+		textDepartamentoDestino = new Text(grpClase, SWT.BORDER);
+		textDepartamentoDestino.setBounds(168, 47, 380, 21);
+		
+		Button btnSeleccionarDepartamentoDestino = new Button(grpClase, SWT.NONE);
+		btnSeleccionarDepartamentoDestino.setBounds(554, 47, 75, 21);
+		btnSeleccionarDepartamentoDestino.setText("Seleccionar");
+		
+		textEstudiosCursados = new Text(grpClase, SWT.BORDER);
+		textEstudiosCursados.setBounds(168, 74, 380, 21);
+		
+		DateTime dateTimeFechaInicioPractica = new DateTime(grpClase, SWT.BORDER);
+		dateTimeFechaInicioPractica.setBounds(468, 101, 80, 21);
+		
+		textTutorAcademico = new Text(grpClase, SWT.BORDER);
+		textTutorAcademico.setBounds(168, 184, 380, 21);
+		
+		Button btnSeleccionar = new Button(grpClase, SWT.NONE);
+		btnSeleccionar.setBounds(554, 184, 75, 21);
+		btnSeleccionar.setText("Seleccionar");
+		
+		Combo comboTipoPractica = new Combo(grpClase, SWT.NONE);
+		comboTipoPractica.setBounds(168, 101, 180, 23);
+		
+		DateTime dateTimeFechaFinalPractica = new DateTime(grpClase, SWT.BORDER);
+		dateTimeFechaFinalPractica.setBounds(468, 128, 80, 21);
+		
+		DateTime dateTimeFechaFinalRealPractica = new DateTime(grpClase, SWT.BORDER);
+		dateTimeFechaFinalRealPractica.setBounds(468, 155, 80, 21);
+		
+		Combo comboTipoNumeroHoras = new Combo(grpClase, SWT.NONE);
+		comboTipoNumeroHoras.setBounds(168, 128, 91, 23);
+		
+		textNumeroHoras = new Text(grpClase, SWT.BORDER);
+		textNumeroHoras.setBounds(272, 128, 76, 21);
+		
+		Combo comboTipoBolsaEstudios = new Combo(grpClase, SWT.NONE);
+		comboTipoBolsaEstudios.setBounds(168, 155, 91, 23);
+		
+		textBolsaEstudios = new Text(grpClase, SWT.BORDER);
+		textBolsaEstudios.setText("");
+		textBolsaEstudios.setBounds(272, 155, 76, 21);
+		
+		textTutorAyuntamiento = new Text(grpClase, SWT.BORDER);
+		textTutorAyuntamiento.setBounds(168, 211, 180, 21);
+		
+		textDecretoAutorizacion = new Text(grpClase, SWT.BORDER);
+		textDecretoAutorizacion.setBounds(168, 238, 180, 21);
+		
+		textReferenciaClica = new Text(grpClase, SWT.BORDER);
+		textReferenciaClica.setBounds(468, 238, 76, 21);
+		
+		textObservaciones = new Text(grpClase, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.MULTI);
+		textObservaciones.setBounds(10, 292, 619, 94);
 		
 	}
 	
