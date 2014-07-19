@@ -21,9 +21,10 @@ import modelo.entidades.TutorAcademico;
 import org.hibernate.HibernateException;
 
 import at.modelo.entidades.ICrud;
+import at.modelo.entidades.IEsFiltro;
 
 @Entity(name = "practica")
-public class Practica implements ICrud <Practica>{
+public class Practica implements ICrud <Practica> , IEsFiltro{
 	
 	@Id @GeneratedValue
 	private int id;
@@ -377,6 +378,13 @@ public class Practica implements ICrud <Practica>{
 		} else if (!tutorAyuntamiento.equals(other.tutorAyuntamiento))
 			return false;
 		return true;
+	}
+
+
+	@Override
+	public String[] toTable() {
+		// TODO Auto-generated method stub
+		return null;
 	};
 	
 	

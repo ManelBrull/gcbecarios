@@ -20,9 +20,10 @@ import modelo.entidades.practica.Practica;
 import org.hibernate.HibernateException;
 
 import at.modelo.entidades.ICrud;
+import at.modelo.entidades.IEsFiltro;
 
 @Entity(name = "becario")
-public class Becario implements ICrud <Becario> {
+public class Becario implements ICrud <Becario>, IEsFiltro {
 	@Id @GeneratedValue
 	private int id;
 	
@@ -182,6 +183,12 @@ public class Becario implements ICrud <Becario> {
 
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
+	}
+
+	@Override
+	public String[] toTable() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

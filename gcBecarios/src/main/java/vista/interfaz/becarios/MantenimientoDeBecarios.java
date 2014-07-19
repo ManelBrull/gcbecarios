@@ -30,6 +30,8 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.DateTime;
 
+import controlador.becarios.ControladorMantenimientoBecarios;
+
 /**
  * 
  * Clase que sirve de plantilla para el mantenimiento de una clase
@@ -46,10 +48,9 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 	protected Shell shell;
 	
 	/** Controlador de las acciones de la interfaz **/
-	private ControladorMantenimiento controlador;
+	private ControladorMantenimientoBecarios controlador;
 	
 	/** Table que muestra los resultados del filtro **/
-	private Table table;
 	private Table tablePracticas;
 	private Table tableBecarios;
 	
@@ -93,6 +94,8 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 	private DateTime dateTimeFechaInicioPractica;
 	private DateTime dateTimeFechaFinalPractica;
 	private DateTime dateTimeFechaFinalRealPractica;
+	private TabFolder tabFolder;
+	private TabItem tbtmBecario;
 
 	/**
 	 * Crea el dialog
@@ -128,7 +131,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		shell.setSize(657, 699);
 		super.createContents(shell);
 		
-		TabFolder tabFolder = new TabFolder(shell, SWT.NONE);
+		tabFolder = new TabFolder(shell, SWT.NONE);
 		tabFolder.setBounds(0, 0, 651, 674);
 		
 		createContentsBecario(tabFolder);
@@ -138,7 +141,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 	}
 	
 	private void createContentsBecario(TabFolder tabFolder) {
-		TabItem tbtmBecario = new TabItem(tabFolder, SWT.NONE);
+		tbtmBecario = new TabItem(tabFolder, SWT.NONE);
 		tbtmBecario.setText("Becario");
 				
 		Composite compositeMain = new Composite(tabFolder, SWT.NONE);
@@ -608,6 +611,10 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		textObservaciones = new Text(grpClase, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.MULTI);
 		textObservaciones.setBounds(10, 292, 619, 94);
 		
+	}
+	
+	public TabActivaBecarios getTabActiva(){
+		return TabActivaBecarios.values()[tabFolder.getSelectionIndex()];
 	}
 	
 	@Override
