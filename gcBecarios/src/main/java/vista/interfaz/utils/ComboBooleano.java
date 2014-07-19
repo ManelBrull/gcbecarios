@@ -18,13 +18,9 @@ public enum ComboBooleano implements EnumToCombo<ComboBooleano> {
 		this.displayString = displayString;
 	}
 	
-	public String toString(){
-		return this.getDisplayString();
-	}
-	
 	public ComboBooleano getValue(String value){
 		for(ComboBooleano c: ComboBooleano.values()){
-			if(c.toString().equals(value))
+			if(c.getDisplayString().equals(value))
 				return c;
 		}
 		return null;
