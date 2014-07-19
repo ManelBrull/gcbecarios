@@ -1,5 +1,7 @@
 package vista.interfaz.becarios;
 
+import java.util.Date;
+
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
@@ -930,29 +932,29 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		this.btnSeleccionar = btnSeleccionar;
 	}
 
-	protected DateTime getDateTimeFechaInicioPractica() {
-		return dateTimeFechaInicioPractica;
+	protected Date getDateFechaInicioPractica() {
+		return Utils.getDate(dateTimeFechaInicioPractica);
 	}
 
-	protected void setDateTimeFechaInicioPractica(
-			DateTime dateTimeFechaInicioPractica) {
-		this.dateTimeFechaInicioPractica = dateTimeFechaInicioPractica;
+	protected void setDateFechaInicioPractica(
+			Date dateFechaInicioPractica) {
+		Utils.setDate(dateTimeFechaInicioPractica, dateFechaInicioPractica);
 	}
 
-	protected DateTime getDateTimeFechaFinalPractica() {
-		return dateTimeFechaFinalPractica;
+	protected Date getDateFechaFinalPractica() {
+		return Utils.getDate(dateTimeFechaFinalPractica);
 	}
 
-	protected void setDateTimeFechaFinalPractica(DateTime dateTimeFechaFinalPractica) {
-		this.dateTimeFechaFinalPractica = dateTimeFechaFinalPractica;
+	protected void setDateFechaFinalPractica(Date dateFechaFinalPractica) {
+		Utils.setDate(dateTimeFechaFinalPractica,dateFechaFinalPractica);
 	}
 
-	protected DateTime getDateTimeFechaFinalRealPractica() {
-		return dateTimeFechaFinalRealPractica;
+	protected Date getDateFechaFinalRealPractica() {
+		return Utils.getDate(dateTimeFechaFinalRealPractica);
 	}
 
-	protected void setDateTimeFechaFinalRealPractica(
-			DateTime dateTimeFechaFinalRealPractica) {
-		this.dateTimeFechaFinalRealPractica = dateTimeFechaFinalRealPractica;
+	protected void setDateFechaFinalRealPractica(
+			Date dateFechaFinalRealPractica) {
+		Utils.setDate(dateTimeFechaFinalRealPractica,dateFechaFinalRealPractica);
 	}
 }
