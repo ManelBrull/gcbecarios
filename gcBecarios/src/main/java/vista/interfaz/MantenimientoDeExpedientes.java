@@ -1,6 +1,5 @@
 package vista.interfaz;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -21,10 +20,9 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
-import controlador.ControladorExpediente;
-import at.controlador.ControladorMantenimiento;
 import at.vista.IMantenimiento;
 import at.vista.interfaz.ATDialog;
+import controlador.ControladorExpediente;
 
 /**
  * 
@@ -212,7 +210,7 @@ public class MantenimientoDeExpedientes extends ATDialog implements IMantenimien
 		textDecreto = new Text(grpClase, SWT.BORDER);
 		textDecreto.setBounds(206, 101, 95, 21);
 		
-		dateFechaExpediente = new DateTime(grpClase, SWT.BORDER | SWT.DROP_DOWN);
+		dateFechaExpediente = new DateTime(grpClase, SWT.BORDER | SWT.DROP_DOWN); 
 		dateFechaExpediente.setBounds(206, 128, 95, 24);
 		
 		
@@ -442,18 +440,10 @@ public class MantenimientoDeExpedientes extends ATDialog implements IMantenimien
 	}
 	
 	public Date getFechaExpediente(){
-		Calendar instance = Calendar.getInstance();
-		instance.set(Calendar.DAY_OF_MONTH, dateFechaExpediente.getDay());
-		instance.set(Calendar.MONTH, dateFechaExpediente.getMonth());
-		instance.set(Calendar.YEAR, dateFechaExpediente.getYear());
-		return instance.getTime();
+		return Utils.getDate(dateFechaExpediente);
 	}
 	
 	public void setFechaExpediente(Date date) {
-		Calendar instance = Calendar.getInstance();
-		instance.setTime(date);
-		dateFechaExpediente.setYear(instance.get(Calendar.YEAR));
-		dateFechaExpediente.setMonth(instance.get(Calendar.MONTH));
-		dateFechaExpediente.setDay(instance.get(Calendar.DAY_OF_MONTH));
+		Utils.setDate(dateFechaExpediente, date);
 	}
 }
