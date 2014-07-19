@@ -47,12 +47,18 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 	
 	/** Table que muestra los resultados del filtro **/
 	private Table table;
+	private Table tablePracticas;
+	private Table tableBecarios;
 	
-	private Button btnGrabar;
-	private Button btnEliminar;
-	private Button btnBuscar;
-	private Button btnNuevo;
-	private Button btnSalir;
+	private Button btnGrabarPractica;
+	private Button btnGrabarBecario;
+	private Button btnEliminarPractica;
+	private Button btnEliminarBecario;
+	private Button btnBuscarBecario;
+	private Button btnNuevoPractica;
+	private Button btnNuevoBecario;
+	private Button btnSalirPractica;
+	private Button btnSalirBecario;
 	
 	private Text textNombreFiltro;
 	private Text textNombre;
@@ -74,6 +80,16 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 	private Text textDecretoAutorizacion;
 	private Text textReferenciaClica;
 	private Text textObservaciones;
+	private Combo comboTipoPractica;
+	private Combo comboTipoNumeroHoras;
+	private Combo comboTipoBolsaEstudios;
+	private Combo comboFiltroPracticas;
+	private Button btnSeleccionarExpediente;
+	private Button btnSeleccionarDepartamentoDestino;
+	private Button btnSeleccionar;
+	private DateTime dateTimeFechaInicioPractica;
+	private DateTime dateTimeFechaFinalPractica;
+	private DateTime dateTimeFechaFinalRealPractica;
 
 	/**
 	 * Crea el dialog
@@ -131,47 +147,47 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		grpClase.setForeground(getAzul());
 		grpClase.setBounds(5, 221, 638, 425);
 		
-		btnNuevo = new Button(grpClase, SWT.NONE);
-		btnNuevo.setBounds(341, 392, 68, 23);
-		btnNuevo.addSelectionListener(new SelectionAdapter() {
+		btnNuevoBecario = new Button(grpClase, SWT.NONE);
+		btnNuevoBecario.setBounds(341, 392, 68, 23);
+		btnNuevoBecario.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				controlador.nuevo();
 			}
 		});
-		btnNuevo.setText("Nuevo");
+		btnNuevoBecario.setText("Nuevo");
 		
-		btnGrabar = new Button(grpClase, SWT.NONE);
-		btnGrabar.setBounds(415, 392, 68, 23);
-		btnGrabar.addSelectionListener(new SelectionAdapter() {
+		btnGrabarBecario = new Button(grpClase, SWT.NONE);
+		btnGrabarBecario.setBounds(415, 392, 68, 23);
+		btnGrabarBecario.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				controlador.grabar();
 			}
 		});
-		btnGrabar.setEnabled(false);
-		btnGrabar.setText("Grabar");
+		btnGrabarBecario.setEnabled(false);
+		btnGrabarBecario.setText("Grabar");
 		
-		btnEliminar = new Button(grpClase, SWT.NONE);
-		btnEliminar.setBounds(489, 392, 68, 23);
-		btnEliminar.addSelectionListener(new SelectionAdapter() {
+		btnEliminarBecario = new Button(grpClase, SWT.NONE);
+		btnEliminarBecario.setBounds(489, 392, 68, 23);
+		btnEliminarBecario.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				controlador.eliminar();
 			}
 		});
-		btnEliminar.setEnabled(false);
-		btnEliminar.setText("Eliminar");
+		btnEliminarBecario.setEnabled(false);
+		btnEliminarBecario.setText("Eliminar");
 		
-		btnSalir = new Button(grpClase, SWT.NONE);
-		btnSalir.setBounds(561, 392, 68, 23);
-		btnSalir.addSelectionListener(new SelectionAdapter() {
+		btnSalirBecario = new Button(grpClase, SWT.NONE);
+		btnSalirBecario.setBounds(561, 392, 68, 23);
+		btnSalirBecario.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				controlador.salir();
 			}
 		});
-		btnSalir.setText("Salir");
+		btnSalirBecario.setText("Salir");
 		
 		CLabel lblNombre = new CLabel(grpClase, SWT.NONE);
 		lblNombre.setBounds(10, 20, 103, 21);
@@ -286,54 +302,54 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		lblApellidoFiltro.setForeground(getAzul());
 		lblApellidoFiltro.setText("Apellidos: ");
 		
-		btnBuscar = new Button(grpFiltro, SWT.NONE);
-		btnBuscar.setBounds(476, 18, 68, 23);
-		btnBuscar.addSelectionListener(new SelectionAdapter() {
+		btnBuscarBecario = new Button(grpFiltro, SWT.NONE);
+		btnBuscarBecario.setBounds(476, 18, 68, 23);
+		btnBuscarBecario.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				controlador.buscar();
 			}
 		});
-		btnBuscar.setText("Buscar");
+		btnBuscarBecario.setText("Buscar");
 		
-		Button btnBorrar = new Button(grpFiltro, SWT.NONE);
-		btnBorrar.setBounds(550, 18, 68, 23);
-		btnBorrar.addSelectionListener(new SelectionAdapter() {
+		Button btnBorrarBecario = new Button(grpFiltro, SWT.NONE);
+		btnBorrarBecario.setBounds(550, 18, 68, 23);
+		btnBorrarBecario.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				controlador.borrar();
 			}
 		});
-		btnBorrar.setText("Borrar");
+		btnBorrarBecario.setText("Borrar");
 		
-		table = new Table(grpFiltro, SWT.BORDER | SWT.FULL_SELECTION);
-		table.setBounds(10, 47, 608, 155);
-		table.addSelectionListener(new SelectionAdapter() {
+		tableBecarios = new Table(grpFiltro, SWT.BORDER | SWT.FULL_SELECTION);
+		tableBecarios.setBounds(10, 47, 608, 155);
+		tableBecarios.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				controlador.elementoFiltroSeleccionado();
 			}
 		});
-		table.setHeaderVisible(true);
-		table.setLinesVisible(true);
+		tableBecarios.setHeaderVisible(true);
+		tableBecarios.setLinesVisible(true);
 		
-		TableColumn tblclmnNombre = new TableColumn(table, SWT.NONE);
+		TableColumn tblclmnNombre = new TableColumn(tableBecarios, SWT.NONE);
 		tblclmnNombre.setWidth(100);
 		tblclmnNombre.setText("Nombre");
 		
-		TableColumn tblclmnApellidos = new TableColumn(table, SWT.NONE);
+		TableColumn tblclmnApellidos = new TableColumn(tableBecarios, SWT.NONE);
 		tblclmnApellidos.setWidth(119);
 		tblclmnApellidos.setText("Apellidos");
 		
-		TableColumn tblclmnDocumentacin = new TableColumn(table, SWT.NONE);
+		TableColumn tblclmnDocumentacin = new TableColumn(tableBecarios, SWT.NONE);
 		tblclmnDocumentacin.setWidth(100);
 		tblclmnDocumentacin.setText("Documentación");
 		
-		TableColumn tblclmnNPrcticas = new TableColumn(table, SWT.NONE);
+		TableColumn tblclmnNPrcticas = new TableColumn(tableBecarios, SWT.NONE);
 		tblclmnNPrcticas.setWidth(100);
 		tblclmnNPrcticas.setText("Nº Prácticas");
 		
-		TableColumn tblclmnPracticaActiva = new TableColumn(table, SWT.NONE);
+		TableColumn tblclmnPracticaActiva = new TableColumn(tableBecarios, SWT.NONE);
 		tblclmnPracticaActiva.setWidth(100);
 		tblclmnPracticaActiva.setText("Practica activa");
 		
@@ -404,38 +420,38 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		grpFiltro.setFont(getGroupFont());
 		grpFiltro.setForeground(getAzul());
 		
-		table = new Table(grpFiltro, SWT.BORDER | SWT.FULL_SELECTION);
-		table.setBounds(10, 47, 618, 155);
-		table.addSelectionListener(new SelectionAdapter() {
+		tablePracticas = new Table(grpFiltro, SWT.BORDER | SWT.FULL_SELECTION);
+		tablePracticas.setBounds(10, 47, 618, 155);
+		tablePracticas.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				controlador.elementoFiltroSeleccionado();
 			}
 		});
-		table.setHeaderVisible(true);
-		table.setLinesVisible(true);
+		tablePracticas.setHeaderVisible(true);
+		tablePracticas.setLinesVisible(true);
 		
-		TableColumn tblclmnNombre = new TableColumn(table, SWT.NONE);
+		TableColumn tblclmnNombre = new TableColumn(tablePracticas, SWT.NONE);
 		tblclmnNombre.setWidth(100);
 		tblclmnNombre.setText("Nombre");
 		
-		TableColumn tblclmnApellidos = new TableColumn(table, SWT.NONE);
+		TableColumn tblclmnApellidos = new TableColumn(tablePracticas, SWT.NONE);
 		tblclmnApellidos.setWidth(119);
 		tblclmnApellidos.setText("Apellidos");
 		
-		TableColumn tblclmnDocumentacin = new TableColumn(table, SWT.NONE);
+		TableColumn tblclmnDocumentacin = new TableColumn(tablePracticas, SWT.NONE);
 		tblclmnDocumentacin.setWidth(100);
 		tblclmnDocumentacin.setText("Documentación");
 		
-		TableColumn tblclmnNPrcticas = new TableColumn(table, SWT.NONE);
+		TableColumn tblclmnNPrcticas = new TableColumn(tablePracticas, SWT.NONE);
 		tblclmnNPrcticas.setWidth(100);
 		tblclmnNPrcticas.setText("Nº Prácticas");
 		
-		TableColumn tblclmnPracticaActiva = new TableColumn(table, SWT.NONE);
+		TableColumn tblclmnPracticaActiva = new TableColumn(tablePracticas, SWT.NONE);
 		tblclmnPracticaActiva.setWidth(100);
 		tblclmnPracticaActiva.setText("Practica activa");
 		
-		Combo comboFiltroPracticas = new Combo(grpFiltro, SWT.NONE);
+		comboFiltroPracticas = new Combo(grpFiltro, SWT.NONE);
 		comboFiltroPracticas.setBounds(113, 18, 515, 23);
 		
 		CLabel lblSeleccionar = new CLabel(grpFiltro, SWT.NONE);
@@ -444,47 +460,47 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		lblSeleccionar.setFont(getLabelFont());
 		lblSeleccionar.setForeground(getAzul());
 		
-		btnNuevo = new Button(grpClase, SWT.NONE);
-		btnNuevo.setBounds(341, 392, 68, 23);
-		btnNuevo.addSelectionListener(new SelectionAdapter() {
+		btnNuevoPractica = new Button(grpClase, SWT.NONE);
+		btnNuevoPractica.setBounds(341, 392, 68, 23);
+		btnNuevoPractica.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				controlador.nuevo();
 			}
 		});
-		btnNuevo.setText("Nuevo");
+		btnNuevoPractica.setText("Nuevo");
 		
-		btnGrabar = new Button(grpClase, SWT.NONE);
-		btnGrabar.setBounds(415, 392, 68, 23);
-		btnGrabar.addSelectionListener(new SelectionAdapter() {
+		btnGrabarPractica = new Button(grpClase, SWT.NONE);
+		btnGrabarPractica.setBounds(415, 392, 68, 23);
+		btnGrabarPractica.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				controlador.grabar();
 			}
 		});
-		btnGrabar.setEnabled(false);
-		btnGrabar.setText("Grabar");
+		btnGrabarPractica.setEnabled(false);
+		btnGrabarPractica.setText("Grabar");
 		
-		btnEliminar = new Button(grpClase, SWT.NONE);
-		btnEliminar.setBounds(489, 392, 68, 23);
-		btnEliminar.addSelectionListener(new SelectionAdapter() {
+		btnEliminarPractica = new Button(grpClase, SWT.NONE);
+		btnEliminarPractica.setBounds(489, 392, 68, 23);
+		btnEliminarPractica.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				controlador.eliminar();
 			}
 		});
-		btnEliminar.setEnabled(false);
-		btnEliminar.setText("Eliminar");
+		btnEliminarPractica.setEnabled(false);
+		btnEliminarPractica.setText("Eliminar");
 		
-		btnSalir = new Button(grpClase, SWT.NONE);
-		btnSalir.setBounds(561, 392, 68, 23);
-		btnSalir.addSelectionListener(new SelectionAdapter() {
+		btnSalirPractica = new Button(grpClase, SWT.NONE);
+		btnSalirPractica.setBounds(561, 392, 68, 23);
+		btnSalirPractica.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				controlador.salir();
 			}
 		});
-		btnSalir.setText("Salir");
+		btnSalirPractica.setText("Salir");
 		
 		CLabel lblEstudiosCursados = new CLabel(grpClase, SWT.NONE);
 		lblEstudiosCursados.setBounds(10, 74, 152, 21);
@@ -531,46 +547,46 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		textExpediente = new Text(grpClase, SWT.BORDER);
 		textExpediente.setBounds(168, 20, 380, 21);
 		
-		Button btnSeleccionarExpediente = new Button(grpClase, SWT.NONE);
+		btnSeleccionarExpediente = new Button(grpClase, SWT.NONE);
 		btnSeleccionarExpediente.setBounds(554, 20, 75, 21);
 		btnSeleccionarExpediente.setText("Seleccionar");
 		
 		textDepartamentoDestino = new Text(grpClase, SWT.BORDER);
 		textDepartamentoDestino.setBounds(168, 47, 380, 21);
 		
-		Button btnSeleccionarDepartamentoDestino = new Button(grpClase, SWT.NONE);
+		btnSeleccionarDepartamentoDestino = new Button(grpClase, SWT.NONE);
 		btnSeleccionarDepartamentoDestino.setBounds(554, 47, 75, 21);
 		btnSeleccionarDepartamentoDestino.setText("Seleccionar");
 		
 		textEstudiosCursados = new Text(grpClase, SWT.BORDER);
 		textEstudiosCursados.setBounds(168, 74, 380, 21);
 		
-		DateTime dateTimeFechaInicioPractica = new DateTime(grpClase, SWT.BORDER);
+		dateTimeFechaInicioPractica = new DateTime(grpClase, SWT.BORDER);
 		dateTimeFechaInicioPractica.setBounds(468, 101, 80, 21);
 		
 		textTutorAcademico = new Text(grpClase, SWT.BORDER);
 		textTutorAcademico.setBounds(168, 184, 380, 21);
 		
-		Button btnSeleccionar = new Button(grpClase, SWT.NONE);
+		btnSeleccionar = new Button(grpClase, SWT.NONE);
 		btnSeleccionar.setBounds(554, 184, 75, 21);
 		btnSeleccionar.setText("Seleccionar");
 		
-		Combo comboTipoPractica = new Combo(grpClase, SWT.NONE);
+		comboTipoPractica = new Combo(grpClase, SWT.NONE);
 		comboTipoPractica.setBounds(168, 101, 180, 23);
 		
-		DateTime dateTimeFechaFinalPractica = new DateTime(grpClase, SWT.BORDER);
+		dateTimeFechaFinalPractica = new DateTime(grpClase, SWT.BORDER);
 		dateTimeFechaFinalPractica.setBounds(468, 128, 80, 21);
 		
-		DateTime dateTimeFechaFinalRealPractica = new DateTime(grpClase, SWT.BORDER);
+		dateTimeFechaFinalRealPractica = new DateTime(grpClase, SWT.BORDER);
 		dateTimeFechaFinalRealPractica.setBounds(468, 155, 80, 21);
 		
-		Combo comboTipoNumeroHoras = new Combo(grpClase, SWT.NONE);
+		comboTipoNumeroHoras = new Combo(grpClase, SWT.NONE);
 		comboTipoNumeroHoras.setBounds(168, 128, 91, 23);
 		
 		textNumeroHoras = new Text(grpClase, SWT.BORDER);
 		textNumeroHoras.setBounds(272, 128, 76, 21);
 		
-		Combo comboTipoBolsaEstudios = new Combo(grpClase, SWT.NONE);
+		comboTipoBolsaEstudios = new Combo(grpClase, SWT.NONE);
 		comboTipoBolsaEstudios.setBounds(168, 155, 91, 23);
 		
 		textBolsaEstudios = new Text(grpClase, SWT.BORDER);
@@ -591,10 +607,9 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		
 	}
 	
-	
-	
 	@Override
 	protected void myDispose() {
+
 	}
 	
 	@Override
@@ -628,73 +643,315 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 
 	@Override
 	public void anadirElemento(String[] fila) {
-		TableItem item = new TableItem(table,SWT.NONE);
+		TableItem item = new TableItem(tablePracticas,SWT.NONE);
 		item.setText(fila);
 	}
 
 	@Override
 	public int elementoElegidoTabla() {
-		return table.getSelectionIndex();
+		return tablePracticas.getSelectionIndex();
 	}
 
 	@Override
 	public void vaciarTabla() {
-		table.removeAll();
+		tablePracticas.removeAll();
 	}
 
 	@Override
 	public void setBtnBuscarEnabled(boolean arg0) {
-		btnBuscar.setEnabled(arg0);
+		btnBuscarBecario.setEnabled(arg0);
 	}
 
 	@Override
 	public void btnBuscarSelected() {
-		btnBuscar.notifyListeners(SWT.Selection, new Event());		
+		btnBuscarBecario.notifyListeners(SWT.Selection, new Event());		
 	}
 
 	@Override
 	public void setBtnEliminarEnabled(boolean arg0) {
-		btnEliminar.setEnabled(arg0);		
+		btnEliminarPractica.setEnabled(arg0);		
 	}
 
 	@Override
 	public void btnEliminarSelected() {
-		btnEliminar.notifyListeners(SWT.Selection, new Event());
+		btnEliminarPractica.notifyListeners(SWT.Selection, new Event());
 	}
 
 	@Override
 	public void setBtnGrabarEnabled(boolean arg0) {
-		btnGrabar.setEnabled(arg0);
+		btnGrabarPractica.setEnabled(arg0);
 	}
 
 	@Override
 	public void btnGrabarSelected() {
-		btnGrabar.notifyListeners(SWT.Selection, new Event());
+		btnGrabarPractica.notifyListeners(SWT.Selection, new Event());
 	}
 
 	@Override
 	public void setBtnNuevoEnabled(boolean arg0) {
-		btnNuevo.setEnabled(arg0);
+		btnNuevoPractica.setEnabled(arg0);
 	}
 
 	@Override
 	public void btnNuevoSelected() {
-		btnNuevo.notifyListeners(SWT.Selection, new Event());		
+		btnNuevoPractica.notifyListeners(SWT.Selection, new Event());		
 	}
 
 	@Override
 	public void setBtnSalirEnabled(boolean arg0) {
-		btnSalir.setEnabled(arg0);
+		btnSalirPractica.setEnabled(arg0);
 	}
 
 	@Override
 	public void btnSalirSelected() {
-		btnSalir.notifyListeners(SWT.Selection, new Event());	
+		btnSalirPractica.notifyListeners(SWT.Selection, new Event());	
 	}
-
 
 	@Override
 	public void cerrarDialog() {
 		shell.close();
+	}
+	
+	protected String getStringNombreFiltro() {
+		return textNombreFiltro.getText();
+	}
+
+	protected void setStringNombreFiltro(String textNombreFiltro) {
+		this.textNombreFiltro.setText(textNombreFiltro);
+	}
+
+	protected String getStringNombre() {
+		return textNombre.getText();
+	}
+
+	protected void setStringNombre(String textNombre) {
+		this.textNombre.setText(textNombre);
+	}
+
+	protected String getStringApellidos() {
+		return textApellidos.getText();
+	}
+
+	protected void setStringApellidos(String textApellidos) {
+		this.textApellidos.setText(textApellidos);
+	}
+
+	protected String getStringCuentaBancaria() {
+		return textCuentaBancaria.getText();
+	}
+
+	protected void setStringCuentaBancaria(String textCuentaBancaria) {
+		this.textCuentaBancaria.setText(textCuentaBancaria);
+	}
+
+	protected String getStringDireccion() {
+		return textDireccion.getText();
+	}
+
+	protected void setStringDireccion(String textDireccion) {
+		this.textDireccion.setText(textDireccion);
+	}
+
+	protected String getStringLocalidad() {
+		return textLocalidad.getText();
+	}
+
+	protected void setStringLocalidad(String textLocalidad) {
+		this.textLocalidad.setText(textLocalidad);
+	}
+
+	protected String getStringProvincia() {
+		return textProvincia.getText();
+	}
+
+	protected void setStringProvincia(String textProvincia) {
+		this.textProvincia.setText(textProvincia);
+	}
+
+	protected String getStringTelefono() {
+		return textTelefono.getText();
+	}
+
+	protected void setStringTelefono(String textTelefono) {
+		this.textTelefono.setText(textTelefono);
+	}
+
+	protected String getStringEmail() {
+		return textEmail.getText();
+	}
+
+	protected void setStringEmail(String textEmail) {
+		this.textEmail.setText(textEmail);
+	}
+
+	protected String getStringNumafiliacionSS() {
+		return textNumafiliacionSS.getText();
+	}
+
+	protected void setStringNumafiliacionSS(String textNumafiliacionSS) {
+		this.textNumafiliacionSS.setText(textNumafiliacionSS);
+	}
+
+	protected String getStringExpediente() {
+		return textExpediente.getText();
+	}
+
+	protected void setStringExpediente(String textExpediente) {
+		this.textExpediente.setText(textExpediente);
+	}
+
+	protected String getStringDepartamentoDestino() {
+		return textDepartamentoDestino.getText();
+	}
+
+	protected void setStringDepartamentoDestino(String textDepartamentoDestino) {
+		this.textDepartamentoDestino.setText(textDepartamentoDestino);
+	}
+
+	protected String getStringEstudiosCursados() {
+		return textEstudiosCursados.getText();
+	}
+
+	protected void setStringEstudiosCursados(String textEstudiosCursados) {
+		this.textEstudiosCursados.setText(textEstudiosCursados);
+	}
+
+	protected String getStringTutorAcademico() {
+		return textTutorAcademico.getText();
+	}
+
+	protected void setStringTutorAcademico(String textTutorAcademico) {
+		this.textTutorAcademico.setText(textTutorAcademico);
+	}
+
+	protected String getStringNumeroHoras() {
+		return textNumeroHoras.getText();
+	}
+
+	protected void setStringNumeroHoras(String textNumeroHoras) {
+		this.textNumeroHoras.setText(textNumeroHoras);
+	}
+
+	protected String getStringBolsaEstudios() {
+		return textBolsaEstudios.getText();
+	}
+
+	protected void setStringBolsaEstudios(String textBolsaEstudios) {
+		this.textBolsaEstudios.setText(textBolsaEstudios);
+	}
+
+	protected String getStringTutorAyuntamiento() {
+		return textTutorAyuntamiento.getText();
+	}
+
+	protected void setStringTutorAyuntamiento(String textTutorAyuntamiento) {
+		this.textTutorAyuntamiento.setText(textTutorAyuntamiento);
+	}
+
+	protected String getStringDecretoAutorizacion() {
+		return textDecretoAutorizacion.getText();
+	}
+
+	protected void setStringDecretoAutorizacion(String textDecretoAutorizacion) {
+		this.textDecretoAutorizacion.setText(textDecretoAutorizacion);
+	}
+
+	protected String getStringReferenciaClica() {
+		return textReferenciaClica.getText();
+	}
+
+	protected void setStringReferenciaClica(String textReferenciaClica) {
+		this.textReferenciaClica.setText(textReferenciaClica);
+	}
+
+	protected String getStringObservaciones() {
+		return textObservaciones.getText();
+	}
+
+	protected void setStringObservaciones(String textObservaciones) {
+		this.textObservaciones.setText(textObservaciones);
+	}
+
+	protected Combo getComboTipoPractica() {
+		return comboTipoPractica;
+	}
+
+	protected void setComboTipoPractica(Combo comboTipoPractica) {
+		this.comboTipoPractica = comboTipoPractica;
+	}
+
+	protected Combo getComboTipoNumeroHoras() {
+		return comboTipoNumeroHoras;
+	}
+
+	protected void setComboTipoNumeroHoras(Combo comboTipoNumeroHoras) {
+		this.comboTipoNumeroHoras = comboTipoNumeroHoras;
+	}
+
+	protected Combo getComboTipoBolsaEstudios() {
+		return comboTipoBolsaEstudios;
+	}
+
+	protected void setComboTipoBolsaEstudios(Combo comboTipoBolsaEstudios) {
+		this.comboTipoBolsaEstudios = comboTipoBolsaEstudios;
+	}
+
+	protected Combo getComboFiltroPracticas() {
+		return comboFiltroPracticas;
+	}
+
+	protected void setComboFiltroPracticas(Combo comboFiltroPracticas) {
+		this.comboFiltroPracticas = comboFiltroPracticas;
+	}
+
+	protected Button getBtnSeleccionarExpediente() {
+		return btnSeleccionarExpediente;
+	}
+
+	protected void setBtnSeleccionarExpediente(Button btnSeleccionarExpediente) {
+		this.btnSeleccionarExpediente = btnSeleccionarExpediente;
+	}
+
+	protected Button getBtnSeleccionarDepartamentoDestino() {
+		return btnSeleccionarDepartamentoDestino;
+	}
+
+	protected void setBtnSeleccionarDepartamentoDestino(
+			Button btnSeleccionarDepartamentoDestino) {
+		this.btnSeleccionarDepartamentoDestino = btnSeleccionarDepartamentoDestino;
+	}
+
+	protected Button getBtnSeleccionar() {
+		return btnSeleccionar;
+	}
+
+	protected void setBtnSeleccionar(Button btnSeleccionar) {
+		this.btnSeleccionar = btnSeleccionar;
+	}
+
+	protected DateTime getDateTimeFechaInicioPractica() {
+		return dateTimeFechaInicioPractica;
+	}
+
+	protected void setDateTimeFechaInicioPractica(
+			DateTime dateTimeFechaInicioPractica) {
+		this.dateTimeFechaInicioPractica = dateTimeFechaInicioPractica;
+	}
+
+	protected DateTime getDateTimeFechaFinalPractica() {
+		return dateTimeFechaFinalPractica;
+	}
+
+	protected void setDateTimeFechaFinalPractica(DateTime dateTimeFechaFinalPractica) {
+		this.dateTimeFechaFinalPractica = dateTimeFechaFinalPractica;
+	}
+
+	protected DateTime getDateTimeFechaFinalRealPractica() {
+		return dateTimeFechaFinalRealPractica;
+	}
+
+	protected void setDateTimeFechaFinalRealPractica(
+			DateTime dateTimeFechaFinalRealPractica) {
+		this.dateTimeFechaFinalRealPractica = dateTimeFechaFinalRealPractica;
 	}
 }
