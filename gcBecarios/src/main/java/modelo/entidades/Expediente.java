@@ -16,7 +16,7 @@ import modelo.dao.ExpedienteDAO;
 
 import org.hibernate.HibernateException;
 
-import vista.interfaz.Utils;
+import vista.interfaz.utils.Utils;
 import at.modelo.entidades.ICrud;
 import at.modelo.entidades.IEsFiltro;
 

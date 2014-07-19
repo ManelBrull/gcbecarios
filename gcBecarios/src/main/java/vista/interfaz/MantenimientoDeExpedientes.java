@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
+import vista.interfaz.utils.Utils;
 import at.vista.IMantenimiento;
 import at.vista.interfaz.ATDialog;
 import controlador.ControladorExpediente;

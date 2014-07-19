@@ -17,10 +17,11 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
-import vista.interfaz.Utils;
+import vista.interfaz.utils.Utils;
 import at.controlador.ControladorMantenimiento;
 import at.vista.IMantenimiento;
 import at.vista.interfaz.ATDialog;
+
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.TableColumn;

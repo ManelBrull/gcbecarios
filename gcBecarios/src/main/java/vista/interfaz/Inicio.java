@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+import vista.interfaz.utils.Utils;
 import at.vista.IMensajes;
 import at.vista.interfaz.Recursos;
 import controlador.ControladorInicio;

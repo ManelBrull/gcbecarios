@@ -1,4 +1,4 @@
-package vista.interfaz;
+package vista.interfaz.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

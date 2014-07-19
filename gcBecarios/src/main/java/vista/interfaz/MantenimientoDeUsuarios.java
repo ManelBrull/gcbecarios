@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+import vista.interfaz.utils.Utils;
 import at.vista.IMantenimiento;
 import at.vista.interfaz.ATDialog;
 import controlador.ControladorUsuarios;
