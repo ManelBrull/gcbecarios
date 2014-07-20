@@ -653,20 +653,41 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 
 	@Override
 	public void anadirElemento(String[] fila) {
-		TableItem item = new TableItem(tablePracticas,SWT.NONE);
-		item.setText(fila);
+		switch(getTabActiva()){
+		case becarios:
+			TableItem item = new TableItem(tableBecarios,SWT.NONE);
+			item.setText(fila);
+			break;
+		case practica:
+			TableItem itemPrac = new TableItem(tablePracticas,SWT.NONE);
+			itemPrac.setText(fila);
+			break;
+		}
 	}
 
 	@Override
 	public int elementoElegidoTabla() {
-		return tablePracticas.getSelectionIndex();
+		switch(getTabActiva()){
+		case becarios:
+			return tableBecarios.getSelectionIndex();
+		case practica:
+			return tablePracticas.getSelectionIndex();
+		}
+		return -1;
 	}
 
 	@Override
 	public void vaciarTabla() {
-		tablePracticas.removeAll();
+		switch(getTabActiva()){
+		case becarios:
+			tableBecarios.removeAll();
+			break;
+		case practica:
+			tablePracticas.removeAll();
+			break;
+		}
 	}
-
+	
 	@Override
 	public void setBtnBuscarEnabled(boolean arg0) {
 		btnBuscarBecario.setEnabled(arg0);
@@ -679,42 +700,75 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 
 	@Override
 	public void setBtnEliminarEnabled(boolean arg0) {
-		btnEliminarPractica.setEnabled(arg0);		
+		btnEliminarPractica.setEnabled(arg0);
+		btnEliminarBecario.setEnabled(arg0);
 	}
 
 	@Override
 	public void btnEliminarSelected() {
-		btnEliminarPractica.notifyListeners(SWT.Selection, new Event());
+		switch (getTabActiva()) {
+		case becarios:
+			btnEliminarBecario.notifyListeners(SWT.Selection, new Event());
+			break;
+		case practica:
+			btnEliminarPractica.notifyListeners(SWT.Selection, new Event());
+			break;
+		}
 	}
 
 	@Override
 	public void setBtnGrabarEnabled(boolean arg0) {
 		btnGrabarPractica.setEnabled(arg0);
+		btnGrabarBecario.setEnabled(arg0);
 	}
 
 	@Override
 	public void btnGrabarSelected() {
-		btnGrabarPractica.notifyListeners(SWT.Selection, new Event());
+		switch (getTabActiva()) {
+		case becarios:
+			btnGrabarBecario.notifyListeners(SWT.Selection, new Event());
+			break;
+		case practica:
+			btnGrabarPractica.notifyListeners(SWT.Selection, new Event());
+			break;
+		}
 	}
 
 	@Override
 	public void setBtnNuevoEnabled(boolean arg0) {
 		btnNuevoPractica.setEnabled(arg0);
+		btnNuevoBecario.setEnabled(arg0);
 	}
 
 	@Override
 	public void btnNuevoSelected() {
-		btnNuevoPractica.notifyListeners(SWT.Selection, new Event());		
+		switch (getTabActiva()) {
+		case becarios:
+			btnNuevoBecario.notifyListeners(SWT.Selection, new Event());
+			break;
+		case practica:
+			btnNuevoPractica.notifyListeners(SWT.Selection, new Event());
+			break;
+		}
 	}
 
 	@Override
 	public void setBtnSalirEnabled(boolean arg0) {
 		btnSalirPractica.setEnabled(arg0);
+		btnSalirBecario.setEnabled(arg0);
 	}
 
 	@Override
 	public void btnSalirSelected() {
-		btnSalirPractica.notifyListeners(SWT.Selection, new Event());	
+		switch (getTabActiva()) {
+		case becarios:
+			btnSalirBecario.notifyListeners(SWT.Selection, new Event());
+			break;
+		case practica:
+			btnSalirPractica.notifyListeners(SWT.Selection, new Event());
+			break;
+		}
+			
 	}
 
 	@Override

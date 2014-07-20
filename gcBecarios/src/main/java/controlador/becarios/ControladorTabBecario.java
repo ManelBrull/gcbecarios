@@ -17,6 +17,23 @@ public class ControladorTabBecario extends ControladorMantenimiento<Becario>{
 		mBecarios = mant;
 	}
 
+	
+	@Override
+	public void inicializar() {
+		visibilidadBtn();
+	}
+	@Override
+	public void visibilidadBtn() {
+		if(entidadSeleccionado == null){
+			mBecarios.setBtnGrabarEnabled(false);
+			mBecarios.setBtnEliminarEnabled(false);
+		}else {
+			mBecarios.setBtnGrabarEnabled(true);
+			mBecarios.setBtnEliminarEnabled(true);
+		}
+		
+	}
+	
 	@Override
 	public void borrarInterfaz() {
 		// TODO Auto-generated method stub

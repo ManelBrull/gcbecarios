@@ -18,7 +18,8 @@ public class ControladorMantenimientoBecarios implements IControladorMantenimien
 
 	@Override
 	public void inicializar() {
-		
+		cBecario.inicializar();
+		cPractica.inicializar();
 	}
 
 	@Override
