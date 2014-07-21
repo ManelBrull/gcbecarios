@@ -773,6 +773,78 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 			
 	}
 	
+	public void setBtnGrabarPracticaEnabled(boolean arg0) {
+		btnGrabarPractica.setEnabled(true);
+	}
+
+	public void btnGrabarPracticaSelected() {
+			btnGrabarPractica.notifyListeners(SWT.Selection, new Event());
+	}
+	
+	public void setBtnGrabarBecarioEnabled(boolean arg0) {
+		btnGrabarBecario.setEnabled(true);
+	}
+
+	public void btnBtnGrabarBecarioSelected() {
+		btnGrabarBecario.notifyListeners(SWT.Selection, new Event());
+	}
+
+	public void setBtnEliminarPracticaEnabled(boolean arg0) {
+		btnEliminarPractica.setEnabled(true);
+	}
+
+	public void btnBtnEliminarPracticaSelected() {
+		btnEliminarPractica.notifyListeners(SWT.Selection, new Event());
+	}
+
+	public void setBtnEliminarBecarioEnabled(boolean arg0) {
+		btnEliminarBecario.setEnabled(true);
+	}
+
+	public void btnBtnEliminarBecarioSelected() {
+		btnEliminarBecario.notifyListeners(SWT.Selection, new Event());
+	}
+	
+	public void setBtnBuscarBecarioEnabled(boolean arg0) {
+		btnBuscarBecario.setEnabled(true);
+	}
+
+	public void btnBtnBuscarBecarioSelected() {
+		btnBuscarBecario.notifyListeners(SWT.Selection, new Event());
+	}
+	
+	public void setBtnNuevoPracticaEnabled(boolean arg0) {
+		btnNuevoPractica.setEnabled(true);
+	}
+
+	public void btnBtnNuevoPracticaSelected() {
+		btnNuevoPractica.notifyListeners(SWT.Selection, new Event());
+	}
+	
+	public void setBtnNuevoBecarioEnabled(boolean arg0) {
+		btnNuevoBecario.setEnabled(true);
+	}
+
+	public void btnBtnNuevoBecarioSelected() {
+		btnNuevoBecario.notifyListeners(SWT.Selection, new Event());
+	}
+	
+	public void setBtnSalirPracticaEnabled(boolean arg0) {
+		btnSalirPractica.setEnabled(true);
+	}
+
+	public void btnBtnSalirPracticaSelected() {
+		btnSalirPractica.notifyListeners(SWT.Selection, new Event());
+	}
+	
+	public void setBtnSalirBecarioEnabled(boolean arg0) {
+		btnSalirBecario.setEnabled(true);
+	}
+
+	public void btnBtnSalirBecarioSelected() {
+		btnSalirBecario.notifyListeners(SWT.Selection, new Event());
+	}
+	
 	public int getSelectedComboAltaSeguridadSocial() {
 		return comboAltaSeguridadSocial.getSelectionIndex();
 	}
