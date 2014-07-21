@@ -96,6 +96,8 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 	private DateTime dateTimeFechaFinalRealPractica;
 	private TabFolder tabFolder;
 	private TabItem tbtmBecario;
+	private Combo comboAltaSeguridadSocial;
+	private Text textDocumentacion;
 
 	/**
 	 * Crea el dialog
@@ -103,7 +105,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 	 */
 	public MantenimientoDeBecarios(Shell parent) {
 		super(parent,Utils.nombreProyecto + " - Mantenimiento de becarios");
-//		controlador = new ControladorConcreto();
+		controlador = new ControladorMantenimientoBecarios(this);
 	}
 
 	/**
@@ -267,7 +269,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		textApellidos = new Text(grpClase, SWT.BORDER);
 		textApellidos.setBounds(361, 20, 174, 21);
 		
-		Text textDocumentacion = new Text(grpClase, SWT.BORDER);
+		textDocumentacion = new Text(grpClase, SWT.BORDER);
 		textDocumentacion.setBounds(141, 47, 100, 21);
 		
 		textCuentaBancaria = new Text(grpClase, SWT.BORDER);
@@ -288,7 +290,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		textEmail = new Text(grpClase, SWT.BORDER);
 		textEmail.setBounds(361, 128, 174, 21);
 		
-		Combo comboAltaSeguridadSocial = new Combo(grpClase, SWT.NONE);
+		comboAltaSeguridadSocial = new Combo(grpClase, SWT.NONE);
 		comboAltaSeguridadSocial.setBounds(167, 153, 74, 23);
 		
 		textNumafiliacionSS = new Text(grpClase, SWT.BORDER);
@@ -770,251 +772,280 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		}
 			
 	}
+	
+	public int getSelectedComboAltaSeguridadSocial() {
+		return comboAltaSeguridadSocial.getSelectionIndex();
+	}
+
+	public void addItemComboAltaSeguridadSocial(String elemento) {
+		comboAltaSeguridadSocial.add(elemento);
+	}
+	
+	public void selectItemComboAltaSeguridadSocial(int i) {
+		if(i >= 0 && comboAltaSeguridadSocial.getItemCount() > i) {
+			comboAltaSeguridadSocial.select(i);
+		}
+	}
+	
+	public void vaciarComboAltaSeguridadSocial(){
+		comboAltaSeguridadSocial.removeAll();
+	}
+
 
 	@Override
 	public void cerrarDialog() {
 		shell.close();
 	}
 	
-	protected String getStringNombreFiltro() {
+
+	public String getStringDocumentacion() {
+		return textDocumentacion.getText();
+	}
+
+	public void setStringDocumentacion(String Documentacion) {
+		this.textDocumentacion.setText(Documentacion);
+	}
+
+	
+	public String getStringNombreFiltro() {
 		return textNombreFiltro.getText();
 	}
 
-	protected void setStringNombreFiltro(String textNombreFiltro) {
+	public void setStringNombreFiltro(String textNombreFiltro) {
 		this.textNombreFiltro.setText(textNombreFiltro);
 	}
 
-	protected String getStringNombre() {
+	public String getStringNombre() {
 		return textNombre.getText();
 	}
 
-	protected void setStringNombre(String textNombre) {
+	public void setStringNombre(String textNombre) {
 		this.textNombre.setText(textNombre);
 	}
 
-	protected String getStringApellidos() {
+	public String getStringApellidos() {
 		return textApellidos.getText();
 	}
 
-	protected void setStringApellidos(String textApellidos) {
+	public void setStringApellidos(String textApellidos) {
 		this.textApellidos.setText(textApellidos);
 	}
 
-	protected String getStringCuentaBancaria() {
+	public String getStringCuentaBancaria() {
 		return textCuentaBancaria.getText();
 	}
 
-	protected void setStringCuentaBancaria(String textCuentaBancaria) {
+	public void setStringCuentaBancaria(String textCuentaBancaria) {
 		this.textCuentaBancaria.setText(textCuentaBancaria);
 	}
 
-	protected String getStringDireccion() {
+	public String getStringDireccion() {
 		return textDireccion.getText();
 	}
 
-	protected void setStringDireccion(String textDireccion) {
+	public void setStringDireccion(String textDireccion) {
 		this.textDireccion.setText(textDireccion);
 	}
 
-	protected String getStringLocalidad() {
+	public String getStringLocalidad() {
 		return textLocalidad.getText();
 	}
 
-	protected void setStringLocalidad(String textLocalidad) {
+	public void setStringLocalidad(String textLocalidad) {
 		this.textLocalidad.setText(textLocalidad);
 	}
 
-	protected String getStringProvincia() {
+	public String getStringProvincia() {
 		return textProvincia.getText();
 	}
 
-	protected void setStringProvincia(String textProvincia) {
+	public void setStringProvincia(String textProvincia) {
 		this.textProvincia.setText(textProvincia);
 	}
 
-	protected String getStringTelefono() {
+	public String getStringTelefono() {
 		return textTelefono.getText();
 	}
 
-	protected void setStringTelefono(String textTelefono) {
+	public void setStringTelefono(String textTelefono) {
 		this.textTelefono.setText(textTelefono);
 	}
 
-	protected String getStringEmail() {
+	public String getStringEmail() {
 		return textEmail.getText();
 	}
 
-	protected void setStringEmail(String textEmail) {
+	public void setStringEmail(String textEmail) {
 		this.textEmail.setText(textEmail);
 	}
 
-	protected String getStringNumafiliacionSS() {
+	public String getStringNumafiliacionSS() {
 		return textNumafiliacionSS.getText();
 	}
 
-	protected void setStringNumafiliacionSS(String textNumafiliacionSS) {
+	public void setStringNumafiliacionSS(String textNumafiliacionSS) {
 		this.textNumafiliacionSS.setText(textNumafiliacionSS);
 	}
 
-	protected String getStringExpediente() {
+	public String getStringExpediente() {
 		return textExpediente.getText();
 	}
 
-	protected void setStringExpediente(String textExpediente) {
+	public void setStringExpediente(String textExpediente) {
 		this.textExpediente.setText(textExpediente);
 	}
 
-	protected String getStringDepartamentoDestino() {
+	public String getStringDepartamentoDestino() {
 		return textDepartamentoDestino.getText();
 	}
 
-	protected void setStringDepartamentoDestino(String textDepartamentoDestino) {
+	public void setStringDepartamentoDestino(String textDepartamentoDestino) {
 		this.textDepartamentoDestino.setText(textDepartamentoDestino);
 	}
 
-	protected String getStringEstudiosCursados() {
+	public String getStringEstudiosCursados() {
 		return textEstudiosCursados.getText();
 	}
 
-	protected void setStringEstudiosCursados(String textEstudiosCursados) {
+	public void setStringEstudiosCursados(String textEstudiosCursados) {
 		this.textEstudiosCursados.setText(textEstudiosCursados);
 	}
 
-	protected String getStringTutorAcademico() {
+	public String getStringTutorAcademico() {
 		return textTutorAcademico.getText();
 	}
 
-	protected void setStringTutorAcademico(String textTutorAcademico) {
+	public void setStringTutorAcademico(String textTutorAcademico) {
 		this.textTutorAcademico.setText(textTutorAcademico);
 	}
 
-	protected String getStringNumeroHoras() {
+	public String getStringNumeroHoras() {
 		return textNumeroHoras.getText();
 	}
 
-	protected void setStringNumeroHoras(String textNumeroHoras) {
+	public void setStringNumeroHoras(String textNumeroHoras) {
 		this.textNumeroHoras.setText(textNumeroHoras);
 	}
 
-	protected String getStringBolsaEstudios() {
+	public String getStringBolsaEstudios() {
 		return textBolsaEstudios.getText();
 	}
 
-	protected void setStringBolsaEstudios(String textBolsaEstudios) {
+	public void setStringBolsaEstudios(String textBolsaEstudios) {
 		this.textBolsaEstudios.setText(textBolsaEstudios);
 	}
 
-	protected String getStringTutorAyuntamiento() {
+	public String getStringTutorAyuntamiento() {
 		return textTutorAyuntamiento.getText();
 	}
 
-	protected void setStringTutorAyuntamiento(String textTutorAyuntamiento) {
+	public void setStringTutorAyuntamiento(String textTutorAyuntamiento) {
 		this.textTutorAyuntamiento.setText(textTutorAyuntamiento);
 	}
 
-	protected String getStringDecretoAutorizacion() {
+	public String getStringDecretoAutorizacion() {
 		return textDecretoAutorizacion.getText();
 	}
 
-	protected void setStringDecretoAutorizacion(String textDecretoAutorizacion) {
+	public void setStringDecretoAutorizacion(String textDecretoAutorizacion) {
 		this.textDecretoAutorizacion.setText(textDecretoAutorizacion);
 	}
 
-	protected String getStringReferenciaClica() {
+	public String getStringReferenciaClica() {
 		return textReferenciaClica.getText();
 	}
 
-	protected void setStringReferenciaClica(String textReferenciaClica) {
+	public void setStringReferenciaClica(String textReferenciaClica) {
 		this.textReferenciaClica.setText(textReferenciaClica);
 	}
 
-	protected String getStringObservaciones() {
+	public String getStringObservaciones() {
 		return textObservaciones.getText();
 	}
 
-	protected void setStringObservaciones(String textObservaciones) {
+	public void setStringObservaciones(String textObservaciones) {
 		this.textObservaciones.setText(textObservaciones);
 	}
 
-	protected Combo getComboTipoPractica() {
+	public Combo getComboTipoPractica() {
 		return comboTipoPractica;
 	}
 
-	protected void setComboTipoPractica(Combo comboTipoPractica) {
+	public void setComboTipoPractica(Combo comboTipoPractica) {
 		this.comboTipoPractica = comboTipoPractica;
 	}
 
-	protected Combo getComboTipoNumeroHoras() {
+	public Combo getComboTipoNumeroHoras() {
 		return comboTipoNumeroHoras;
 	}
 
-	protected void setComboTipoNumeroHoras(Combo comboTipoNumeroHoras) {
+	public void setComboTipoNumeroHoras(Combo comboTipoNumeroHoras) {
 		this.comboTipoNumeroHoras = comboTipoNumeroHoras;
 	}
 
-	protected Combo getComboTipoBolsaEstudios() {
+	public Combo getComboTipoBolsaEstudios() {
 		return comboTipoBolsaEstudios;
 	}
 
-	protected void setComboTipoBolsaEstudios(Combo comboTipoBolsaEstudios) {
+	public void setComboTipoBolsaEstudios(Combo comboTipoBolsaEstudios) {
 		this.comboTipoBolsaEstudios = comboTipoBolsaEstudios;
 	}
 
-	protected Combo getComboFiltroPracticas() {
+	public Combo getComboFiltroPracticas() {
 		return comboFiltroPracticas;
 	}
 
-	protected void setComboFiltroPracticas(Combo comboFiltroPracticas) {
+	public void setComboFiltroPracticas(Combo comboFiltroPracticas) {
 		this.comboFiltroPracticas = comboFiltroPracticas;
 	}
 
-	protected Button getBtnSeleccionarExpediente() {
+	public Button getBtnSeleccionarExpediente() {
 		return btnSeleccionarExpediente;
 	}
 
-	protected void setBtnSeleccionarExpediente(Button btnSeleccionarExpediente) {
+	public void setBtnSeleccionarExpediente(Button btnSeleccionarExpediente) {
 		this.btnSeleccionarExpediente = btnSeleccionarExpediente;
 	}
 
-	protected Button getBtnSeleccionarDepartamentoDestino() {
+	public Button getBtnSeleccionarDepartamentoDestino() {
 		return btnSeleccionarDepartamentoDestino;
 	}
 
-	protected void setBtnSeleccionarDepartamentoDestino(
+	public void setBtnSeleccionarDepartamentoDestino(
 			Button btnSeleccionarDepartamentoDestino) {
 		this.btnSeleccionarDepartamentoDestino = btnSeleccionarDepartamentoDestino;
 	}
 
-	protected Button getBtnSeleccionar() {
+	public Button getBtnSeleccionar() {
 		return btnSeleccionar;
 	}
 
-	protected void setBtnSeleccionar(Button btnSeleccionar) {
+	public void setBtnSeleccionar(Button btnSeleccionar) {
 		this.btnSeleccionar = btnSeleccionar;
 	}
 
-	protected Date getDateFechaInicioPractica() {
+	public Date getDateFechaInicioPractica() {
 		return Utils.getDate(dateTimeFechaInicioPractica);
 	}
 
-	protected void setDateFechaInicioPractica(
+	public void setDateFechaInicioPractica(
 			Date dateFechaInicioPractica) {
 		Utils.setDate(dateTimeFechaInicioPractica, dateFechaInicioPractica);
 	}
 
-	protected Date getDateFechaFinalPractica() {
+	public Date getDateFechaFinalPractica() {
 		return Utils.getDate(dateTimeFechaFinalPractica);
 	}
 
-	protected void setDateFechaFinalPractica(Date dateFechaFinalPractica) {
+	public void setDateFechaFinalPractica(Date dateFechaFinalPractica) {
 		Utils.setDate(dateTimeFechaFinalPractica,dateFechaFinalPractica);
 	}
 
-	protected Date getDateFechaFinalRealPractica() {
+	public Date getDateFechaFinalRealPractica() {
 		return Utils.getDate(dateTimeFechaFinalRealPractica);
 	}
 
-	protected void setDateFechaFinalRealPractica(
+	public void setDateFechaFinalRealPractica(
 			Date dateFechaFinalRealPractica) {
 		Utils.setDate(dateTimeFechaFinalRealPractica,dateFechaFinalRealPractica);
 	}

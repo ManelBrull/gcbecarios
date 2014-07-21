@@ -1,12 +1,13 @@
 package controlador.becarios;
 
+import java.util.Date;
 import java.util.Iterator;
 
-import vista.interfaz.becarios.MantenimientoDeBecarios;
 import modelo.entidades.Becario;
+import vista.interfaz.becarios.MantenimientoDeBecarios;
+import vista.interfaz.utils.ComboBooleano;
 import at.controlador.ControladorMantenimiento;
 import at.modelo.entidades.excepciones.CampoRequeridoException;
-import at.vista.IMantenimiento;
 
 public class ControladorTabBecario extends ControladorMantenimiento<Becario>{
 
@@ -21,6 +22,7 @@ public class ControladorTabBecario extends ControladorMantenimiento<Becario>{
 	@Override
 	public void inicializar() {
 		visibilidadBtn();
+		inicializarComboAltaSeguridadSocial();
 	}
 	@Override
 	public void visibilidadBtn() {
@@ -34,28 +36,68 @@ public class ControladorTabBecario extends ControladorMantenimiento<Becario>{
 		
 	}
 	
+	public void inicializarComboAltaSeguridadSocial(){
+		for(ComboBooleano cb : ComboBooleano.values()){
+			mBecarios.addItemComboAltaSeguridadSocial(cb.getDisplayString());
+		}
+	}
+	
 	@Override
 	public void borrarInterfaz() {
-		// TODO Auto-generated method stub
-		
+		mBecarios.setStringNombre("");
+		mBecarios.setStringDocumentacion("");
+		mBecarios.setStringApellidos("");
+		mBecarios.setStringCuentaBancaria("");
+		mBecarios.setStringDireccion("");
+		mBecarios.setStringLocalidad("");
+		mBecarios.setStringProvincia("");
+		mBecarios.setStringTelefono("");
+		mBecarios.setStringEmail("");
+		mBecarios.selectItemComboAltaSeguridadSocial(0);
+		mBecarios.setStringNumafiliacionSS("");
+		mBecarios.setStringNumafiliacionSS("");
 	}
 
 	@Override
 	public Becario creaObjeto() throws CampoRequeridoException {
-		// TODO Auto-generated method stub
-		return null;
+		Becario becario = new Becario();
+		becario.setNombre(mBecarios.getStringNombre());
+		becario.setApellidos(mBecarios.getStringApellidos());
+		becario.setCuentaBancaria(mBecarios.getStringCuentaBancaria());
+		becario.setDarleAltaEnSeguridadSocial(
+				ComboBooleano.values()[mBecarios.getSelectedComboAltaSeguridadSocial()].isValue());
+		becario.setDireccion(mBecarios.getStringDireccion());
+		becario.setDocumentacion(mBecarios.getStringDocumentacion());
+		becario.setEmail(mBecarios.getStringEmail());
+		becario.setFechaCreacion(new Date());
+		becario.setLocalidad(mBecarios.getStringLocalidad());
+		becario.setNumAfiliacionSeguridadSocial(mBecarios.getStringNumafiliacionSS());
+		becario.setProvincia(mBecarios.getStringProvincia());
+		becario.setTelefono(mBecarios.getStringTelefono());
+		return becario;
 	}
 
 	@Override
 	public Iterator<Becario> getIteratorFiltro() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Becario().getAll();
 	}
 
 	@Override
 	public void rellenarInterfaz() {
-		// TODO Auto-generated method stub
-		
+		mBecarios.setStringNombre(entidadSeleccionado.getNombre());
+		mBecarios.setStringDocumentacion(entidadSeleccionado.getDocumentacion());
+		mBecarios.setStringApellidos(entidadSeleccionado.getApellidos());
+		mBecarios.setStringCuentaBancaria(entidadSeleccionado.getCuentaBancaria());
+		mBecarios.setStringDireccion(entidadSeleccionado.getDireccion());
+		mBecarios.setStringLocalidad(entidadSeleccionado.getLocalidad());
+		mBecarios.setStringProvincia(entidadSeleccionado.getProvincia());
+		mBecarios.setStringTelefono(entidadSeleccionado.getTelefono());
+		mBecarios.setStringEmail(entidadSeleccionado.getEmail());
+		mBecarios.selectItemComboAltaSeguridadSocial(
+				ComboBooleano.no.getValue(
+				entidadSeleccionado.getDarleAltaEnSeguridadSocial()
+				).ordinal());
+		mBecarios.setStringNumafiliacionSS(entidadSeleccionado.getNumAfiliacionSeguridadSocial());
 	}
 
 }

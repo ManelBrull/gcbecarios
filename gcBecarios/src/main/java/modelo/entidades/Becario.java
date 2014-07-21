@@ -1,6 +1,7 @@
 package modelo.entidades;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -10,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
 import modelo.dao.BecarioDAO;
@@ -82,11 +81,17 @@ public class Becario implements ICrud <Becario>, IEsFiltro {
 	}
 
 	public Set<Practica> getPracticas() {
+		if(this.practicas == null) 
+			this.practicas = new HashSet<>();
 		return practicas;
 	}
 
 	public void setPracticas(Set<Practica> practicas) {
-		this.practicas = practicas;
+		if(practicas == null) {
+			this.practicas = new HashSet<>();
+		} else {
+			this.practicas = practicas;
+		}
 	}
 
 	public String getNombre() {
