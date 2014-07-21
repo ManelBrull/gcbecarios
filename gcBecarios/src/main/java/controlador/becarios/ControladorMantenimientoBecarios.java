@@ -31,7 +31,11 @@ public class ControladorMantenimientoBecarios implements IControladorMantenimien
 	public void visibilidadBtn() {
 		switch(mBecarios.getTabActiva()){
 		case becarios:
+			cBecario.visibilidadBtn();
+			break;
 		case practica:
+			cPractica.visibilidadBtn();
+			break;
 		default:
 		}
 
@@ -41,7 +45,11 @@ public class ControladorMantenimientoBecarios implements IControladorMantenimien
 	public void borrar() {
 		switch(mBecarios.getTabActiva()){
 		case becarios:
+			cBecario.borrar();
+			break;
 		case practica:
+			cPractica.borrar();
+			break;
 		default:
 		}
 	}
@@ -50,7 +58,11 @@ public class ControladorMantenimientoBecarios implements IControladorMantenimien
 	public void buscar() {
 		switch(mBecarios.getTabActiva()){
 		case becarios:
+			cBecario.buscar();
+			break;
 		case practica:
+			cPractica.buscar();
+			break;
 		default:
 		}
 
@@ -60,9 +72,9 @@ public class ControladorMantenimientoBecarios implements IControladorMantenimien
 	public boolean comprobarCambiosObjetoActivo() {
 		switch(mBecarios.getTabActiva()){
 		case becarios:
-			return false;
+			return cBecario.comprobarCambiosObjetoActivo();
 		case practica:
-			return false;
+			return cPractica.comprobarCambiosObjetoActivo();
 		default:
 			return false;
 		}
@@ -73,7 +85,11 @@ public class ControladorMantenimientoBecarios implements IControladorMantenimien
 	public void elementoFiltroSeleccionado() {
 		switch(mBecarios.getTabActiva()){
 		case becarios:
+			cBecario.elementoFiltroSeleccionado();
+			break;
 		case practica:
+			cBecario.elementoFiltroSeleccionado();
+			break;
 		default:
 		}
 
@@ -83,7 +99,11 @@ public class ControladorMantenimientoBecarios implements IControladorMantenimien
 	public void eliminar() {
 		switch(mBecarios.getTabActiva()){
 		case becarios:
+			cBecario.eliminar();
+			break;
 		case practica:
+			cPractica.eliminar();
+			break;
 		default:
 		}
 
@@ -93,7 +113,11 @@ public class ControladorMantenimientoBecarios implements IControladorMantenimien
 	public void grabar() {
 		switch(mBecarios.getTabActiva()){
 		case becarios:
+			cBecario.grabar();
+			break;
 		case practica:
+			cPractica.grabar();
+			break;
 		default:
 		}
 
@@ -103,7 +127,11 @@ public class ControladorMantenimientoBecarios implements IControladorMantenimien
 	public void nuevo() {
 		switch(mBecarios.getTabActiva()){
 		case becarios:
+			cBecario.nuevo();
+			break;
 		case practica:
+			cPractica.nuevo();
+			break;
 		default:
 		}
 
