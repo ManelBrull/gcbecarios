@@ -17,7 +17,6 @@ public class ControladorTabBecario extends ControladorMantenimiento<Becario>{
 		super(mant);
 		mBecarios = mant;
 	}
-
 	
 	@Override
 	public void inicializar() {

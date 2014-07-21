@@ -358,7 +358,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		tblclmnNPrcticas.setText("Nº Prácticas");
 		
 		TableColumn tblclmnPracticaActiva = new TableColumn(tableBecarios, SWT.NONE);
-		tblclmnPracticaActiva.setWidth(100);
+		tblclmnPracticaActiva.setWidth(99);
 		tblclmnPracticaActiva.setText("Practica activa");
 		
 		textNombreFiltro = new Text(grpFiltro, SWT.BORDER);
