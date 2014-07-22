@@ -12,8 +12,8 @@ public class ControladorMantenimientoBecarios implements IControladorMantenimien
 
 	public ControladorMantenimientoBecarios(MantenimientoDeBecarios mb){
 		this.mBecarios = mb;
-		cPractica = new ControladorTabPractica(mb);
 		cBecario = new ControladorTabBecario(mb);
+		cPractica = new ControladorTabPractica(mb, cBecario);
 	}
 
 	@Override

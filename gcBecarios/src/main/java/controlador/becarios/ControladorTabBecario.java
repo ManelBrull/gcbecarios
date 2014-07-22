@@ -26,11 +26,11 @@ public class ControladorTabBecario extends ControladorMantenimiento<Becario>{
 	@Override
 	public void visibilidadBtn() {
 		if(entidadSeleccionado == null){
-			mBecarios.setBtnGrabarEnabled(false);
-			mBecarios.setBtnEliminarEnabled(false);
+			mBecarios.setBtnGrabarBecarioEnabled(false);
+			mBecarios.setBtnEliminarBecarioEnabled(false);
 		}else {
-			mBecarios.setBtnGrabarEnabled(true);
-			mBecarios.setBtnEliminarEnabled(true);
+			mBecarios.setBtnGrabarBecarioEnabled(true);
+			mBecarios.setBtnEliminarBecarioEnabled(true);
 		}
 		
 	}
@@ -97,6 +97,10 @@ public class ControladorTabBecario extends ControladorMantenimiento<Becario>{
 				entidadSeleccionado.getDarleAltaEnSeguridadSocial()
 				).ordinal());
 		mBecarios.setStringNumafiliacionSS(entidadSeleccionado.getNumAfiliacionSeguridadSocial());
+	}
+	
+	public Becario getEntidadSeleccionado(){
+		return this.entidadSeleccionado;
 	}
 
 }

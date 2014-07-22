@@ -9,6 +9,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.ShellAdapter;
 import org.eclipse.swt.events.ShellEvent;
+import org.eclipse.swt.internal.theme.ComboDrawData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -1120,5 +1121,78 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 	public void setDateFechaFinalRealPractica(
 			Date dateFechaFinalRealPractica) {
 		Utils.setDate(dateTimeFechaFinalRealPractica,dateFechaFinalRealPractica);
+	}
+
+	public int getSelectedComboFiltroPracticas() {
+		return comboFiltroPracticas.getSelectionIndex();
+	}
+
+	public void addItemComboFiltroPracticas(String elemento) {
+		comboFiltroPracticas.add(elemento);
+	}
+	
+	public void selectItemComboFiltroPracticas(int i) {
+		if(i >= 0 && comboFiltroPracticas.getItemCount() > i) {
+			comboFiltroPracticas.select(i);
+		}
+	}
+	
+	public void vaciarComboFiltroPracticas(){
+		comboFiltroPracticas.removeAll();
+	}
+
+	
+	public int getSelectedComboTipoPracticas() {
+		return comboTipoPractica.getSelectionIndex();
+	}
+
+	public void addItemComboTipoPractica(String displayString) {
+		comboTipoPractica.add(displayString);
+	}
+	
+	public void selectItemComboTipoPracticas(int i) {
+		if(i >= 0 && comboTipoPractica.getItemCount() > i) {
+			comboTipoPractica.select(i);
+		}
+	}
+	
+	public void vaciarComboTipoPracticas(){
+		comboTipoPractica.removeAll();
+	}
+	
+	public int getSelectedComboTipoNumeroHoras() {
+		return comboTipoNumeroHoras.getSelectionIndex();
+	}
+
+	public void addItemComboTipoNumeroHoras(String displayString) {
+		comboTipoNumeroHoras.add(displayString);
+	}
+	
+	public void selectItemComboTipoNumeroHoras(int i) {
+		if(i >= 0 && comboTipoNumeroHoras.getItemCount() > i) {
+			comboTipoNumeroHoras.select(i);
+		}
+	}
+	
+	public void vaciarComboTipoNumeroHoras(){
+		comboTipoNumeroHoras.removeAll();
+	}
+
+	public int getSelectedComboTipoBolsaEstudios() {
+		return comboTipoBolsaEstudios.getSelectionIndex();
+	}
+
+	public void addItemComboTipoBolsaEstudios(String displayString) {
+		comboTipoBolsaEstudios.add(displayString);
+	}
+	
+	public void selectItemComboTipoBolsaEstudios(int i) {
+		if(i >= 0 && comboTipoBolsaEstudios.getItemCount() > i) {
+			comboTipoBolsaEstudios.select(i);
+		}
+	}
+	
+	public void vaciarComboTipoBolsaEstudios(){
+		comboTipoBolsaEstudios.removeAll();
 	}
 }
