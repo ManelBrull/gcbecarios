@@ -3,6 +3,9 @@ package controlador.becarios;
 import java.util.Date;
 import java.util.Iterator;
 
+import modelo.entidades.Departamento;
+import modelo.entidades.Expediente;
+import modelo.entidades.TutorAcademico;
 import modelo.entidades.practica.Practica;
 import modelo.entidades.practica.TipoBolsaEstudios;
 import modelo.entidades.practica.TipoHoras;
@@ -16,6 +19,18 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 
 	MantenimientoDeBecarios mBecarios;
 	ControladorTabBecario controladorBecarios;
+	/**
+	 * TODO: Proviene de un seleccionable de departamento
+	 */
+	private Departamento departamentoDestino;
+	/**
+	 * TODO: proviene de un seleccionable de Expediente
+	 */
+	private Expediente expediente;
+	/**
+	 * TODO: proviene de un seleccionable de Tutores
+	 */
+	private TutorAcademico tutorAcademico;
 	
 	public ControladorTabPractica(MantenimientoDeBecarios mant, ControladorTabBecario ctb) {
 		super(mant);
@@ -78,6 +93,11 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 	
 	@Override
 	public void borrarInterfaz() {
+		
+		departamentoDestino = null;
+		expediente = null;
+		tutorAcademico = null;
+		
 		mBecarios.setStringExpediente("");
 		mBecarios.setStringDepartamentoDestino("");
 		mBecarios.setStringEstudiosCursados("");
@@ -95,20 +115,71 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 
 	@Override
 	public Practica creaObjeto() throws CampoRequeridoException {
-		// TODO Auto-generated method stub
-		return null;
+		Practica p = new Practica();
+		p.setBolsaDeEstudios(Integer.parseInt(mBecarios.getStringBolsaEstudios()));
+		p.setDecretoAutorizacion(mBecarios.getStringDecretoAutorizacion());
+		p.setDepartamentoDestino(departamentoDestino);
+		p.setEstudiosCursados(mBecarios.getStringEstudiosCursados());
+		p.setExpediente(expediente);
+		p.setFechaCreacion(new Date());
+		p.setFechaFinalReal(mBecarios.getDateFechaFinalRealPractica());
+		p.setFechaFinalTeorica(mBecarios.getDateFechaFinalPractica());
+		p.setFechaInicio(mBecarios.getDateFechaInicioPractica());
+		p.setNumHoras(Integer.parseInt(mBecarios.getStringNumeroHoras()));
+		p.setObservaciones(mBecarios.getStringObservaciones());
+		p.setProfesionalesFormacion(TipoPractica.values()[mBecarios.getSelectedComboTipoPracticas()]);
+		p.setRefClica(mBecarios.getStringReferenciaClica());
+		p.setTipoBolsaEstudios(TipoBolsaEstudios.values()[mBecarios.getSelectedComboTipoBolsaEstudios()]);
+		p.setTipoNumeroDeHoras(TipoHoras.values()[mBecarios.getSelectedComboTipoNumeroHoras()]);
+		p.setTutorAcademico(tutorAcademico);
+		p.setTutorAyuntamiento(mBecarios.getStringTutorAyuntamiento());
+		return p;
 	}
 
 	@Override
 	public Iterator<Practica> getIteratorFiltro() {
-		// TODO Auto-generated method stub
+		switch(ComboFiltroPracticas.values()[mBecarios.getSelectedComboFiltroPracticas()]){
+		case practicasBecarios:
+			return null;
+		case todasPracticas:
+			return null;
+		}
 		return null;
 	}
 
 	@Override
 	public void rellenarInterfaz() {
-		// TODO Auto-generated method stub
+		departamentoDestino = entidadSeleccionado.getDepartamentoDestino();
+		expediente = entidadSeleccionado.getExpediente();
+		tutorAcademico = entidadSeleccionado.getTutorAcademico();
 		
+		if(expediente == null)
+			mBecarios.setStringExpediente("");
+		else
+			mBecarios.setStringExpediente(expediente.toString());
+		
+		if(departamentoDestino == null)
+			mBecarios.setStringDepartamentoDestino("");
+		else
+			mBecarios.setStringDepartamentoDestino(departamentoDestino.getNombreDepartamento());
+		
+		if(tutorAcademico == null)
+			mBecarios.setStringTutorAcademico("");
+		else
+			mBecarios.setStringTutorAcademico(tutorAcademico.toString());
+		
+		
+		mBecarios.setStringEstudiosCursados(entidadSeleccionado.getEstudiosCursados());
+		mBecarios.setDateFechaInicioPractica(entidadSeleccionado.getFechaInicio());
+		
+		mBecarios.setDateFechaFinalPractica(entidadSeleccionado.getFechaFinalTeorica());
+		mBecarios.setDateFechaFinalRealPractica(entidadSeleccionado.getFechaFinalReal());
+		mBecarios.setStringNumeroHoras(String.valueOf(entidadSeleccionado.getNumHoras()));
+		mBecarios.setStringBolsaEstudios(String.valueOf(entidadSeleccionado.getBolsaDeEstudios()));
+		mBecarios.setStringTutorAyuntamiento(entidadSeleccionado.getTutorAyuntamiento());
+		mBecarios.setStringDecretoAutorizacion(entidadSeleccionado.getDecretoAutorizacion());
+		mBecarios.setStringReferenciaClica(entidadSeleccionado.getRefClica());
+		mBecarios.setStringObservaciones(entidadSeleccionado.getObservaciones());
 	}
 
 }
