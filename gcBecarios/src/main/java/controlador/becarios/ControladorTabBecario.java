@@ -55,6 +55,9 @@ public class ControladorTabBecario extends ControladorMantenimiento<Becario>{
 		mBecarios.selectItemComboAltaSeguridadSocial(0);
 		mBecarios.setStringNumafiliacionSS("");
 		mBecarios.setStringNumafiliacionSS("");
+		
+		mBecarios.setStringApellidosBecarioEnPractica("");
+		mBecarios.setStringNomreBecarioEnPractica("");
 	}
 
 	@Override
@@ -97,6 +100,9 @@ public class ControladorTabBecario extends ControladorMantenimiento<Becario>{
 				entidadSeleccionado.getDarleAltaEnSeguridadSocial()
 				).ordinal());
 		mBecarios.setStringNumafiliacionSS(entidadSeleccionado.getNumAfiliacionSeguridadSocial());
+		
+		mBecarios.setStringApellidosBecarioEnPractica(entidadSeleccionado.getNombre());
+		mBecarios.setStringNomreBecarioEnPractica(entidadSeleccionado.getApellidos());
 	}
 	
 	public Becario getEntidadSeleccionado(){

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
+import org.hibernate.HibernateException;
+
 import modelo.entidades.Departamento;
 import modelo.entidades.Expediente;
 import modelo.entidades.TutorAcademico;
@@ -150,6 +152,32 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 		}
 		return null;
 	}
+	
+	@Override
+	public void nuevo() {
+		try {
+			Practica practica = creaObjeto();
+			if (practica != null){
+				controladorBecarios.getEntidadSeleccionado().getPracticas().add(practica);
+				controladorBecarios.getEntidadSeleccionado().save();
+				mantenimiento.openInformation(
+						"Informacion", 
+						"Se ha creado el elemento satisfactoriamente"
+						);
+				entidadSeleccionado = practica;
+		}
+		} catch (HibernateException he){
+			mantenimiento.openError(
+					"Error",
+					"No se ha podido guardar el elemento en la base de datos"
+					);
+		} catch (CampoRequeridoException ex){
+			mantenimiento.openError(
+					"Error",
+					"No se ha podido guardar el elemento porque hay campos requeridos"
+					+ " que no se han dado un valor v�lido");
+		}
+	}
 
 	@Override
 	public void rellenarInterfaz() {
@@ -185,5 +213,6 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 		mBecarios.setStringReferenciaClica(entidadSeleccionado.getRefClica());
 		mBecarios.setStringObservaciones(entidadSeleccionado.getObservaciones());
 	}
-
+	
+	
 }

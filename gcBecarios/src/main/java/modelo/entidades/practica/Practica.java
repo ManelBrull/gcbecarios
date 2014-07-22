@@ -21,6 +21,7 @@ import modelo.entidades.TutorAcademico;
 
 import org.hibernate.HibernateException;
 
+import vista.interfaz.utils.Utils;
 import at.modelo.entidades.ICrud;
 import at.modelo.entidades.IEsFiltro;
 
@@ -384,8 +385,53 @@ public class Practica implements ICrud <Practica> , IEsFiltro{
 
 	@Override
 	public String[] toTable() {
-		// TODO Auto-generated method stub
-		return null;
+		String[] fila = new String[6];
+		if(expediente == null)
+			fila[0] = "";
+		else
+			fila[0] = expediente.getCentroEducativoInstitucion();
+		
+		fila[1] = Utils.dateFormatShort(fechaInicio);
+		fila[2] = Utils.dateFormatShort(fechaFinalReal);
+		if(departamentoDestino == null)
+			fila[3] = ""; 
+		else
+			fila[3] = departamentoDestino.getNombreDepartamento();
+		
+		fila[4] = profesionalesFormacion.getDisplayString();
+		fila[5] = tutorAyuntamiento;
+			
+		return fila;
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

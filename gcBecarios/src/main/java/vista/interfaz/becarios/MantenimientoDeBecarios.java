@@ -99,6 +99,9 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 	private TabItem tbtmBecario;
 	private Combo comboAltaSeguridadSocial;
 	private Text textDocumentacion;
+	private TableColumn tblclmnNewColumn;
+	private Text textNomreBecarioEnPractica;
+	private Text textApellidosBecarioEnPractica;
 
 	/**
 	 * Crea el dialog
@@ -378,7 +381,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		grpClase.setText("Datos Clase");
 		grpClase.setFont(getGroupFont());
 		grpClase.setForeground(getAzul());
-		grpClase.setBounds(5, 221, 638, 425);
+		grpClase.setBounds(5, 246, 638, 400);
 		
 		CLabel lblExpediente = new CLabel(grpClase, SWT.NONE);
 		lblExpediente.setBounds(10, 20, 152, 21);
@@ -423,14 +426,14 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		lblFechaFinalReal.setForeground(getAzul());
 		
 		Group grpFiltro = new Group(compositeMain, SWT.NONE);
-		grpFiltro.setLocation(5, 5);
-		grpFiltro.setSize(638, 210);
+		grpFiltro.setLocation(5, 64);
+		grpFiltro.setSize(638, 176);
 		grpFiltro.setText("Filtro");
 		grpFiltro.setFont(getGroupFont());
 		grpFiltro.setForeground(getAzul());
 		
 		tablePracticas = new Table(grpFiltro, SWT.BORDER | SWT.FULL_SELECTION);
-		tablePracticas.setBounds(10, 47, 618, 155);
+		tablePracticas.setBounds(10, 47, 618, 126);
 		tablePracticas.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -442,26 +445,30 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		
 		TableColumn tblclmnNombre = new TableColumn(tablePracticas, SWT.NONE);
 		tblclmnNombre.setWidth(100);
-		tblclmnNombre.setText("Nombre");
+		tblclmnNombre.setText("Expediente");
 		
 		TableColumn tblclmnApellidos = new TableColumn(tablePracticas, SWT.NONE);
 		tblclmnApellidos.setWidth(119);
-		tblclmnApellidos.setText("Apellidos");
+		tblclmnApellidos.setText("Fecha inicio");
 		
 		TableColumn tblclmnDocumentacin = new TableColumn(tablePracticas, SWT.NONE);
 		tblclmnDocumentacin.setWidth(100);
-		tblclmnDocumentacin.setText("Documentación");
+		tblclmnDocumentacin.setText("Fecha fin");
 		
 		TableColumn tblclmnNPrcticas = new TableColumn(tablePracticas, SWT.NONE);
 		tblclmnNPrcticas.setWidth(100);
-		tblclmnNPrcticas.setText("Nº Prácticas");
+		tblclmnNPrcticas.setText("Departamento");
 		
 		TableColumn tblclmnPracticaActiva = new TableColumn(tablePracticas, SWT.NONE);
 		tblclmnPracticaActiva.setWidth(100);
-		tblclmnPracticaActiva.setText("Practica activa");
+		tblclmnPracticaActiva.setText("Tipo");
+		
+		tblclmnNewColumn = new TableColumn(tablePracticas, SWT.NONE);
+		tblclmnNewColumn.setWidth(100);
+		tblclmnNewColumn.setText("Tutor ayuntamiento");
 		
 		comboFiltroPracticas = new Combo(grpFiltro, SWT.NONE);
-		comboFiltroPracticas.setBounds(113, 18, 515, 23);
+		comboFiltroPracticas.setBounds(113, 18, 434, 23);
 		
 		CLabel lblSeleccionar = new CLabel(grpFiltro, SWT.NONE);
 		lblSeleccionar.setBounds(10, 20, 97, 21);
@@ -469,8 +476,12 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		lblSeleccionar.setFont(getLabelFont());
 		lblSeleccionar.setForeground(getAzul());
 		
+		Button btnBuscar = new Button(grpFiltro, SWT.NONE);
+		btnBuscar.setBounds(553, 18, 75, 25);
+		btnBuscar.setText("Buscar");
+		
 		btnNuevoPractica = new Button(grpClase, SWT.NONE);
-		btnNuevoPractica.setBounds(341, 392, 68, 23);
+		btnNuevoPractica.setBounds(341, 367, 68, 23);
 		btnNuevoPractica.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -480,7 +491,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		btnNuevoPractica.setText("Nuevo");
 		
 		btnGrabarPractica = new Button(grpClase, SWT.NONE);
-		btnGrabarPractica.setBounds(415, 392, 68, 23);
+		btnGrabarPractica.setBounds(415, 367, 68, 23);
 		btnGrabarPractica.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -491,7 +502,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		btnGrabarPractica.setText("Grabar");
 		
 		btnEliminarPractica = new Button(grpClase, SWT.NONE);
-		btnEliminarPractica.setBounds(489, 392, 68, 23);
+		btnEliminarPractica.setBounds(489, 367, 68, 23);
 		btnEliminarPractica.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -502,7 +513,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		btnEliminarPractica.setText("Eliminar");
 		
 		btnSalirPractica = new Button(grpClase, SWT.NONE);
-		btnSalirPractica.setBounds(561, 392, 68, 23);
+		btnSalirPractica.setBounds(561, 367, 68, 23);
 		btnSalirPractica.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -553,14 +564,14 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		lblObservaciones.setFont(getLabelFont());
 		lblObservaciones.setForeground(getAzul());
 		
-		textExpediente = new Text(grpClase, SWT.BORDER);
+		textExpediente = new Text(grpClase, SWT.BORDER | SWT.READ_ONLY);
 		textExpediente.setBounds(168, 20, 380, 21);
 		
 		btnSeleccionarExpediente = new Button(grpClase, SWT.NONE);
 		btnSeleccionarExpediente.setBounds(554, 20, 75, 21);
 		btnSeleccionarExpediente.setText("Seleccionar");
 		
-		textDepartamentoDestino = new Text(grpClase, SWT.BORDER);
+		textDepartamentoDestino = new Text(grpClase, SWT.BORDER | SWT.READ_ONLY);
 		textDepartamentoDestino.setBounds(168, 47, 380, 21);
 		
 		btnSeleccionarDepartamentoDestino = new Button(grpClase, SWT.NONE);
@@ -573,7 +584,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		dateTimeFechaInicioPractica = new DateTime(grpClase, SWT.BORDER);
 		dateTimeFechaInicioPractica.setBounds(468, 101, 80, 21);
 		
-		textTutorAcademico = new Text(grpClase, SWT.BORDER);
+		textTutorAcademico = new Text(grpClase, SWT.BORDER | SWT.READ_ONLY);
 		textTutorAcademico.setBounds(168, 184, 380, 21);
 		
 		btnSeleccionar = new Button(grpClase, SWT.NONE);
@@ -612,8 +623,31 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		textReferenciaClica.setBounds(468, 238, 76, 21);
 		
 		textObservaciones = new Text(grpClase, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.MULTI);
-		textObservaciones.setBounds(10, 292, 619, 94);
+		textObservaciones.setBounds(10, 292, 619, 69);
 		
+		Group grpDatosBecarioSeleccionado = new Group(compositeMain, SWT.NONE);
+		grpDatosBecarioSeleccionado.setText("Datos becario seleccionado");
+		grpDatosBecarioSeleccionado.setBounds(5, 5, 638, 53);
+		grpDatosBecarioSeleccionado.setForeground(getAzul());
+		grpDatosBecarioSeleccionado.setFont(getGroupFont());
+		
+		CLabel lblNombreBecarioEnPracticas = new CLabel(grpDatosBecarioSeleccionado, SWT.NONE);
+		lblNombreBecarioEnPracticas.setBounds(10, 20, 61, 21);
+		lblNombreBecarioEnPracticas.setText("Nombre: ");
+		lblNombreBecarioEnPracticas.setForeground(getAzul());
+		lblNombreBecarioEnPracticas.setFont(getLabelFont());
+		
+		textNomreBecarioEnPractica = new Text(grpDatosBecarioSeleccionado, SWT.BORDER | SWT.READ_ONLY);
+		textNomreBecarioEnPractica.setBounds(77, 20, 109, 21);
+		
+		CLabel lblApellidosBecarioEnPracticas = new CLabel(grpDatosBecarioSeleccionado, SWT.NONE);
+		lblApellidosBecarioEnPracticas.setBounds(192, 20, 83, 21);
+		lblApellidosBecarioEnPracticas.setText("Apellidos:");
+		lblApellidosBecarioEnPracticas.setForeground(getAzul());
+		lblApellidosBecarioEnPracticas.setFont(getLabelFont());
+		
+		textApellidosBecarioEnPractica = new Text(grpDatosBecarioSeleccionado, SWT.BORDER | SWT.READ_ONLY);
+		textApellidosBecarioEnPractica.setBounds(281, 20, 347, 21);
 	}
 	
 	public TabActivaBecarios getTabActiva(){
@@ -1030,6 +1064,22 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 
 	public void setStringReferenciaClica(String textReferenciaClica) {
 		this.textReferenciaClica.setText(textReferenciaClica);
+	}
+	
+	public String getStringApellidosBecarioEnPractica(){
+		return textApellidosBecarioEnPractica.getText();
+	}
+	
+	public void setStringApellidosBecarioEnPractica(String value){
+		textApellidosBecarioEnPractica.setText(value);
+	}
+	
+	public void setStringNomreBecarioEnPractica(String string) {
+		textNomreBecarioEnPractica.setText(string);
+	}
+	
+	public String getStringNomreBecarioEnPractica(){
+		return textNomreBecarioEnPractica.getText();
 	}
 
 	public String getStringObservaciones() {
