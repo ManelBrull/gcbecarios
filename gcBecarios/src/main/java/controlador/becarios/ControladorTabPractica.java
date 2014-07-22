@@ -1,5 +1,6 @@
 package controlador.becarios;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
@@ -140,9 +141,12 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 	public Iterator<Practica> getIteratorFiltro() {
 		switch(ComboFiltroPracticas.values()[mBecarios.getSelectedComboFiltroPracticas()]){
 		case practicasBecarios:
-			return null;
+			if(controladorBecarios.getEntidadSeleccionado() != null)
+				return controladorBecarios.getEntidadSeleccionado().getPracticas().iterator();
+			else
+				return (new ArrayList<Practica>()).iterator();
 		case todasPracticas:
-			return null;
+			return new Practica().getAll();
 		}
 		return null;
 	}

@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 
 import modelo.dao.BecarioDAO;
 import modelo.dao.PracticaDAO;
+import modelo.entidades.Becario;
 import modelo.entidades.Departamento;
 import modelo.entidades.Expediente;
 import modelo.entidades.TutorAcademico;
@@ -385,9 +386,6 @@ public class Practica implements ICrud <Practica> , IEsFiltro{
 	public String[] toTable() {
 		// TODO Auto-generated method stub
 		return null;
-	};
-	
-	
-	
+	}
 
 }
