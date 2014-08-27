@@ -31,7 +31,7 @@ public class TutorAcademicoDAO extends ATDAO<TutorAcademico> {
 		List<TutorAcademico> list = null;
 		iniciaOperacion();
 		Query myQuery = session.createQuery("from " + nameEntidad + " where apellidos like '%" + stringNombreFiltro + "%'");
-		list = myQuery.list();
+		list = myQuery.list(); 
 		session.close();
 		return list;
 	}
