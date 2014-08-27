@@ -130,6 +130,56 @@ public class Inicio implements IMensajes {
 			Menu menu_1 = new Menu(mntmMantenimiento);
 			mntmMantenimiento.setMenu(menu_1);
 			
+			MenuItem mntmBecarios = new MenuItem(menu_1, SWT.NONE);
+			mntmBecarios.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					cInicio.cargarMantenimientoBecarios();
+				}
+			});
+			mntmBecarios.setText("Mantenimiento de becarios\tCtrl+B");
+			mntmBecarios.setAccelerator(SWT.MOD1 + 'B');
+			
+			MenuItem mntmDepartamentos = new MenuItem(menu_1, SWT.NONE);
+			mntmDepartamentos.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					cInicio.cargarMantenimientoDepartamentos();
+				}
+			});
+			mntmDepartamentos.setText("Mantenimiento de departamentos\tCtrl+D");
+			mntmDepartamentos.setAccelerator(SWT.MOD1 + 'D');
+			
+			MenuItem mntmTutoresAcademicos = new MenuItem(menu_1, SWT.NONE);
+			mntmTutoresAcademicos.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					cInicio.cargarMantenimientoTutores();
+				}
+			});
+			mntmTutoresAcademicos.setText("Mantenimiento de tutores académicos\tCtrl+T");
+			mntmTutoresAcademicos.setAccelerator(SWT.MOD1 + 'T');
+			
+			MenuItem mntmTiposExpediente = new MenuItem(menu_1, SWT.NONE);
+			mntmTiposExpediente.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					cInicio.cargarMantenimientoTiposExpediente();
+				}
+			});
+			mntmTiposExpediente.setText("Mantenimiento de tipos de expediente\tCtrl+R");
+			mntmTiposExpediente.setAccelerator(SWT.MOD1 + 'R');
+			
+			MenuItem mntmExpedientes = new MenuItem(menu_1, SWT.NONE);
+			mntmExpedientes.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					cInicio.cargarMantenimientoExpediente();
+				}
+			});
+			mntmExpedientes.setText("Mantenimiento de expedientes\tCtrl+E");
+			mntmExpedientes.setAccelerator(SWT.MOD1 + 'E');
+			
 			MenuItem mntmUsuarios = new MenuItem(menu_1, SWT.NONE);
 			mntmUsuarios.addSelectionListener(new SelectionAdapter() {
 				@Override
@@ -137,9 +187,8 @@ public class Inicio implements IMensajes {
 					cInicio.cargarMantenimientoUsuarios();
 				}
 			});
-			mntmUsuarios.setText("EjemploDeMantenimiento\tCtrl+U");
+			mntmUsuarios.setText("Mantenimiento de usuarios\tCtrl+U");
 			mntmUsuarios.setAccelerator(SWT.MOD1 + 'U');
-			
 			new MenuItem(menu_1, SWT.SEPARATOR);
 			
 			MenuItem mntmSalir = new MenuItem(menu_1, SWT.NONE);
@@ -172,7 +221,7 @@ public class Inicio implements IMensajes {
 			btnEjemplo1Mantenimiento.addSelectionListener(new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
-					cInicio.cargarMantenimiento();
+					cInicio.cargarMantenimientoBecarios();
 				}
 			});
 			btnEjemplo1Mantenimiento.setImage(buttonImage);
@@ -227,7 +276,7 @@ public class Inicio implements IMensajes {
 			
 			lblMantenimientoEjemplo = new CLabel(shell, SWT.NONE);
 			lblMantenimientoEjemplo.setBounds(48, 10, 309, 32);
-			lblMantenimientoEjemplo.setText("EjemploDeMantenimiento");
+			lblMantenimientoEjemplo.setText("Mantenimiento de becarios");
 			lblMantenimientoEjemplo.setForeground(azul);
 			lblMantenimientoEjemplo.setFont(titulo1);
 			

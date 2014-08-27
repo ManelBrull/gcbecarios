@@ -144,13 +144,13 @@ public class MantenimientoDeDepartamentos extends ATDialog implements IMantenimi
 		btnSalir.setText("Salir");
 		
 		CLabel lblNombre = new CLabel(grpClase, SWT.NONE);
-		lblNombre.setBounds(10, 20, 61, 21);
+		lblNombre.setBounds(10, 20, 75, 21);
 		lblNombre.setForeground(getAzul());
 		lblNombre.setFont(getLabelFont());
-		lblNombre.setText("Nombre: ");
+		lblNombre.setText("Nombre(*): ");
 		
 		textNombreDepartamento = new Text(grpClase, SWT.BORDER);
-		textNombreDepartamento.setBounds(77, 20, 327, 21);
+		textNombreDepartamento.setBounds(91, 20, 313, 21);
 		
 		Group grpFiltro = new Group(compositeMain, SWT.NONE);
 		grpFiltro.setLocation(5, 5);

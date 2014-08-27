@@ -214,8 +214,8 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		lblApellidos.setForeground(getAzul());
 		
 		CLabel lblDocumentacin = new CLabel(grpClase, SWT.NONE);
-		lblDocumentacin.setBounds(10, 47, 103, 21);
-		lblDocumentacin.setText("Documentación: ");
+		lblDocumentacin.setBounds(10, 47, 125, 21);
+		lblDocumentacin.setText("Documentación(*): ");
 		lblDocumentacin.setFont(getLabelFont());
 		lblDocumentacin.setForeground(getAzul());
 		
@@ -385,7 +385,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		
 		CLabel lblExpediente = new CLabel(grpClase, SWT.NONE);
 		lblExpediente.setBounds(10, 20, 152, 21);
-		lblExpediente.setText("Expediente: ");
+		lblExpediente.setText("Expediente(*): ");
 		lblExpediente.setFont(getLabelFont());
 		lblExpediente.setForeground(getAzul());
 		
@@ -397,7 +397,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		
 		CLabel lblDepartamentoDestino = new CLabel(grpClase, SWT.NONE);
 		lblDepartamentoDestino.setBounds(10, 47, 152, 21);
-		lblDepartamentoDestino.setText("Departamento destino: ");
+		lblDepartamentoDestino.setText("Departamento destino(*): ");
 		lblDepartamentoDestino.setFont(getLabelFont());
 		lblDepartamentoDestino.setForeground(getAzul());
 		
@@ -581,7 +581,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		textEstudiosCursados = new Text(grpClase, SWT.BORDER);
 		textEstudiosCursados.setBounds(168, 74, 380, 21);
 		
-		dateTimeFechaInicioPractica = new DateTime(grpClase, SWT.BORDER);
+		dateTimeFechaInicioPractica = new DateTime(grpClase, SWT.BORDER | SWT.DROP_DOWN);
 		dateTimeFechaInicioPractica.setBounds(468, 101, 80, 21);
 		
 		textTutorAcademico = new Text(grpClase, SWT.BORDER | SWT.READ_ONLY);
@@ -594,10 +594,10 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		comboTipoPractica = new Combo(grpClase, SWT.NONE);
 		comboTipoPractica.setBounds(168, 101, 180, 23);
 		
-		dateTimeFechaFinalPractica = new DateTime(grpClase, SWT.BORDER);
+		dateTimeFechaFinalPractica = new DateTime(grpClase, SWT.BORDER | SWT.DROP_DOWN);
 		dateTimeFechaFinalPractica.setBounds(468, 128, 80, 21);
 		
-		dateTimeFechaFinalRealPractica = new DateTime(grpClase, SWT.BORDER);
+		dateTimeFechaFinalRealPractica = new DateTime(grpClase, SWT.BORDER | SWT.DROP_DOWN);
 		dateTimeFechaFinalRealPractica.setBounds(468, 155, 80, 21);
 		
 		comboTipoNumeroHoras = new Combo(grpClase, SWT.NONE);

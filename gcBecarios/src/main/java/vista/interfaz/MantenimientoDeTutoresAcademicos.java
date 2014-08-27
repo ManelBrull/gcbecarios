@@ -155,8 +155,8 @@ public class MantenimientoDeTutoresAcademicos extends ATDialog implements IMante
 		btnSalir.setText("Salir");
 		
 		lblNombre = new CLabel(grpClase, SWT.NONE);
-		lblNombre.setBounds(10, 20, 61, 21);
-		lblNombre.setText("Nombre: ");
+		lblNombre.setBounds(10, 20, 73, 21);
+		lblNombre.setText("Nombre(*): ");
 		lblNombre.setForeground(getAzul());
 		lblNombre.setFont(getLabelFont());
 		
@@ -167,7 +167,7 @@ public class MantenimientoDeTutoresAcademicos extends ATDialog implements IMante
 		lblApellidos.setFont(getLabelFont());
 		
 		lblCorreo = new CLabel(grpClase, SWT.NONE);
-		lblCorreo.setBounds(10, 47, 68, 21);
+		lblCorreo.setBounds(10, 47, 73, 21);
 		lblCorreo.setText("Telefono: ");
 		lblCorreo.setForeground(getAzul());
 		lblCorreo.setFont(getLabelFont());
@@ -179,10 +179,10 @@ public class MantenimientoDeTutoresAcademicos extends ATDialog implements IMante
 		lblEmail.setFont(getLabelFont());
 		
 		textNombre = new Text(grpClase, SWT.BORDER);
-		textNombre.setBounds(84, 20, 100, 21);
+		textNombre.setBounds(89, 20, 95, 21);
 		
 		textTelefono = new Text(grpClase, SWT.BORDER);
-		textTelefono.setBounds(84, 47, 100, 21);
+		textTelefono.setBounds(89, 47, 95, 21);
 		
 		textApellidos = new Text(grpClase, SWT.BORDER);
 		textApellidos.setBounds(264, 20, 200, 21);

@@ -144,13 +144,13 @@ public class MantenimientoDeTiposDeExpediente extends ATDialog implements IMante
 		btnSalir.setText("Salir");
 		
 		CLabel lblNombre = new CLabel(grpClase, SWT.NONE);
-		lblNombre.setBounds(10, 20, 61, 21);
+		lblNombre.setBounds(10, 20, 73, 21);
 		lblNombre.setForeground(getAzul());
 		lblNombre.setFont(getLabelFont());
-		lblNombre.setText("Nombre: ");
+		lblNombre.setText("Nombre(*): ");
 		
 		textNombreTipoDeExpediente = new Text(grpClase, SWT.BORDER);
-		textNombreTipoDeExpediente.setBounds(77, 20, 327, 21);
+		textNombreTipoDeExpediente.setBounds(89, 20, 315, 21);
 		
 		Group grpFiltro = new Group(compositeMain, SWT.NONE);
 		grpFiltro.setLocation(5, 5);

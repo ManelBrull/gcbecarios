@@ -5,6 +5,7 @@ import vista.interfaz.MantenimientoDeExpedientes;
 import vista.interfaz.MantenimientoDeTiposDeExpediente;
 import vista.interfaz.MantenimientoDeTutoresAcademicos;
 import vista.interfaz.MantenimientoDeUsuarios;
+import vista.interfaz.becarios.MantenimientoDeBecarios;
 import at.vista.informes.JasperReportManager;
 
 public class ControladorInicio {
@@ -71,6 +72,10 @@ public class ControladorInicio {
 
 	public void cargarMantenimientoExpediente() {
 		new MantenimientoDeExpedientes(inicio.getShell()).open();
+	}
+
+	public void cargarMantenimientoBecarios() {
+		new MantenimientoDeBecarios(inicio.getShell()).open();
 	}
 	
 }

@@ -176,8 +176,8 @@ public class MantenimientoDeExpedientes extends ATDialog implements IMantenimien
 		btnAadir.setText("Añadir");
 		
 		CLabel lblCentroEducativoinstitucin = new CLabel(grpClase, SWT.NONE);
-		lblCentroEducativoinstitucin.setBounds(10, 47, 176, 21);
-		lblCentroEducativoinstitucin.setText("Centro educativo/institución: ");
+		lblCentroEducativoinstitucin.setBounds(10, 47, 190, 21);
+		lblCentroEducativoinstitucin.setText("Centro educativo/institución(*): ");
 		lblCentroEducativoinstitucin.setForeground(getAzul());
 		lblCentroEducativoinstitucin.setFont(getLabelFont());
 		
