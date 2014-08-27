@@ -66,7 +66,7 @@ public class ControladorExpediente extends ControladorMantenimiento<Expediente>{
 
 	@Override
 	public Iterator<Expediente> getIteratorFiltro() {
-		return new Expediente().getAll();
+		return new Expediente().getFiltro(mExpedientes.getStringNombreFiltro());
 	}
 
 	@Override

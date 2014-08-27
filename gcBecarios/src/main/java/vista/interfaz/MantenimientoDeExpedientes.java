@@ -27,11 +27,6 @@ import controlador.ControladorExpediente;
 
 /**
  * 
- * Clase que sirve de plantilla para el mantenimiento de una clase
- * Se utiliza como una plantilla para crear nuestras propias clases
- * concretas de mantenimiento
- * 
- * 
  * @author brullp
  *
  */

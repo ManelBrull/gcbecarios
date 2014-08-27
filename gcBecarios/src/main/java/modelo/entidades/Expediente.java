@@ -189,5 +189,10 @@ public class Expediente implements ICrud <Expediente>, IEsFiltro{
 			return false;
 		return true;
 	}
+
+
+	public Iterator<Expediente> getFiltro(String stringNombreFiltro) {
+		return new ExpedienteDAO().getFiltro(stringNombreFiltro).iterator();
+	}
 	
 }
