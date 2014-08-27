@@ -32,7 +32,7 @@ public class ControladorTipoExpediente extends ControladorMantenimiento<TipoDeEx
 
 	@Override
 	public Iterator<TipoDeExpediente> getIteratorFiltro() {
-		return new TipoDeExpediente().getAll();
+		return new TipoDeExpediente().getFiltro(mTExpediente.getStringNombreFiltro());
 	}
 
 	@Override

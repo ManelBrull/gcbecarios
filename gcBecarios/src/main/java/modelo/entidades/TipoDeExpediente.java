@@ -105,5 +105,9 @@ public class TipoDeExpediente implements ICrud <TipoDeExpediente>, IEsFiltro, IE
 		return true;
 	}
 
+	public Iterator<TipoDeExpediente> getFiltro(String stringNombreFiltro) {
+		return new TipoDeExpedienteDAO().getFiltro(stringNombreFiltro).iterator();
+	}
+
 	
 }

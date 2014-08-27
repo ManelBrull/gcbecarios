@@ -1,5 +1,9 @@
 package modelo.dao;
 
+import java.util.List;
+
+import org.hibernate.Query;
+
 import modelo.HibernateUtil;
 import modelo.entidades.Expediente;
 import modelo.entidades.TipoDeExpediente;
@@ -20,6 +24,15 @@ public class TipoDeExpedienteDAO extends ATDAO<TipoDeExpediente> {
 	@Override
 	protected TipoDeExpediente sessionGet(int id) {
 		return ((TipoDeExpediente) session.get(TipoDeExpediente.class, id));
+	}
+
+	public List<TipoDeExpediente> getFiltro(String stringNombreFiltro) {
+		List<TipoDeExpediente> list = null;
+		iniciaOperacion();
+		Query myQuery = session.createQuery("from " + nameEntidad + " where tipoDeExpediente like '%" + stringNombreFiltro + "%'");
+		list = myQuery.list();
+		session.close();
+		return list;
 	}
 
 }
