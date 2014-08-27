@@ -149,6 +149,10 @@ public class TutorAcademico implements ICrud <TutorAcademico>, IEsFiltro{
 		} else if (!telefono.equals(other.telefono))
 			return false;
 		return true;
+	}
+
+	public Iterator<TutorAcademico> getFiltro(String stringNombreFiltro) {
+		return new TutorAcademicoDAO().getFiltro(stringNombreFiltro).iterator();
 	};
 	
 	

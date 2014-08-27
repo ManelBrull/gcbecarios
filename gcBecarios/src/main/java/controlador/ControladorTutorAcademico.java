@@ -37,7 +37,7 @@ public class ControladorTutorAcademico extends ControladorMantenimiento<TutorAca
 
 	@Override
 	public Iterator<TutorAcademico> getIteratorFiltro() {
-		return new TutorAcademico().getAll();
+		return new TutorAcademico().getFiltro(mTutor.getStringNombreFiltro());
 	}
 
 	@Override
