@@ -25,15 +25,9 @@ import at.vista.interfaz.ATDialog;
 import org.eclipse.swt.widgets.TableColumn;
 
 import controlador.ControladorTipoExpediente;
-
 /**
  * 
- * Clase que sirve de plantilla para el mantenimiento de una clase
- * Se utiliza como una plantilla para crear nuestras propias clases
- * concretas de mantenimiento
- * 
- * 
- * @author brullp
+ * @author ManelBrull
  *
  */
 public class MantenimientoDeTiposDeExpediente extends ATDialog implements IMantenimiento {

@@ -100,6 +100,10 @@ public class Departamento implements ICrud <Departamento>, IEsFiltro{
 		return true;
 	}
 
+	public Iterator<Departamento> getFiltro(String stringNombreFiltro) {
+		return new DepartamentoDAO().getFiltro(stringNombreFiltro).iterator();
+	}
+
 	
 	
 }

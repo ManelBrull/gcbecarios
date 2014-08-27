@@ -33,7 +33,7 @@ public class ControladorDepartamentos extends ControladorMantenimiento<Departame
 	@Override
 	public Iterator<Departamento> getIteratorFiltro() {
 		// TODO Auto-generated method stub
-		return new Departamento().getAll();
+		return new Departamento().getFiltro(mantenimientoDepartamentos.getStringNombreFiltro());
 	}
 
 	@Override
