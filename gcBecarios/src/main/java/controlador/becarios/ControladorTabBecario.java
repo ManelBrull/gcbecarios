@@ -76,7 +76,9 @@ public class ControladorTabBecario extends ControladorMantenimiento<Becario>{
 		becario.setNumAfiliacionSeguridadSocial(mBecarios.getStringNumafiliacionSS());
 		becario.setProvincia(mBecarios.getStringProvincia());
 		becario.setTelefono(mBecarios.getStringTelefono());
+		becario.checkRequiredCamps();
 		return becario;
+		
 	}
 
 	@Override

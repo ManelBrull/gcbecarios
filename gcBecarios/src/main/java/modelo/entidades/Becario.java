@@ -20,6 +20,7 @@ import org.hibernate.HibernateException;
 
 import at.modelo.entidades.ICrud;
 import at.modelo.entidades.IEsFiltro;
+import at.modelo.entidades.excepciones.CampoRequeridoException;
 
 @Entity(name = "becario")
 public class Becario implements ICrud <Becario>, IEsFiltro {
@@ -309,6 +310,11 @@ public class Becario implements ICrud <Becario>, IEsFiltro {
 		} else if (!telefono.equals(other.telefono))
 			return false;
 		return true;
+	}
+
+	public void checkRequiredCamps() throws CampoRequeridoException {
+		if(getDocumentacion().isEmpty())
+			throw new CampoRequeridoException("No ha introducido la documentación");
 	}
 
 }
