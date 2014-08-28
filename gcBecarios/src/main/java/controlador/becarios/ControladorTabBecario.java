@@ -84,7 +84,7 @@ public class ControladorTabBecario extends ControladorMantenimiento<Becario>{
 
 	@Override
 	public Iterator<Becario> getIteratorFiltro() {
-		return new Becario().getAll();
+		return new Becario().getFiltro(mBecarios.getStringNombreFiltro());
 	}
 
 	@Override

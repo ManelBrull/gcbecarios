@@ -317,4 +317,8 @@ public class Becario implements ICrud <Becario>, IEsFiltro {
 			throw new CampoRequeridoException("No ha introducido la documentación");
 	}
 
+	public Iterator<Becario> getFiltro(String stringNombreFiltro) {
+		return new BecarioDAO().getFiltro(stringNombreFiltro).iterator();
+	}
+
 }
