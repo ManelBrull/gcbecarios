@@ -10,10 +10,29 @@ import at.modelo.entidades.excepciones.CampoRequeridoException;
 public class ControladorDepartamentos extends ControladorMantenimiento<Departamento> {
 	
 	MantenimientoDeDepartamentos mantenimientoDepartamentos;
+	boolean isSeleccionable;
 	
-	public ControladorDepartamentos(MantenimientoDeDepartamentos mant) {
+	public ControladorDepartamentos(MantenimientoDeDepartamentos mant, boolean isSeleccionable) {
 		super(mant);
 		this.mantenimientoDepartamentos = mant;
+		this.isSeleccionable = isSeleccionable;
+	}
+	
+	@Override
+	public void visibilidadBtn() {
+		if(!isSeleccionable){
+			mantenimientoDepartamentos.setBtnSeleccionarVisible(false);
+		}
+		if(entidadSeleccionado == null){
+			mantenimiento.setBtnGrabarEnabled(false);
+			mantenimiento.setBtnEliminarEnabled(false);
+			mantenimientoDepartamentos.setBtnSeleccionarEnabled(false);
+		}else {
+			mantenimiento.setBtnGrabarEnabled(true);
+			mantenimiento.setBtnEliminarEnabled(true);
+			mantenimientoDepartamentos.setBtnSeleccionarEnabled(true);
+		}
+		
 	}
 	
 	@Override
@@ -40,4 +59,11 @@ public class ControladorDepartamentos extends ControladorMantenimiento<Departame
 	public void rellenarInterfaz() {
 		mantenimientoDepartamentos.setStringNombreDepartamento(entidadSeleccionado.getNombreDepartamento());		
 	}
+	
+	/** Selecciona la entidad activa **/
+	public void seleccionar() {
+		mantenimientoDepartamentos.setResult(entidadSeleccionado);
+		mantenimientoDepartamentos.cerrarDialog();
+	}
+
 }

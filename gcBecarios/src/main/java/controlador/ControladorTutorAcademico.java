@@ -10,10 +10,29 @@ import at.modelo.entidades.excepciones.CampoRequeridoException;
 public class ControladorTutorAcademico extends ControladorMantenimiento<TutorAcademico> {
 
 	private MantenimientoDeTutoresAcademicos mTutor;
+	boolean isSeleccionable;
 	
-	public ControladorTutorAcademico(MantenimientoDeTutoresAcademicos mant) {
+	public ControladorTutorAcademico(MantenimientoDeTutoresAcademicos mant, boolean isSeleccionable) {
 		super(mant);
 		this.mTutor = mant;
+		this.isSeleccionable = isSeleccionable;
+	}
+	
+	@Override
+	public void visibilidadBtn() {
+		if(!isSeleccionable){
+			mTutor.setBtnSeleccionarVisible(false);
+		}
+		if(entidadSeleccionado == null){
+			mantenimiento.setBtnGrabarEnabled(false);
+			mantenimiento.setBtnEliminarEnabled(false);
+			mTutor.setBtnSeleccionarEnabled(false);
+		}else {
+			mantenimiento.setBtnGrabarEnabled(true);
+			mantenimiento.setBtnEliminarEnabled(true);
+			mTutor.setBtnSeleccionarEnabled(true);
+		}
+		
 	}
 
 	@Override
@@ -47,5 +66,12 @@ public class ControladorTutorAcademico extends ControladorMantenimiento<TutorAca
 		mTutor.setStringNombre(entidadSeleccionado.getNombre());
 		mTutor.setStringTelefono(entidadSeleccionado.getTelefono());
 	}
+	
+	/** Selecciona la entidad activa **/
+	public void seleccionar() {
+		mTutor.setResult(entidadSeleccionado);
+		mTutor.cerrarDialog();
+	}
+
 
 }

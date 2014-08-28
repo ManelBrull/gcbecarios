@@ -568,6 +568,12 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		textExpediente.setBounds(168, 20, 380, 21);
 		
 		btnSeleccionarExpediente = new Button(grpClase, SWT.NONE);
+		btnSeleccionarExpediente.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				controlador.seleccionarExpediente();
+			}
+		});
 		btnSeleccionarExpediente.setBounds(554, 20, 75, 21);
 		btnSeleccionarExpediente.setText("Seleccionar");
 		
@@ -575,6 +581,12 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		textDepartamentoDestino.setBounds(168, 47, 380, 21);
 		
 		btnSeleccionarDepartamentoDestino = new Button(grpClase, SWT.NONE);
+		btnSeleccionarDepartamentoDestino.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				controlador.seleccionarDepartamento();
+			}
+		});
 		btnSeleccionarDepartamentoDestino.setBounds(554, 47, 75, 21);
 		btnSeleccionarDepartamentoDestino.setText("Seleccionar");
 		
@@ -588,6 +600,12 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		textTutorAcademico.setBounds(168, 184, 380, 21);
 		
 		btnSeleccionar = new Button(grpClase, SWT.NONE);
+		btnSeleccionar.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				controlador.seleccionarTutorAcademico();
+			}
+		});
 		btnSeleccionar.setBounds(554, 184, 75, 21);
 		btnSeleccionar.setText("Seleccionar");
 		

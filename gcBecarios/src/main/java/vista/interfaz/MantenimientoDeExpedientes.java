@@ -2,6 +2,8 @@ package vista.interfaz;
 
 import java.util.Date;
 
+import modelo.entidades.Expediente;
+
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
@@ -62,14 +64,15 @@ public class MantenimientoDeExpedientes extends ATDialog implements IMantenimien
 	private TableColumn tblclmnFecha;
 
 	private DateTime dateFechaExpediente;
+	private Button btnSeleccionar;
 	
 	/**
 	 * Crea el dialog
 	 * @param parent
 	 */
-	public MantenimientoDeExpedientes(Shell parent) {
+	public MantenimientoDeExpedientes(Shell parent, boolean isSeleccionable) {
 		super(parent,Utils.nombreProyecto + " - Mantenimiento de Expedientes");
-		controlador = new ControladorExpediente(this);
+		controlador = new ControladorExpediente(this, isSeleccionable);
 	}
 
 	/**
@@ -209,6 +212,16 @@ public class MantenimientoDeExpedientes extends ATDialog implements IMantenimien
 		dateFechaExpediente = new DateTime(grpClase, SWT.BORDER | SWT.DROP_DOWN); 
 		dateFechaExpediente.setBounds(206, 128, 95, 24);
 		
+		btnSeleccionar = new Button(grpClase, SWT.NONE);
+		btnSeleccionar.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				controlador.seleccionar();
+			}
+		});
+		btnSeleccionar.setBounds(166, 168, 75, 23);
+		btnSeleccionar.setText("Seleccionar");
+		
 		
 		Group grpFiltro = new Group(compositeMain, SWT.NONE);
 		grpFiltro.setLocation(5, 5);
@@ -328,6 +341,18 @@ public class MantenimientoDeExpedientes extends ATDialog implements IMantenimien
 	public void vaciarTabla() {
 		table.removeAll();
 	}
+	
+	public void setBtnSeleccionarEnabled(boolean arg0){
+		btnSeleccionar.setEnabled(arg0);
+	}
+	
+	public void btnSeleccionarSelected(){
+		btnSeleccionar.notifyListeners(SWT.Selection, new Event());
+	}
+	
+	public void setBtnSeleccionarVisible(boolean arg0){
+		btnSeleccionar.setVisible(arg0);
+	}
 
 	@Override
 	public void setBtnBuscarEnabled(boolean arg0) {
@@ -441,5 +466,9 @@ public class MantenimientoDeExpedientes extends ATDialog implements IMantenimien
 	
 	public void setFechaExpediente(Date date) {
 		Utils.setDate(dateFechaExpediente, date);
+	}
+
+	public void setResult(Object entidadSeleccionado) {
+		this.result = entidadSeleccionado;
 	}
 }

@@ -138,5 +138,17 @@ public class ControladorMantenimientoBecarios implements IControladorMantenimien
 
 	}
 
+	public void seleccionarExpediente() {
+		cPractica.seleccionarExpediente();
+	}
+	
+	public void seleccionarDepartamento() {
+		cPractica.seleccionarDepartamento();
+	}
+	
+	public void seleccionarTutorAcademico() {
+		cPractica.seleccionarTutorAcademico();
+	}
+
 
 }

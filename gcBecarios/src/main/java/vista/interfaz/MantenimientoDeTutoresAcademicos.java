@@ -67,14 +67,15 @@ public class MantenimientoDeTutoresAcademicos extends ATDialog implements IMante
 	private TableColumn tblclmnApellidos;
 	private TableColumn tblclmnTeefono;
 	private TableColumn tblclmnEmail;
+	private Button btnSeleccionar;
 
 	/**
 	 * Crea el dialog
 	 * @param parent
 	 */
-	public MantenimientoDeTutoresAcademicos(Shell parent) {
+	public MantenimientoDeTutoresAcademicos(Shell parent, boolean isSeleccionable) {
 		super(parent,Utils.nombreProyecto + " - Mantenimiento de tutores académicos");
-		controlador = new ControladorTutorAcademico(this);
+		controlador = new ControladorTutorAcademico(this, isSeleccionable);
 	}
 
 	/**
@@ -189,6 +190,16 @@ public class MantenimientoDeTutoresAcademicos extends ATDialog implements IMante
 		
 		textEmail = new Text(grpClase, SWT.BORDER);
 		textEmail.setBounds(264, 47, 200, 21);
+		
+		btnSeleccionar = new Button(grpClase, SWT.NONE);
+		btnSeleccionar.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				controlador.seleccionar();
+			}
+		});
+		btnSeleccionar.setBounds(95, 84, 75, 23);
+		btnSeleccionar.setText("Seleccionar");
 		
 		Group grpFiltro = new Group(compositeMain, SWT.NONE);
 		grpFiltro.setLocation(5, 5);
@@ -305,6 +316,18 @@ public class MantenimientoDeTutoresAcademicos extends ATDialog implements IMante
 		table.removeAll();
 	}
 
+	public void setBtnSeleccionarEnabled(boolean arg0){
+		btnSeleccionar.setEnabled(arg0);
+	}
+	
+	public void btnSeleccionarSelected(){
+		btnSeleccionar.notifyListeners(SWT.Selection, new Event());
+	}
+	
+	public void setBtnSeleccionarVisible(boolean arg0){
+		btnSeleccionar.setVisible(arg0);
+	}
+	
 	@Override
 	public void setBtnBuscarEnabled(boolean arg0) {
 		btnBuscar.setEnabled(arg0);
@@ -399,6 +422,10 @@ public class MantenimientoDeTutoresAcademicos extends ATDialog implements IMante
 
 	public void setStringEmail(String textEmail) {
 		this.textEmail.setText(textEmail);
+	}
+	
+	public void setResult(Object entidadSeleccionado) {
+		this.result = entidadSeleccionado;
 	}
 
 }

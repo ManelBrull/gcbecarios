@@ -15,16 +15,34 @@ public class ControladorExpediente extends ControladorMantenimiento<Expediente>{
 
 	MantenimientoDeExpedientes mExpedientes;
 	List <TipoDeExpediente> tiposDeExpediente;
+	boolean isSeleccionable;
 	
-	public ControladorExpediente(MantenimientoDeExpedientes mant) {
+	public ControladorExpediente(MantenimientoDeExpedientes mant, boolean isSeleccionable) {
 		super(mant);
 		mExpedientes = mant;
+		this.isSeleccionable = isSeleccionable;
 	}
 	
 	@Override
 	public void inicializar() {
 		visibilidadBtn();
 		inicializarCombo();
+	}
+	@Override
+	public void visibilidadBtn() {
+		if(!isSeleccionable){
+			mExpedientes.setBtnSeleccionarVisible(false);
+		}
+		if(entidadSeleccionado == null){
+			mantenimiento.setBtnGrabarEnabled(false);
+			mantenimiento.setBtnEliminarEnabled(false);
+			mExpedientes.setBtnSeleccionarEnabled(false);
+		}else {
+			mantenimiento.setBtnGrabarEnabled(true);
+			mantenimiento.setBtnEliminarEnabled(true);
+			mExpedientes.setBtnSeleccionarEnabled(true);
+		}
+		
 	}
 	/**
 	 * Crea los elementos para el combo de eleccion de tipo de expediente
@@ -91,6 +109,11 @@ public class ControladorExpediente extends ControladorMantenimiento<Expediente>{
 		mExpedientes.vaciarComboTipoDeExpediente();
 		inicializarCombo();
 		
+	}
+	/** Selecciona la entidad activa **/
+	public void seleccionar() {
+		mExpedientes.setResult(entidadSeleccionado);
+		mExpedientes.cerrarDialog();
 	}
 
 }

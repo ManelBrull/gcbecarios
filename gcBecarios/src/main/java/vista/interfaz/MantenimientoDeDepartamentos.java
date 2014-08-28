@@ -36,7 +36,7 @@ public class MantenimientoDeDepartamentos extends ATDialog implements IMantenimi
 	protected Shell shell;
 	
 	/** Controlador de las acciones de la interfaz **/
-	private ControladorMantenimiento controlador;
+	private ControladorDepartamentos controlador;
 	
 	/** Table que muestra los resultados del filtro **/
 	private Table table;
@@ -50,14 +50,15 @@ public class MantenimientoDeDepartamentos extends ATDialog implements IMantenimi
 	private Text textNombreFiltro;
 	private TableColumn tblclmnNombreDelDepartamento;
 	private Text textNombreDepartamento;
+	private Button btnSeleccionar;
 
 	/**
 	 * Crea el dialog
 	 * @param parent
 	 */
-	public MantenimientoDeDepartamentos(Shell parent) {
+	public MantenimientoDeDepartamentos(Shell parent, boolean isSeleccionable) {
 		super(parent,Utils.nombreProyecto + " - Mantenimiento de departamentos");
-		controlador = new ControladorDepartamentos(this) ;
+		controlador = new ControladorDepartamentos(this, isSeleccionable) ;
 	}
 
 	/**
@@ -145,6 +146,16 @@ public class MantenimientoDeDepartamentos extends ATDialog implements IMantenimi
 		
 		textNombreDepartamento = new Text(grpClase, SWT.BORDER);
 		textNombreDepartamento.setBounds(91, 20, 313, 21);
+		
+		btnSeleccionar = new Button(grpClase, SWT.NONE);
+		btnSeleccionar.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				controlador.seleccionar();
+			}
+		});
+		btnSeleccionar.setBounds(35, 58, 75, 22);
+		btnSeleccionar.setText("Seleccionar");
 		
 		Group grpFiltro = new Group(compositeMain, SWT.NONE);
 		grpFiltro.setLocation(5, 5);
@@ -251,6 +262,18 @@ public class MantenimientoDeDepartamentos extends ATDialog implements IMantenimi
 		table.removeAll();
 	}
 
+	public void setBtnSeleccionarEnabled(boolean arg0){
+		btnSeleccionar.setEnabled(arg0);
+	}
+	
+	public void btnSeleccionarSelected(){
+		btnSeleccionar.notifyListeners(SWT.Selection, new Event());
+	}
+	
+	public void setBtnSeleccionarVisible(boolean arg0){
+		btnSeleccionar.setVisible(arg0);
+	}
+	
 	@Override
 	public void setBtnBuscarEnabled(boolean arg0) {
 		btnBuscar.setEnabled(arg0);
@@ -321,6 +344,10 @@ public class MantenimientoDeDepartamentos extends ATDialog implements IMantenimi
 
 	public void setStringNombreDepartamento(String textNombreDepartamento) {
 		this.textNombreDepartamento.setText(textNombreDepartamento);
+	}
+	
+	public void setResult(Object entidadSeleccionado) {
+		this.result = entidadSeleccionado;
 	}
 
 }

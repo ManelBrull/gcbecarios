@@ -59,11 +59,11 @@ public class ControladorInicio {
 
 	public void cargarMantenimientoDepartamentos() {
 		// TODO Auto-generated method stub
-		new MantenimientoDeDepartamentos(inicio.getShell()).open();
+		new MantenimientoDeDepartamentos(inicio.getShell(), false).open();
 	}
 
 	public void cargarMantenimientoTutores() {
-		new MantenimientoDeTutoresAcademicos(inicio.getShell()).open();
+		new MantenimientoDeTutoresAcademicos(inicio.getShell(), false).open();
 	}
 
 	public void cargarMantenimientoTiposExpediente() {
@@ -71,7 +71,7 @@ public class ControladorInicio {
 	}
 
 	public void cargarMantenimientoExpediente() {
-		new MantenimientoDeExpedientes(inicio.getShell()).open();
+		new MantenimientoDeExpedientes(inicio.getShell(), false).open();
 	}
 
 	public void cargarMantenimientoBecarios() {

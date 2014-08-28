@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
+import org.eclipse.swt.widgets.Shell;
 import org.hibernate.HibernateException;
 
 import modelo.entidades.Departamento;
@@ -13,6 +14,9 @@ import modelo.entidades.practica.Practica;
 import modelo.entidades.practica.TipoBolsaEstudios;
 import modelo.entidades.practica.TipoHoras;
 import modelo.entidades.practica.TipoPractica;
+import vista.interfaz.MantenimientoDeDepartamentos;
+import vista.interfaz.MantenimientoDeExpedientes;
+import vista.interfaz.MantenimientoDeTutoresAcademicos;
 import vista.interfaz.becarios.ComboFiltroPracticas;
 import vista.interfaz.becarios.MantenimientoDeBecarios;
 import at.controlador.ControladorMantenimiento;
@@ -22,6 +26,9 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 
 	MantenimientoDeBecarios mBecarios;
 	ControladorTabBecario controladorBecarios;
+	Expediente expedienteSeleccionado;
+	Departamento departamentoSeleccionado;
+	TutorAcademico tutorAcademicoSeleccionado;
 	/**
 	 * TODO: Proviene de un seleccionable de departamento
 	 */
@@ -229,5 +236,40 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 			mBecarios.setStringApellidosBecarioEnPractica("");
 		}
 	}
+
+	public void seleccionarExpediente() {
+		Expediente e = (Expediente) new MantenimientoDeExpedientes(new Shell(), true).open();
+		if(e == null){
+			expedienteSeleccionado = null;
+			mBecarios.setStringExpediente("");
+		}
+		else {
+			expedienteSeleccionado = e;
+			mBecarios.setStringExpediente(expedienteSeleccionado.getCentroEducativoInstitucion());
+		}
+	}
 	
+	public void seleccionarDepartamento() {
+		Departamento e = (Departamento) new MantenimientoDeDepartamentos(new Shell(), true).open();
+		if(e == null){
+			departamentoSeleccionado = null;
+			mBecarios.setStringDepartamentoDestino("");
+		}
+		else {
+			departamentoSeleccionado = e;
+			mBecarios.setStringDepartamentoDestino(departamentoSeleccionado.getNombreDepartamento());
+		}
+	}
+	
+	public void seleccionarTutorAcademico() {
+		TutorAcademico e = (TutorAcademico) new MantenimientoDeTutoresAcademicos(new Shell(), true).open();
+		if(e == null){
+			tutorAcademicoSeleccionado = null;
+			mBecarios.setStringTutorAcademico("");
+		}
+		else {
+			tutorAcademicoSeleccionado = e;
+			mBecarios.setStringTutorAcademico(tutorAcademicoSeleccionado.getApellidos() + " ," + tutorAcademicoSeleccionado.getNombre());
+		}
+	}
 }
