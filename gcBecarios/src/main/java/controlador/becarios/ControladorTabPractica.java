@@ -60,18 +60,21 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 		for(TipoPractica cfp : TipoPractica.values()){
 			mBecarios.addItemComboTipoPractica(cfp.getDisplayString());
 		}
+		mBecarios.selectItemComboTipoPracticas(0);
 	}
 	
 	private void inicializarTipoNumeroHoras(){
 		for(TipoHoras cfp : TipoHoras.values()){
 			mBecarios.addItemComboTipoNumeroHoras(cfp.getDisplayString());
 		}
+		mBecarios.selectItemComboTipoNumeroHoras(0);
 	}
 	
 	private void inicializarTipoBolsaEstudios(){
 		for(TipoBolsaEstudios cfp : TipoBolsaEstudios.values()){
 			mBecarios.addItemComboTipoBolsaEstudios(cfp.getDisplayString());
 		}
+		mBecarios.selectItemComboTipoBolsaEstudios(0);
 	}
 	
 	

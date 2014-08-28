@@ -467,7 +467,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		tblclmnNewColumn.setWidth(100);
 		tblclmnNewColumn.setText("Tutor ayuntamiento");
 		
-		comboFiltroPracticas = new Combo(grpFiltro, SWT.NONE);
+		comboFiltroPracticas = new Combo(grpFiltro, SWT.READ_ONLY);
 		comboFiltroPracticas.setBounds(113, 18, 434, 23);
 		
 		CLabel lblSeleccionar = new CLabel(grpFiltro, SWT.NONE);
@@ -591,7 +591,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		btnSeleccionar.setBounds(554, 184, 75, 21);
 		btnSeleccionar.setText("Seleccionar");
 		
-		comboTipoPractica = new Combo(grpClase, SWT.NONE);
+		comboTipoPractica = new Combo(grpClase, SWT.READ_ONLY);
 		comboTipoPractica.setBounds(168, 101, 180, 23);
 		
 		dateTimeFechaFinalPractica = new DateTime(grpClase, SWT.BORDER | SWT.DROP_DOWN);
@@ -600,13 +600,13 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		dateTimeFechaFinalRealPractica = new DateTime(grpClase, SWT.BORDER | SWT.DROP_DOWN);
 		dateTimeFechaFinalRealPractica.setBounds(468, 155, 80, 21);
 		
-		comboTipoNumeroHoras = new Combo(grpClase, SWT.NONE);
+		comboTipoNumeroHoras = new Combo(grpClase, SWT.READ_ONLY);
 		comboTipoNumeroHoras.setBounds(168, 128, 91, 23);
 		
 		textNumeroHoras = new Text(grpClase, SWT.BORDER);
 		textNumeroHoras.setBounds(272, 128, 76, 21);
 		
-		comboTipoBolsaEstudios = new Combo(grpClase, SWT.NONE);
+		comboTipoBolsaEstudios = new Combo(grpClase, SWT.READ_ONLY);
 		comboTipoBolsaEstudios.setBounds(168, 155, 91, 23);
 		
 		textBolsaEstudios = new Text(grpClase, SWT.BORDER);
