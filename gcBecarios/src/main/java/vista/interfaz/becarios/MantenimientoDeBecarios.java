@@ -477,6 +477,12 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		lblSeleccionar.setForeground(getAzul());
 		
 		Button btnBuscar = new Button(grpFiltro, SWT.NONE);
+		btnBuscar.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				controlador.buscar();
+			}
+		});
 		btnBuscar.setBounds(553, 18, 75, 25);
 		btnBuscar.setText("Buscar");
 		
@@ -1269,5 +1275,14 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 	
 	public void vaciarComboTipoBolsaEstudios(){
 		comboTipoBolsaEstudios.removeAll();
+	}
+
+	public void vaciarTablaPractica() {
+		tablePracticas.removeAll();
+	}
+
+	public void anadirElementoPractica(String[] fila) {
+		TableItem itemPrac = new TableItem(tablePracticas,SWT.NONE);
+		itemPrac.setText(fila);
 	}
 }

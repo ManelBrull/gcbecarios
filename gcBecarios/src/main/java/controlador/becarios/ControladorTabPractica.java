@@ -127,7 +127,17 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 	@Override
 	public Practica creaObjeto() throws CampoRequeridoException {
 		Practica p = new Practica();
-		p.setBolsaDeEstudios(Integer.parseInt(mBecarios.getStringBolsaEstudios()));
+		
+		if(mBecarios.getStringBolsaEstudios().isEmpty())
+			p.setBolsaDeEstudios(0);
+		else
+			p.setBolsaDeEstudios(Integer.parseInt(mBecarios.getStringBolsaEstudios()));
+		
+		if(mBecarios.getStringNumeroHoras().isEmpty())
+			p.setNumHoras(0);
+		else
+			p.setNumHoras(Integer.parseInt(mBecarios.getStringNumeroHoras()));
+		
 		p.setDecretoAutorizacion(mBecarios.getStringDecretoAutorizacion());
 		p.setDepartamentoDestino(departamentoDestino);
 		p.setEstudiosCursados(mBecarios.getStringEstudiosCursados());
@@ -136,7 +146,7 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 		p.setFechaFinalReal(mBecarios.getDateFechaFinalRealPractica());
 		p.setFechaFinalTeorica(mBecarios.getDateFechaFinalPractica());
 		p.setFechaInicio(mBecarios.getDateFechaInicioPractica());
-		p.setNumHoras(Integer.parseInt(mBecarios.getStringNumeroHoras()));
+		
 		p.setObservaciones(mBecarios.getStringObservaciones());
 		p.setProfesionalesFormacion(TipoPractica.values()[mBecarios.getSelectedComboTipoPracticas()]);
 		p.setRefClica(mBecarios.getStringReferenciaClica());
@@ -145,6 +155,26 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 		p.setTutorAcademico(tutorAcademico);
 		p.setTutorAyuntamiento(mBecarios.getStringTutorAyuntamiento());
 		return p;
+	}
+	@Override
+	public void buscar() {
+		if(entidadSeleccionado != null){
+			borrar();
+		}
+		mBecarios.vaciarTablaPractica();
+		filtro = new ArrayList <Practica>();
+		try {
+			Iterator <Practica> iter = getIteratorFiltro();
+			while(iter.hasNext()){
+				Practica u = iter.next();
+				filtro.add(u);
+				mBecarios.anadirElementoPractica(u.toTable());
+			}
+		} catch (HibernateException he){
+			mantenimiento.openError(
+					"Error",
+					"Ha ocurrido un error en la base de datos");
+		}
 	}
 
 	@Override
