@@ -70,6 +70,9 @@ public class Becario implements ICrud <Becario>, IEsFiltro {
 		nuevo.setId(this.getId());
 		new BecarioDAO().update(this);
 	};
+	public void update() {
+		new BecarioDAO().update(this);
+	}
 	
 	
 

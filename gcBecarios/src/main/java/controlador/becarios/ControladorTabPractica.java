@@ -26,9 +26,7 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 
 	MantenimientoDeBecarios mBecarios;
 	ControladorTabBecario controladorBecarios;
-	Expediente expedienteSeleccionado;
-	Departamento departamentoSeleccionado;
-	TutorAcademico tutorAcademicoSeleccionado;
+	
 	/**
 	 * TODO: Proviene de un seleccionable de departamento
 	 */
@@ -170,7 +168,7 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 			Practica practica = creaObjeto();
 			if (practica != null){
 				controladorBecarios.getEntidadSeleccionado().getPracticas().add(practica);
-				controladorBecarios.getEntidadSeleccionado().save();
+				controladorBecarios.getEntidadSeleccionado().update();
 				mantenimiento.openInformation(
 						"Informacion", 
 						"Se ha creado el elemento satisfactoriamente"
@@ -240,36 +238,36 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 	public void seleccionarExpediente() {
 		Expediente e = (Expediente) new MantenimientoDeExpedientes(new Shell(), true).open();
 		if(e == null){
-			expedienteSeleccionado = null;
+			expediente = null;
 			mBecarios.setStringExpediente("");
 		}
 		else {
-			expedienteSeleccionado = e;
-			mBecarios.setStringExpediente(expedienteSeleccionado.getCentroEducativoInstitucion());
+			expediente = e;
+			mBecarios.setStringExpediente(expediente.getCentroEducativoInstitucion());
 		}
 	}
 	
 	public void seleccionarDepartamento() {
 		Departamento e = (Departamento) new MantenimientoDeDepartamentos(new Shell(), true).open();
 		if(e == null){
-			departamentoSeleccionado = null;
+			departamentoDestino = null;
 			mBecarios.setStringDepartamentoDestino("");
 		}
 		else {
-			departamentoSeleccionado = e;
-			mBecarios.setStringDepartamentoDestino(departamentoSeleccionado.getNombreDepartamento());
+			departamentoDestino = e;
+			mBecarios.setStringDepartamentoDestino(departamentoDestino.getNombreDepartamento());
 		}
 	}
 	
 	public void seleccionarTutorAcademico() {
 		TutorAcademico e = (TutorAcademico) new MantenimientoDeTutoresAcademicos(new Shell(), true).open();
 		if(e == null){
-			tutorAcademicoSeleccionado = null;
+			tutorAcademico = null;
 			mBecarios.setStringTutorAcademico("");
 		}
 		else {
-			tutorAcademicoSeleccionado = e;
-			mBecarios.setStringTutorAcademico(tutorAcademicoSeleccionado.getApellidos() + " ," + tutorAcademicoSeleccionado.getNombre());
+			tutorAcademico = e;
+			mBecarios.setStringTutorAcademico(tutorAcademico.getApellidos() + " ," + tutorAcademico.getNombre());
 		}
 	}
 }
