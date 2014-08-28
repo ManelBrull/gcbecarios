@@ -294,7 +294,7 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		textEmail = new Text(grpClase, SWT.BORDER);
 		textEmail.setBounds(361, 128, 174, 21);
 		
-		comboAltaSeguridadSocial = new Combo(grpClase, SWT.NONE);
+		comboAltaSeguridadSocial = new Combo(grpClase, SWT.READ_ONLY);
 		comboAltaSeguridadSocial.setBounds(167, 153, 74, 23);
 		
 		textNumafiliacionSS = new Text(grpClase, SWT.BORDER);

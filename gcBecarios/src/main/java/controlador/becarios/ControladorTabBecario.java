@@ -39,6 +39,7 @@ public class ControladorTabBecario extends ControladorMantenimiento<Becario>{
 		for(ComboBooleano cb : ComboBooleano.values()){
 			mBecarios.addItemComboAltaSeguridadSocial(cb.getDisplayString());
 		}
+		mBecarios.selectItemComboAltaSeguridadSocial(0);
 	}
 	
 	@Override
