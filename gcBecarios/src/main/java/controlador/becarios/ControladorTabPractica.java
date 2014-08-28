@@ -214,5 +214,14 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 		mBecarios.setStringObservaciones(entidadSeleccionado.getObservaciones());
 	}
 	
+	public void refreshEntidadSeleccionada(){
+		if(controladorBecarios.getEntidadSeleccionado() != null){
+			mBecarios.setStringNomreBecarioEnPractica(controladorBecarios.getEntidadSeleccionado().getNombre());
+			mBecarios.setStringApellidosBecarioEnPractica(controladorBecarios.getEntidadSeleccionado().getApellidos());
+		} else {
+			mBecarios.setStringNomreBecarioEnPractica("");
+			mBecarios.setStringApellidosBecarioEnPractica("");
+		}
+	}
 	
 }

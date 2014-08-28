@@ -128,6 +128,7 @@ public class ControladorMantenimientoBecarios implements IControladorMantenimien
 		switch(mBecarios.getTabActiva()){
 		case becarios:
 			cBecario.nuevo();
+			cPractica.refreshEntidadSeleccionada();
 			break;
 		case practica:
 			cPractica.nuevo();
