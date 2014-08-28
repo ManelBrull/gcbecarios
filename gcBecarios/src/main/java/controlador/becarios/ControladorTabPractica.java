@@ -146,7 +146,8 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 	public Iterator<Practica> getIteratorFiltro() {
 		switch(ComboFiltroPracticas.values()[mBecarios.getSelectedComboFiltroPracticas()]){
 		case practicasBecarios:
-			if(controladorBecarios.getEntidadSeleccionado() != null)
+			if(controladorBecarios.getEntidadSeleccionado() != null && 
+					controladorBecarios.getEntidadSeleccionado().getPracticas() != null)
 				return controladorBecarios.getEntidadSeleccionado().getPracticas().iterator();
 			else
 				return (new ArrayList<Practica>()).iterator();
@@ -221,6 +222,8 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 		if(controladorBecarios.getEntidadSeleccionado() != null){
 			mBecarios.setStringNomreBecarioEnPractica(controladorBecarios.getEntidadSeleccionado().getNombre());
 			mBecarios.setStringApellidosBecarioEnPractica(controladorBecarios.getEntidadSeleccionado().getApellidos());
+			mBecarios.selectItemComboFiltroPracticas(ComboFiltroPracticas.practicasBecarios);
+			this.buscar();
 		} else {
 			mBecarios.setStringNomreBecarioEnPractica("");
 			mBecarios.setStringApellidosBecarioEnPractica("");

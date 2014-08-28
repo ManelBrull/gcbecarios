@@ -1187,6 +1187,13 @@ public class MantenimientoDeBecarios extends ATDialog implements IMantenimiento 
 		}
 	}
 	
+	public void selectItemComboFiltroPracticas(ComboFiltroPracticas item) {
+		for(int i = 0; i < comboFiltroPracticas.getItemCount(); i++){
+			if(comboFiltroPracticas.getItem(i).equals(item.getDisplayString()))
+				comboFiltroPracticas.select(i);
+		}
+	}
+	
 	public void vaciarComboFiltroPracticas(){
 		comboFiltroPracticas.removeAll();
 	}
