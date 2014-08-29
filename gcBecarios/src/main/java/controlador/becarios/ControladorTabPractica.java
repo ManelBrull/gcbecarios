@@ -2,10 +2,9 @@ package controlador.becarios;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
-
-import org.eclipse.swt.widgets.Shell;
-import org.hibernate.HibernateException;
+import java.util.Set;
 
 import modelo.entidades.Becario;
 import modelo.entidades.Departamento;
@@ -15,6 +14,10 @@ import modelo.entidades.practica.Practica;
 import modelo.entidades.practica.TipoBolsaEstudios;
 import modelo.entidades.practica.TipoHoras;
 import modelo.entidades.practica.TipoPractica;
+
+import org.eclipse.swt.widgets.Shell;
+import org.hibernate.HibernateException;
+
 import vista.interfaz.MantenimientoDeDepartamentos;
 import vista.interfaz.MantenimientoDeExpedientes;
 import vista.interfaz.MantenimientoDeTutoresAcademicos;
@@ -229,12 +232,16 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 				}
 				else{
 					Becario becario = controladorBecarios.getEntidadSeleccionado();
+					
+					Set<Practica> newSet = new HashSet<>();
 					for(Practica p: becario.getPracticas()){
-						if(p.equals(entidadSeleccionado)){
-							becario.getPracticas().remove(p);
-							becario.getPracticas().add(usr);
+						if(!p.equals(entidadSeleccionado)){
+							newSet.add(p);
 						}
 					}
+					newSet.add(usr);
+					becario.setPracticas(newSet);
+					
 					becario.update();
 					borrar();
 					mantenimiento.btnBuscarSelected();
@@ -273,11 +280,13 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 			if(result == 0){
 				try {
 					Becario becario = controladorBecarios.getEntidadSeleccionado();
+					Practica toRemove = new Practica();
 					for(Practica p: becario.getPracticas()){
 						if(p.equals(entidadSeleccionado)){
-							becario.getPracticas().remove(p);
+							toRemove = p;
 						}
 					}
+					becario.getPracticas().remove(toRemove);
 					becario.update();
 					entidadSeleccionado = null;
 					borrar();
@@ -307,7 +316,7 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 		if(expediente == null)
 			mBecarios.setStringExpediente("");
 		else
-			mBecarios.setStringExpediente(expediente.toString());
+			mBecarios.setStringExpediente(expediente.getCentroEducativoInstitucion());
 		
 		if(departamentoDestino == null)
 			mBecarios.setStringDepartamentoDestino("");
