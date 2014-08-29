@@ -96,7 +96,7 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 
 		} else {
 			mBecarios.setBtnNuevoPracticaEnabled(true);
-			if(entidadSeleccionado == null){
+			if(this.entidadSeleccionado == null){
 				mBecarios.setBtnGrabarPracticaEnabled(false);
 				mBecarios.setBtnEliminarPracticaEnabled(false);
 			}else {

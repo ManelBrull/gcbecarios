@@ -206,16 +206,6 @@ public class Inicio implements IMensajes {
 			Menu menu = new Menu(mntmInformes);
 			mntmInformes.setMenu(menu);
 			
-			MenuItem mntmInformeUno = new MenuItem(menu, SWT.NONE);
-			mntmInformeUno.addSelectionListener(new SelectionAdapter() {
-				@Override
-				public void widgetSelected(SelectionEvent e) {
-					cInicio.cargarInforme();
-				}
-			});
-			mntmInformeUno.setText("Informe1\tCtrl+F1");
-			mntmInformeUno.setAccelerator(SWT.MOD1 + SWT.F1);
-			
 			btnEjemplo1Mantenimiento = new Button(shell, SWT.CENTER);
 			btnEjemplo1Mantenimiento.setBounds(10, 10, 32, 32);
 			btnEjemplo1Mantenimiento.addSelectionListener(new SelectionAdapter() {
