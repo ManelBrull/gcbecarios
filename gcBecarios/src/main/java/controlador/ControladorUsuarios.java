@@ -44,24 +44,9 @@ public class ControladorUsuarios extends ControladorMantenimiento<Usuario> {
 					mantenimientoUsuarios.getTextNombre(), 
 					Permisos.values()[mantenimientoUsuarios.getSelectionIndexComboPermisos()]);
 		} catch (CampoRequeridoException e) {
-			mantenimientoUsuarios.openError(
-					"Error", 
-					"No se ha podido inicializar el usuario");
 			return null;
 		}
 		return usr;
 	}
 	
-	public Usuario creaObjetoSilencioso() {
-		Usuario usr = new Usuario();
-		try {
-			usr.inicializaUsuario(
-					mantenimientoUsuarios.getTextNombre(), 
-					Permisos.values()[mantenimientoUsuarios.getSelectionIndexComboPermisos()]);
-		} catch (CampoRequeridoException e) {
-			return null;
-		}
-		return usr;
-	}
-
 }
