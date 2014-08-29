@@ -65,7 +65,7 @@ public class TipoDeExpediente implements ICrud <TipoDeExpediente>, IEsFiltro, IE
 	@Override
 	public void update(TipoDeExpediente nuevo) throws HibernateException {
 		nuevo.setId(this.getId());
-		new TipoDeExpedienteDAO().update(this);
+		new TipoDeExpedienteDAO().update(nuevo);
 	}
 
 	@Override

@@ -68,7 +68,7 @@ public class Becario implements ICrud <Becario>, IEsFiltro {
 	@Override
 	public void update(Becario nuevo) throws HibernateException {
 		nuevo.setId(this.getId());
-		new BecarioDAO().update(this);
+		new BecarioDAO().update(nuevo);
 	};
 	public void update() {
 		new BecarioDAO().update(this);

@@ -98,7 +98,7 @@ public class TutorAcademico implements ICrud <TutorAcademico>, IEsFiltro{
 	public void update(TutorAcademico nuevo) throws HibernateException {
 		// TODO Auto-generated method stub
 		nuevo.setId(this.getId());
-		new TutorAcademicoDAO().update(this);
+		new TutorAcademicoDAO().update(nuevo);
 	}
 
 	@Override

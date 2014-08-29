@@ -64,7 +64,7 @@ public class Departamento implements ICrud <Departamento>, IEsFiltro{
 	@Override
 	public void update(Departamento nuevo) throws HibernateException {
 		nuevo.setId(this.getId());
-		new DepartamentoDAO().update(this);
+		new DepartamentoDAO().update(nuevo);
 	}
 
 	@Override

@@ -115,7 +115,7 @@ public class Expediente implements ICrud <Expediente>, IEsFiltro{
 	@Override
 	public void update(Expediente nuevo) throws HibernateException {
 		nuevo.setId(this.getId());
-		new ExpedienteDAO().update(this);
+		new ExpedienteDAO().update(nuevo);
 	}
 
 
