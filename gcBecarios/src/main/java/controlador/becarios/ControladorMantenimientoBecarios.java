@@ -88,7 +88,7 @@ public class ControladorMantenimientoBecarios implements IControladorMantenimien
 			cBecario.elementoFiltroSeleccionado();
 			break;
 		case practica:
-			cBecario.elementoFiltroSeleccionado();
+			cPractica.elementoFiltroSeleccionado();
 			break;
 		default:
 		}
