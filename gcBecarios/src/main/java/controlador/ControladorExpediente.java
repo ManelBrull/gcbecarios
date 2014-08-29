@@ -69,17 +69,14 @@ public class ControladorExpediente extends ControladorMantenimiento<Expediente>{
 
 	@Override
 	public Expediente creaObjeto() throws CampoRequeridoException {
-		try {
-			Expediente exp = new Expediente();
-			exp.setAcuerdoDecreto(mExpedientes.getStringDecreto());
-			exp.setCentroEducativoInstitucion(mExpedientes.getStringCentro());
-			exp.setFechaExpediente(mExpedientes.getFechaExpediente());
-			exp.setRefClica(mExpedientes.getStringReferenciaClica());
-			exp.setTipoDeExpediente(tiposDeExpediente.get(mExpedientes.getSelectedTipoDeExpediente()));
-			return exp;
-		} catch (Exception ex) {
-			return null;
-		}
+		Expediente exp = new Expediente();
+		exp.setAcuerdoDecreto(mExpedientes.getStringDecreto());
+		exp.setCentroEducativoInstitucion(mExpedientes.getStringCentro());
+		exp.setFechaExpediente(mExpedientes.getFechaExpediente());
+		exp.setRefClica(mExpedientes.getStringReferenciaClica());
+		exp.setTipoDeExpediente(tiposDeExpediente.get(mExpedientes.getSelectedTipoDeExpediente()));
+		exp.checkRequiredCamps();
+		return exp;
 	}
 
 	@Override
