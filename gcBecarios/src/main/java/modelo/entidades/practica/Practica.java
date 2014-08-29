@@ -24,6 +24,7 @@ import org.hibernate.HibernateException;
 import vista.interfaz.utils.Utils;
 import at.modelo.entidades.ICrud;
 import at.modelo.entidades.IEsFiltro;
+import at.modelo.entidades.excepciones.CampoRequeridoException;
 
 @Entity(name = "practica")
 public class Practica implements ICrud <Practica> , IEsFiltro{
@@ -404,6 +405,13 @@ public class Practica implements ICrud <Practica> , IEsFiltro{
 		return fila;
 	}
 
+	public void checkRequiredCamps() throws CampoRequeridoException {
+		if(getExpediente() == null)
+			throw new CampoRequeridoException("No ha introducido el expediente");
+		if(getDepartamentoDestino() == null)
+			throw new CampoRequeridoException("No ha introducido el departamentop de destino");
+	}
+	
 }
 
 

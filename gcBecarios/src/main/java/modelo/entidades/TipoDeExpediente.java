@@ -15,6 +15,7 @@ import org.hibernate.HibernateException;
 import at.modelo.entidades.ICrud;
 import at.modelo.entidades.IEsCombo;
 import at.modelo.entidades.IEsFiltro;
+import at.modelo.entidades.excepciones.CampoRequeridoException;
 
 @Entity(name="tipoDeExpediente")
 public class TipoDeExpediente implements ICrud <TipoDeExpediente>, IEsFiltro, IEsCombo {
@@ -108,6 +109,11 @@ public class TipoDeExpediente implements ICrud <TipoDeExpediente>, IEsFiltro, IE
 	public Iterator<TipoDeExpediente> getFiltro(String stringNombreFiltro) {
 		return new TipoDeExpedienteDAO().getFiltro(stringNombreFiltro).iterator();
 	}
-
+	
+	public void checkRequiredCamps() throws CampoRequeridoException {
+		if(getTipoDeExpediente().isEmpty())
+			throw new CampoRequeridoException("No ha introducido el tipo de expediente");
+	}
+	
 	
 }

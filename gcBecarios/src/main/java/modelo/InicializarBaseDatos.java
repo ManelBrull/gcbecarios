@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.Date;
 
+import modelo.entidades.Becario;
 import modelo.entidades.Departamento;
 import modelo.entidades.Expediente;
 import modelo.entidades.TipoDeExpediente;
@@ -89,5 +90,11 @@ public class InicializarBaseDatos {
 		t2.setEmail("mSurroca@gmail.com");
 		t2.setTelefono("635874158");
 		t2.save();
+	}
+	
+	private void inicializarBecarioUno(){
+		Becario becario1 = new Becario();
+		becario1.setDocumentacion("22698750S");
+		becario1.save();
 	}
 }

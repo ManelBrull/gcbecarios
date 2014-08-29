@@ -14,6 +14,7 @@ import org.hibernate.HibernateException;
 
 import at.modelo.entidades.ICrud;
 import at.modelo.entidades.IEsFiltro;
+import at.modelo.entidades.excepciones.CampoRequeridoException;
 
 @Entity(name="tutoracademico")
 public class TutorAcademico implements ICrud <TutorAcademico>, IEsFiltro{
@@ -155,6 +156,10 @@ public class TutorAcademico implements ICrud <TutorAcademico>, IEsFiltro{
 		return new TutorAcademicoDAO().getFiltro(stringNombreFiltro).iterator();
 	};
 	
+	public void checkRequiredCamps() throws CampoRequeridoException {
+		if(getNombre().isEmpty())
+			throw new CampoRequeridoException("No ha introducido el nombre");
+	}
 	
 
 }

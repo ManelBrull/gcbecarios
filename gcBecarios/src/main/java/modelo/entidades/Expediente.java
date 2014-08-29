@@ -19,6 +19,7 @@ import org.hibernate.HibernateException;
 import vista.interfaz.utils.Utils;
 import at.modelo.entidades.ICrud;
 import at.modelo.entidades.IEsFiltro;
+import at.modelo.entidades.excepciones.CampoRequeridoException;
 
 @Entity(name="expediente")
 public class Expediente implements ICrud <Expediente>, IEsFiltro{
@@ -194,5 +195,11 @@ public class Expediente implements ICrud <Expediente>, IEsFiltro{
 	public Iterator<Expediente> getFiltro(String stringNombreFiltro) {
 		return new ExpedienteDAO().getFiltro(stringNombreFiltro).iterator();
 	}
+	
+	public void checkRequiredCamps() throws CampoRequeridoException {
+		if(getCentroEducativoInstitucion().isEmpty())
+			throw new CampoRequeridoException("No ha introducido el centro educativo o la institución");
+	}
+	
 	
 }

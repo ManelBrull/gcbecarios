@@ -27,6 +27,7 @@ public class ControladorTipoExpediente extends ControladorMantenimiento<TipoDeEx
 	public TipoDeExpediente creaObjeto() throws CampoRequeridoException {
 		TipoDeExpediente tExp = new TipoDeExpediente();
 		tExp.setTipoDeExpediente(mTExpediente.getStringTipoDeExpediente());
+		tExp.checkRequiredCamps();
 		return tExp;
 	}
 

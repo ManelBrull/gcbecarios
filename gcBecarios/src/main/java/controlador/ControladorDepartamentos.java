@@ -46,6 +46,7 @@ public class ControladorDepartamentos extends ControladorMantenimiento<Departame
 		// TODO Auto-generated method stub
 		Departamento dep = new Departamento();
 		dep.setNombreDepartamento(mantenimientoDepartamentos.getStringNombreDepartamento());
+		dep.checkRequiredCamps();
 		return dep;
 	}
 

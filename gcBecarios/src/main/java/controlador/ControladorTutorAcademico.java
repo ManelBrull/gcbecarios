@@ -51,6 +51,7 @@ public class ControladorTutorAcademico extends ControladorMantenimiento<TutorAca
 		ta.setApellidos(mTutor.getStringApellidos());
 		ta.setEmail(mTutor.getStringEmail());
 		ta.setTelefono(mTutor.getStringTelefono());
+		ta.checkRequiredCamps();
 		return ta;
 	}
 
