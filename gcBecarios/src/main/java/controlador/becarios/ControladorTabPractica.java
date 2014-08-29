@@ -7,6 +7,7 @@ import java.util.Iterator;
 import org.eclipse.swt.widgets.Shell;
 import org.hibernate.HibernateException;
 
+import modelo.entidades.Becario;
 import modelo.entidades.Departamento;
 import modelo.entidades.Expediente;
 import modelo.entidades.TutorAcademico;
@@ -104,11 +105,9 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 	
 	@Override
 	public void borrarInterfaz() {
-		
 		departamentoDestino = null;
 		expediente = null;
 		tutorAcademico = null;
-		
 		mBecarios.setStringExpediente("");
 		mBecarios.setStringDepartamentoDestino("");
 		mBecarios.setStringEstudiosCursados("");
@@ -217,6 +216,87 @@ public class ControladorTabPractica extends ControladorMantenimiento<Practica> {
 					+ " que no se han dado un valor v�lido");
 		}
 	}
+	
+	@Override
+	public void grabar() {
+		try {
+			Practica usr = creaObjeto();
+			if (usr != null){
+				if(entidadSeleccionado.equals(usr)){
+					mantenimiento.openInformation(
+							"Error",
+							"No se puede editar porque no se han realizado cambios");
+				}
+				else{
+					Becario becario = controladorBecarios.getEntidadSeleccionado();
+					for(Practica p: becario.getPracticas()){
+						if(p.equals(entidadSeleccionado)){
+							becario.getPracticas().remove(p);
+							becario.getPracticas().add(usr);
+						}
+					}
+					becario.update();
+					borrar();
+					mantenimiento.btnBuscarSelected();
+					mantenimiento.openInformation(
+							"Información",
+							"Se ha editado satisfactoriamente");
+				}
+			}
+		} catch(HibernateException he) {
+			mantenimiento.openError(
+					"Error",
+					"No se ha podido editar");
+		} catch (CampoRequeridoException ex){
+			mantenimiento.openError(
+					"Error",
+					"No se ha podido guardar el elemento porque hay campos requeridos"
+							+ " que no se han dado un valor v�lido");
+		}
+	}
+
+	@Override
+	public void eliminar() {
+		if(entidadSeleccionado == null){
+			mantenimiento.openError(
+					"Error",
+					"No ha seleccionado un elemento para eliminar");
+		}
+		else{
+			int result = mantenimiento.openQuestion(
+					"Eliminar",
+					"Va a eliminar el elemento seleccionada"
+							+". �Desea continuar?",
+					new String[]{"Si", "No"}
+					);
+			
+			if(result == 0){
+				try {
+					Becario becario = controladorBecarios.getEntidadSeleccionado();
+					for(Practica p: becario.getPracticas()){
+						if(p.equals(entidadSeleccionado)){
+							becario.getPracticas().remove(p);
+						}
+					}
+					becario.update();
+					entidadSeleccionado = null;
+					borrar();
+					visibilidadBtn();
+					mantenimiento.btnBuscarSelected();
+					mantenimiento.openInformation(
+							"Informacion",
+							"El elemento seleccionado se ha borrado satisfactoriamente "
+							);
+					mantenimiento.btnBuscarSelected();
+				} catch(HibernateException he){
+					mantenimiento.openError(
+							"Error",
+							"No se ha podido eliminar la actuacion");
+				} 
+			}
+		}
+	}
+
 
 	@Override
 	public void rellenarInterfaz() {
