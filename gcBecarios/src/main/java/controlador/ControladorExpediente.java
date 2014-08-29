@@ -96,7 +96,7 @@ public class ControladorExpediente extends ControladorMantenimiento<Expediente>{
 		
 		int comboSelect = 0;
 		for(TipoDeExpediente te: tiposDeExpediente){
-			if(te.getTipoDeExpediente().equals(entidadSeleccionado.getTipoDeExpediente())){
+			if(te.toCombo().equals(entidadSeleccionado.getTipoDeExpediente().toCombo())){
 				mExpedientes.selectItemComboTipoDeExpediente(comboSelect);
 				break;
 			}
